@@ -6,7 +6,7 @@ import { CoursesListComponent } from './modules/course/components/courses-list/c
 const routes: Routes = [
   {
     path: 'courses',
-    component: CoursesListComponent
+    loadChildren: () => import('./modules/course/course.module').then(m => m.CourseModule)
   },
   {
     path: '',

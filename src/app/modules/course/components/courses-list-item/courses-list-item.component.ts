@@ -1,15 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-courses-list-item',
   templateUrl: './courses-list-item.component.html',
-  styleUrls: ['./courses-list-item.component.scss']
+  styleUrls: ['./courses-list-item.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CoursesListItemComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-}
+export class CoursesListItemComponent {}

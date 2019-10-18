@@ -2,12 +2,14 @@
 
 html, body {
   height: 100%;
+  font-size: 10px;
 }
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
   background: #EFEFEF;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 1.6rem;
 }
 
 .bg-white {
