@@ -1,1 +1,17 @@
-<p>courses-list-item works!</p>
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar class="avatar"></div>
+    <mat-card-title>{{course.title}}</mat-card-title>
+    <mat-card-subtitle>{{course.duration}} min</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="{{course.thumbnail}}?index={{course.id}}" alt="{{course.id}}">
+  <mat-card-content>
+    <p>
+      {{course.description}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button (click)="onEdit()">Edit</button>
+    <button mat-button (click)="onDelete()">Delete</button>
+  </mat-card-actions>
+</mat-card>

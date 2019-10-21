@@ -6,7 +6,7 @@ import { CourseRoutingModule } from './course-routing.module';
 import { CoursesListComponent } from './components/courses-list/courses-list.component';
 import { CoursesListItemComponent } from './components/courses-list-item/courses-list-item.component';
 import { CoursesListSearchComponent } from './components/courses-list-search/courses-list-search.component';
-import { MatFormFieldModule, MatInputModule, MatButtonModule } from '@angular/material';
+import { MatFormFieldModule, MatInputModule, MatButtonModule, MatCardModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -17,7 +17,8 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCardModule
   ]
 })
 export class CourseModule { }
