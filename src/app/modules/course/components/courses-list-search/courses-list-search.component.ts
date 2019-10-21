@@ -6,4 +6,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./courses-list-search.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CoursesListSearchComponent {}
+export class CoursesListSearchComponent {
+  public searchTerm: string = '';
+
+  onSubmit() {
+    console.log(this.searchTerm);
+  }
+}
