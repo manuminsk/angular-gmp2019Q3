@@ -14,6 +14,10 @@ export class CoursesListComponent implements OnInit, OnChanges {
     console.log('Course List Component // Counstructor');
   }
 
+  public onAddCourse(event): void {
+    console.log('=== ADD COURSE ===', event);
+  }
+
   public onEditCourse(event): void {
     console.log('=== EDIT ===', event.id);
   }
