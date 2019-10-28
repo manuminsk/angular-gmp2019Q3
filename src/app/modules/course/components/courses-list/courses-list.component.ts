@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, OnChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, OnChanges, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy } from '@angular/core';
 import { ICourse, Course } from '../../models/course.class';
 
 @Component({
@@ -7,11 +7,11 @@ import { ICourse, Course } from '../../models/course.class';
   styleUrls: ['./courses-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CoursesListComponent implements OnInit, OnChanges {
+export class CoursesListComponent implements OnInit, OnChanges, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy {
   public courses: ICourse[] = [];
 
   constructor() {
-    console.log('Course List Component // Counstructor');
+    console.log('Course List Component /0/ Counstructor');
   }
 
   public onAddCourse(event): void {
@@ -30,23 +30,47 @@ export class CoursesListComponent implements OnInit, OnChanges {
     console.log('=== LOAD MORE ===', event);
   }
 
-  public ngOnChanges() {
-    console.log('Course List Component // OnChanges');
+  public ngOnChanges(): void {
+    console.log('Course List Component /1/ ngOnChanges');
   }
 
-  public ngOnInit() {
-    console.log('Course List Component // OnInit');
+  public ngOnInit(): void {
+    console.log('Course List Component /2/ ngOnInit');
 
     for (let i = 0; i < 10; i++) {
       this.courses.push(new Course({
         id: i.toString(),
         title: `Video Course ${i + 1}`,
         thumbnail: '',
-        creationDate: 'Test creation date',
+        creationDate: '2019-10-28 20:22:02.020',
         duration: 120,
         description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
       }));
     }
+  }
+
+  public ngDoCheck(): void {
+    console.log('Course List Component /3/ ngDoCheck');
+  }
+
+  public ngAfterContentInit(): void {
+    console.log('Course List Component /4/ ngAfterContentInit');
+  }
+
+  public ngAfterContentChecked(): void {
+    console.log('Course List Component /5/ AfterContentChecked');
+  }
+
+  public ngAfterViewInit(): void {
+    console.log('Course List Component /6/ AfterViewInit');
+  }
+
+  public ngAfterViewChecked(): void {
+    console.log('Course List Component /7/ AfterViewChecked');
+  }
+
+  public ngOnDestroy(): void {
+    console.log('Course List Component /8/ OnDestroy');
   }
 
   // https://angular.io/guide/lifecycle-hooks

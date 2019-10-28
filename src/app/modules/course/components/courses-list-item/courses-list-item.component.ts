@@ -16,11 +16,11 @@ export class CoursesListItemComponent {
   @Output()
   editCourseEvt: EventEmitter<ICourse> = new EventEmitter();
 
-  onEdit() {
+  public onEdit(): void {
     this.editCourseEvt.emit(this.course);
   }
 
-  onDelete() {
+  public onDelete(): void {
     this.deleteCourseEvt.emit(this.course);
   }
 }

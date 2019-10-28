@@ -9,7 +9,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 export class CoursesListSearchComponent {
   public searchTerm: string = '';
 
-  onSubmit() {
+  public onSubmit(): void {
     console.log(this.searchTerm);
   }
 }
