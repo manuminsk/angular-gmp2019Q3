@@ -14,22 +14,6 @@ export class CoursesListComponent implements OnInit, OnChanges, DoCheck, AfterCo
     console.log('Course List Component /0/ Counstructor');
   }
 
-  public onAddCourse(event): void {
-    console.log('=== ADD COURSE ===', event);
-  }
-
-  public onEditCourse(event): void {
-    console.log('=== EDIT ===', event.id);
-  }
-
-  public onDeleteCourse(event): void {
-    console.log('=== DELETE ===', event.id);
-  }
-
-  public onLoadMore(event): void {
-    console.log('=== LOAD MORE ===', event);
-  }
-
   public ngOnChanges(): void {
     console.log('Course List Component /1/ ngOnChanges');
   }
@@ -71,6 +55,22 @@ export class CoursesListComponent implements OnInit, OnChanges, DoCheck, AfterCo
 
   public ngOnDestroy(): void {
     console.log('Course List Component /8/ OnDestroy');
+  }
+
+  public onAddCourse(event): void {
+    console.log('=== ADD COURSE ===', event);
+  }
+
+  public onEditCourse(event): void {
+    console.log('=== EDIT ===', event.id);
+  }
+
+  public onDeleteCourse(event): void {
+    console.log('=== DELETE ===', event.id);
+  }
+
+  public onLoadMore(event): void {
+    console.log('=== LOAD MORE ===', event);
   }
 
   // https://angular.io/guide/lifecycle-hooks

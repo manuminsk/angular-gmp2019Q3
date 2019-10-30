@@ -16,11 +16,7 @@ export class Course implements ICourse {
   public description: string;
 
   constructor(course: ICourse) {
-    this.id = course.id;
-    this.title = course.title;
-    this.thumbnail = course.thumbnail || 'https://placeimg.com/350/200/any';
-    this.creationDate = course.creationDate;
-    this.duration = course.duration;
-    this.description = course.description;
+    Object.assign(this, course);
+    this.thumbnail = this.thumbnail || 'https://placeimg.com/350/200/any';
   }
 }
