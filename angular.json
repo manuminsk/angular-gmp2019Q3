@@ -122,6 +122,16 @@
               "devServerTarget": "angular-gmp2019-Q3:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "repo": "git@github.com:manuminsk/agmp-preview.git",
+            "baseHref": "https://manuminsk.github.io/agmp-preview/",
+            "name": "Andrei Shelenhouski",
+            "email": "andrei_shelenhouski@epam.com",
+            "silent": false
+          }
         }
       }
     }

@@ -1,1 +1,12 @@
-<p>courses-list-search works!</p>
+<div class="bg-white border pt-4 pl-4 pr-4">
+  <mat-form-field class="mr-4">
+    <input matInput placeholder="Text to search" [(ngModel)]="searchTerm">
+  </mat-form-field>
+  <button
+    mat-raised-button 
+    color="accent"
+    (click)="onSubmit()"
+    [disabled]="!searchTerm.length">
+    Search
+  </button>
+</div>
