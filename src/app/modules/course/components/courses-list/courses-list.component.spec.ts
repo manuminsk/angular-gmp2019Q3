@@ -50,7 +50,7 @@ describe('CoursesListComponent', () => {
     expect(component.onLoadMore).toHaveBeenCalled();
   });
 
-  it('should call loadMore method', () => {
+  it('should call addCourse method', () => {
     const debugElement: DebugElement = fixture.debugElement;
     const btn: DebugElement = debugElement.query(By.css('button.add-course-btn'))
 
