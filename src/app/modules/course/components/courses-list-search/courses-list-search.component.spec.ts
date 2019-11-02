@@ -1,8 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, DebugElement } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { CoursesListSearchComponent } from './courses-list-search.component';
+import { By } from '@angular/platform-browser';
 
 describe('CoursesListSearchComponent', () => {
   let component: CoursesListSearchComponent;
@@ -26,4 +27,16 @@ describe('CoursesListSearchComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it("should submit search form", () => {
+    const debugElement: DebugElement = fixture.debugElement;
+    const btn: DebugElement = debugElement.query(
+      By.css(".course-search-btn")
+    );
+
+    spyOn(component, "onSubmit");
+    btn.triggerEventHandler("click", null);
+
+    expect(component.onSubmit).toHaveBeenCalled();
+  });  
 });
