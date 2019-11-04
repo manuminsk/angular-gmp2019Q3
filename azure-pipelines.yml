@@ -19,4 +19,5 @@ steps:
     npm install -g @angular/cli
     npm install
     npm test
-  displayName: 'npm install and test'
+    npm run deploy
+  displayName: 'npm install, test and deploy to gh-pages'
