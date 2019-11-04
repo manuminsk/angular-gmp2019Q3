@@ -11,13 +11,11 @@ describe('BreadcrumbsComponent', () => {
       declarations: [ BreadcrumbsComponent ]
     })
     .compileComponents();
-  }));
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(BreadcrumbsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
+  }));
 
   it('should create', () => {
     expect(component).toBeTruthy();
