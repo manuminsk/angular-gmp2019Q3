@@ -28,14 +28,14 @@ describe('CoursesListSearchComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it("should submit search form", () => {
+  it('should submit search form', () => {
     const debugElement: DebugElement = fixture.debugElement;
     const btn: DebugElement = debugElement.query(
-      By.css(".course-search-btn")
+      By.css('.course-search-btn')
     );
 
-    spyOn(component, "onSubmit");
-    btn.triggerEventHandler("click", null);
+    spyOn(component, 'onSubmit');
+    btn.triggerEventHandler('click', null);
 
     expect(component.onSubmit).toHaveBeenCalled();
   });  

@@ -44,7 +44,7 @@ describe('CoursesListComponent', () => {
     const debugElement: DebugElement = fixture.debugElement;
     const btn: DebugElement = debugElement.query(By.css('button.load-more-btn'))
 
-    spyOn(component, "onLoadMore");
+    spyOn(component, 'onLoadMore');
     btn.triggerEventHandler('click', null);
 
     expect(component.onLoadMore).toHaveBeenCalled();
@@ -54,7 +54,7 @@ describe('CoursesListComponent', () => {
     const debugElement: DebugElement = fixture.debugElement;
     const btn: DebugElement = debugElement.query(By.css('button.add-course-btn'))
 
-    spyOn(component, "onAddCourse");
+    spyOn(component, 'onAddCourse');
     btn.triggerEventHandler('click', null);
 
     expect(component.onAddCourse).toHaveBeenCalled();

@@ -1,17 +1,17 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-import { CUSTOM_ELEMENTS_SCHEMA, DebugElement, Component } from "@angular/core";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA, DebugElement, Component } from '@angular/core';
 
-import { CoursesListItemComponent } from "./courses-list-item.component";
-import { ICourse } from "../../models/course.class";
-import { DatePipe } from "@angular/common";
-import { By } from "@angular/platform-browser";
+import { CoursesListItemComponent } from './courses-list-item.component';
+import { ICourse } from '../../models/course.class';
+import { DatePipe } from '@angular/common';
+import { By } from '@angular/platform-browser';
 
 @Component({
   template: `
     <app-courses-list-item
-      [course]="course"
-      (editCourseEvt)="onEditCourse($event)"
-      (deleteCourseEvt)="onDeleteCourse($event)"
+      [course]='course'
+      (editCourseEvt)='onEditCourse($event)'
+      (deleteCourseEvt)='onDeleteCourse($event)'
     >
     </app-courses-list-item>
   `
@@ -23,12 +23,12 @@ class TestHostComponent {
 
   constructor() {
     this.course = {
-      id: "Test_id",
-      title: "Test title",
-      thumbnail: "",
-      creationDate: "2019-10-30",
+      id: 'Test_id',
+      title: 'Test title',
+      thumbnail: '',
+      creationDate: '2019-10-30',
       duration: 60,
-      description: "Test description"
+      description: 'Test description'
     };
   }
 
@@ -41,7 +41,7 @@ class TestHostComponent {
   }
 }
 
-describe("TestHostComponent: CoursesListItemComponent", () => {
+describe('TestHostComponent: CoursesListItemComponent', () => {
   let component: TestHostComponent;
   let fixture: ComponentFixture<TestHostComponent>;
   let debugElement: DebugElement;
@@ -61,30 +61,30 @@ describe("TestHostComponent: CoursesListItemComponent", () => {
     debugElement = fixture.debugElement;
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should raise "deleteCourseEvt"', () => {
+  it('should raise \'deleteCourseEvt\'', () => {
     const deleteButton: DebugElement = debugElement.query(
-      By.css(".course-item-delete-btn")
+      By.css('.course-item-delete-btn')
     );
-    deleteButton.triggerEventHandler("click", null);
+    deleteButton.triggerEventHandler('click', null);
 
     expect(component.deleteCourse).toEqual(component.course);
   });
 
-  it('should raise "editCourseEvt"', () => {
+  it('should raise \'editCourseEvt\'', () => {
     const editButton: DebugElement = debugElement.query(
-      By.css(".course-item-edit-btn")
+      By.css('.course-item-edit-btn')
     );
-    editButton.triggerEventHandler("click", null);
+    editButton.triggerEventHandler('click', null);
 
     expect(component.editCourse).toEqual(component.course);
   });
 });
 
-describe("CoursesListItemComponent", () => {
+describe('CoursesListItemComponent', () => {
   let component: CoursesListItemComponent;
   let fixture: ComponentFixture<CoursesListItemComponent>;
   let course: ICourse;
@@ -98,12 +98,12 @@ describe("CoursesListItemComponent", () => {
 
   beforeEach(() => {
     course = {
-      id: "Test_id",
-      title: "Test title",
-      thumbnail: "",
-      creationDate: "2019-10-30",
+      id: 'Test_id',
+      title: 'Test title',
+      thumbnail: '',
+      creationDate: '2019-10-30',
       duration: 60,
-      description: "Test description"
+      description: 'Test description'
     };
     fixture = TestBed.createComponent(CoursesListItemComponent);
     component = fixture.componentInstance;
@@ -111,85 +111,85 @@ describe("CoursesListItemComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it("should render proper title", () => {
+  it('should render proper title', () => {
     const nativeElement: HTMLElement = fixture.nativeElement;
-    const title: Element = nativeElement.querySelector(".course-item-title");
+    const title: Element = nativeElement.querySelector('.course-item-title');
 
     expect(title.textContent).toBe(component.course.title);
   });
 
-  it("should render proper sub-title", () => {
+  it('should render proper sub-title', () => {
     const nativeElement: HTMLElement = fixture.nativeElement;
     const subtitle: Element = nativeElement.querySelector(
-      ".course-item-subtitle"
+      '.course-item-subtitle'
     );
 
     expect(subtitle.textContent).toBe(
-      `${new DatePipe("en").transform(
+      `${new DatePipe('en').transform(
         component.course.creationDate,
-        "dd.MM.yyyy"
+        'dd.MM.yyyy'
       )} | ${component.course.duration} min`
     );
   });
 
-  it("should render proper preview image", () => {
+  it('should render proper preview image', () => {
     const nativeElement: HTMLElement = fixture.nativeElement;
     const image: Element = nativeElement.querySelector(
-      ".course-item-thumbnail"
+      '.course-item-thumbnail'
     );
 
-    expect(image.getAttribute("src")).toBe(
+    expect(image.getAttribute('src')).toBe(
       `${component.course.thumbnail}?index=${component.course.id}`
     );
   });
 
-  it("should render proper description", () => {
+  it('should render proper description', () => {
     const nativeElement: HTMLElement = fixture.nativeElement;
     const description: Element = nativeElement.querySelector(
-      ".course-item-description"
+      '.course-item-description'
     );
 
     expect(description.textContent.trim()).toBe(component.course.description);
   });
 
-  it("should render edit button", () => {
+  it('should render edit button', () => {
     const nativeElement: HTMLElement = fixture.nativeElement;
-    const btn: Element = nativeElement.querySelector(".course-item-edit-btn");
+    const btn: Element = nativeElement.querySelector('.course-item-edit-btn');
 
     expect(btn).toBeTruthy();
   });
 
-  it("should call onEdit method", () => {
+  it('should call onEdit method', () => {
     const debugElement: DebugElement = fixture.debugElement;
     const btn: DebugElement = debugElement.query(
-      By.css(".course-item-edit-btn")
+      By.css('.course-item-edit-btn')
     );
 
-    spyOn(component, "onEdit");
-    btn.triggerEventHandler("click", null);
+    spyOn(component, 'onEdit');
+    btn.triggerEventHandler('click', null);
 
     expect(component.onEdit).toHaveBeenCalled();
   });
 
-  it("should render delete button", () => {
+  it('should render delete button', () => {
     const nativeElement: HTMLElement = fixture.nativeElement;
-    const btn: Element = nativeElement.querySelector(".course-item-delete-btn");
+    const btn: Element = nativeElement.querySelector('.course-item-delete-btn');
 
     expect(btn).toBeTruthy();
   });
 
-  it("should call onDeletet method", () => {
+  it('should call onDeletet method', () => {
     const debugElement: DebugElement = fixture.debugElement;
     const btn: DebugElement = debugElement.query(
-      By.css(".course-item-delete-btn")
+      By.css('.course-item-delete-btn')
     );
 
-    spyOn(component, "onDelete");
-    btn.triggerEventHandler("click", null);
+    spyOn(component, 'onDelete');
+    btn.triggerEventHandler('click', null);
 
     expect(component.onDelete).toHaveBeenCalled();
   });
