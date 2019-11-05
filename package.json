@@ -6,7 +6,8 @@
     "start": "ng serve --aot",
     "build": "ng build --prod --base-href=agmp-preview",
     "deploy": "ng deploy",
-    "test": "ng test",
+    "test": "ng test --code-coverage --watch=false",
+    "test:watch": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
