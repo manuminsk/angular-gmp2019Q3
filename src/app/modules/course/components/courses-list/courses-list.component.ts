@@ -1,5 +1,17 @@
-import { ChangeDetectionStrategy, Component, OnInit, OnChanges, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy } from '@angular/core';
-import { ICourse, Course } from '../../models/course.class';
+import {
+  AfterContentChecked,
+  AfterContentInit,
+  AfterViewChecked,
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  DoCheck,
+  OnChanges,
+  OnDestroy,
+  OnInit
+} from '@angular/core';
+import { Course, ICourse } from '../../models/course.class';
+import { OrderByPipe, SORTING } from '../../utils/order-by.pipe';
 
 @Component({
   selector: 'app-courses-list',
@@ -27,13 +39,15 @@ export class CoursesListComponent implements OnInit, OnChanges, DoCheck, AfterCo
         id: i.toString(),
         title: `Video Course ${i + 1}`,
         thumbnail: '',
-        creationDate: `2019-11-${i + 10} 20:22:02.020`,
+        creationDate: `2019-11-${Math.floor(Math.random() * 20)}`,
         topRated: i % 3 === 0,
         duration: Math.round(Math.random() * i * 20),
         // tslint:disable-next-line:max-line-length
         description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
       }));
     }
+
+    new OrderByPipe().transform(this.courses, SORTING.ASC, 'creationDate');
   }
 
   public ngDoCheck(): void {
