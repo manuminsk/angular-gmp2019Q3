@@ -42,7 +42,7 @@ describe('CoursesListComponent', () => {
 
   it('should call loadMore method', () => {
     const debugElement: DebugElement = fixture.debugElement;
-    const btn: DebugElement = debugElement.query(By.css('button.load-more-btn'))
+    const btn: DebugElement = debugElement.query(By.css('button.load-more-btn'));
 
     spyOn(component, 'onLoadMore');
     btn.triggerEventHandler('click', null);
@@ -52,7 +52,7 @@ describe('CoursesListComponent', () => {
 
   it('should call addCourse method', () => {
     const debugElement: DebugElement = fixture.debugElement;
-    const btn: DebugElement = debugElement.query(By.css('button.add-course-btn'))
+    const btn: DebugElement = debugElement.query(By.css('button.add-course-btn'));
 
     spyOn(component, 'onAddCourse');
     btn.triggerEventHandler('click', null);

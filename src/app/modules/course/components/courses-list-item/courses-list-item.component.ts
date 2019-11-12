@@ -5,7 +5,7 @@ import { ICourse } from '../../models/course.class';
   selector: 'app-courses-list-item',
   templateUrl: './courses-list-item.component.html',
   styleUrls: ['./courses-list-item.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CoursesListItemComponent {
   @Input()
