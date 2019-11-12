@@ -9,6 +9,7 @@ import { ICourse, Course } from '../../models/course.class';
 })
 export class CoursesListComponent implements OnInit, OnChanges, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy {
   public courses: ICourse[] = [];
+  public noDataMessageText: string = 'No data. Feel free to add new course.';
 
   constructor() {
     console.log('Course List Component /0/ Counstructor');
