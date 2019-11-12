@@ -1,17 +1,11 @@
 import {
-  AfterContentChecked,
-  AfterContentInit,
-  AfterViewChecked,
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
-  DoCheck,
-  OnChanges,
-  OnDestroy,
   OnInit
 } from '@angular/core';
 import { Course, ICourse } from '../../models/course.class';
 import { OrderByPipe, SORTING } from '../../utils/order-by.pipe';
+import { FilterCoursesPipe } from '../../utils/filter-courses.pipe';
 
 @Component({
   selector: 'app-courses-list',
@@ -19,17 +13,10 @@ import { OrderByPipe, SORTING } from '../../utils/order-by.pipe';
   styleUrls: ['./courses-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CoursesListComponent implements OnInit, OnChanges, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy {
+export class CoursesListComponent implements OnInit {
   public courses: ICourse[] = [];
+  public initialCourses: ICourse[] = [];
   public noDataMessageText: string = 'No data. Feel free to add new course.';
-
-  constructor() {
-    console.log('Course List Component /0/ Counstructor');
-  }
-
-  public ngOnChanges(): void {
-    console.log('Course List Component /1/ ngOnChanges');
-  }
 
   public ngOnInit(): void {
     console.log('Course List Component /2/ ngOnInit');
@@ -48,30 +35,7 @@ export class CoursesListComponent implements OnInit, OnChanges, DoCheck, AfterCo
     }
 
     new OrderByPipe().transform(this.courses, SORTING.ASC, 'creationDate');
-  }
-
-  public ngDoCheck(): void {
-    console.log('Course List Component /3/ ngDoCheck');
-  }
-
-  public ngAfterContentInit(): void {
-    console.log('Course List Component /4/ ngAfterContentInit');
-  }
-
-  public ngAfterContentChecked(): void {
-    console.log('Course List Component /5/ AfterContentChecked');
-  }
-
-  public ngAfterViewInit(): void {
-    console.log('Course List Component /6/ AfterViewInit');
-  }
-
-  public ngAfterViewChecked(): void {
-    console.log('Course List Component /7/ AfterViewChecked');
-  }
-
-  public ngOnDestroy(): void {
-    console.log('Course List Component /8/ OnDestroy');
+    this.initialCourses = [].concat(this.courses);
   }
 
   public onAddCourse(event): void {
@@ -90,6 +54,11 @@ export class CoursesListComponent implements OnInit, OnChanges, DoCheck, AfterCo
     console.log('=== LOAD MORE ===', event);
   }
 
-  // https://angular.io/guide/lifecycle-hooks
-  // ngDoCheck, ngAfterContentInit, ngAfterContentChecked, ngAfterViewInit, ngAfterViewChecked, ngOnDestroy
+  public onFindEvt(searchTerm: string): void {
+    this.courses = new FilterCoursesPipe().transform(this.courses, searchTerm);
+  }
+
+  public onResetEvt(): void {
+    this.courses = this.initialCourses;
+  }
 }

@@ -15,6 +15,7 @@ import { CoursesListSearchComponent } from './components/courses-list-search/cou
 import { CourseBorderDirective } from './utils/course-border.directive';
 import { DurationPipe } from './utils/duration.pipe';
 import { OrderByPipe } from './utils/order-by.pipe';
+import { FilterCoursesPipe } from './utils/filter-courses.pipe';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { OrderByPipe } from './utils/order-by.pipe';
     CoursesListSearchComponent,
     CourseBorderDirective,
     DurationPipe,
-    OrderByPipe
+    OrderByPipe,
+    FilterCoursesPipe
   ],
   imports: [
     SharedModule,

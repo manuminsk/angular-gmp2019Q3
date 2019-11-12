@@ -2,7 +2,10 @@
   <div class="container">
     <div class="row mt-4 mb-4">
       <div class="col">
-        <app-courses-list-search></app-courses-list-search>
+        <app-courses-list-search
+          (findEvt)="onFindEvt($event)"
+          (resetEvt)="onResetEvt()">
+        </app-courses-list-search>
       </div>
     </div>
 

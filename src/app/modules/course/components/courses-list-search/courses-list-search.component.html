@@ -4,10 +4,18 @@
   </mat-form-field>
   <button
     class="course-search-btn"
-    mat-raised-button 
+    mat-raised-button
     color="accent"
     (click)="onSubmit()"
     [disabled]="!searchTerm.length">
     Search
+  </button>
+  <button
+    class="course-search-btn ml-4"
+    mat-raised-button
+    color="accent"
+    (click)="onReset()"
+    *ngIf="searchTerm.length">
+    Reset
   </button>
 </div>

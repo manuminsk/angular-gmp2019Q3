@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ICourse } from '../models/course.class';
+import { Course } from '../models/course.class';
 
 export enum SORTING {
   ASC,
@@ -11,7 +11,7 @@ export enum SORTING {
 })
 export class OrderByPipe implements PipeTransform {
   // Implement additional conditions to exclude possible errors
-  transform(courses: ICourse[], sorting: SORTING = SORTING.ASC, field: string = 'creationDate', ...args: any[]): any {
+  transform(courses: Course[], sorting: SORTING = SORTING.ASC, field: string = 'creationDate', ...args: any[]): Course[] {
     if (!courses) {
       return null;
     }
