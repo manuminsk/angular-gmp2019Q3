@@ -13,13 +13,15 @@ import { CoursesListComponent } from './components/courses-list/courses-list.com
 import { CoursesListItemComponent } from './components/courses-list-item/courses-list-item.component';
 import { CoursesListSearchComponent } from './components/courses-list-search/courses-list-search.component';
 import { CourseBorderDirective } from './utils/course-border.directive';
+import { DurationPipe } from './utils/duration.pipe';
 
 @NgModule({
   declarations: [
     CoursesListComponent,
     CoursesListItemComponent,
     CoursesListSearchComponent,
-    CourseBorderDirective
+    CourseBorderDirective,
+    DurationPipe
   ],
   imports: [
     SharedModule,
