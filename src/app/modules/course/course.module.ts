@@ -3,7 +3,8 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatButtonModule,
-  MatCardModule
+  MatCardModule,
+  MatIconModule,
 } from '@angular/material';
 
 import { SharedModule } from '../shared/shared.module';
@@ -25,6 +26,7 @@ import { CourseBorderDirective } from './utils/course-border.directive';
     CourseRoutingModule,
     MatFormFieldModule,
     MatInputModule,
+    MatIconModule,
     MatButtonModule,
     MatCardModule
   ]
