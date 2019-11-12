@@ -5,7 +5,7 @@
   <button
     class="course-search-btn"
     mat-raised-button
-    color="accent"
+    color="primary"
     (click)="onSubmit()"
     [disabled]="!searchTerm.length">
     Search
@@ -13,7 +13,7 @@
   <button
     class="course-search-btn ml-4"
     mat-raised-button
-    color="accent"
+    color="warn"
     (click)="onReset()"
     *ngIf="searchTerm.length">
     Reset
