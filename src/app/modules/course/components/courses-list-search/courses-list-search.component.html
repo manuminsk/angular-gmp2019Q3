@@ -1,21 +1,13 @@
 <div class="bg-white border pt-4 pl-4 pr-4">
   <mat-form-field class="mr-4">
-    <input matInput placeholder="Text to search" [(ngModel)]="searchTerm" />
+    <input matInput placeholder="Text to search" [(ngModel)]="searchTerm">
   </mat-form-field>
   <button
     class="course-search-btn"
-    mat-raised-button
-    color="primary"
-    [disabled]="!searchTerm.length"
-    (click)="onSubmit()">
+    mat-raised-button 
+    color="accent"
+    (click)="onSubmit()"
+    [disabled]="!searchTerm.length">
     Search
-  </button>
-  <button
-    *ngIf="searchTerm.length"
-    class="course-search-btn ml-4"
-    (click)="onReset()"
-    mat-raised-button
-    color="warn">
-    Reset
   </button>
 </div>
