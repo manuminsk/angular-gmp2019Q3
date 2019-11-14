@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input, Output, EventEmitter } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  Output,
+  EventEmitter
+} from '@angular/core';
 import { ICourse } from '../../models/course.class';
 
 @Component({
@@ -8,13 +14,10 @@ import { ICourse } from '../../models/course.class';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CoursesListItemComponent {
-  @Input()
-  course: ICourse;
+  @Input() public course: ICourse;
 
-  @Output()
-  deleteCourseEvt: EventEmitter<ICourse> = new EventEmitter();
-  @Output()
-  editCourseEvt: EventEmitter<ICourse> = new EventEmitter();
+  @Output() public deleteCourseEvt: EventEmitter<ICourse> = new EventEmitter();
+  @Output() public editCourseEvt: EventEmitter<ICourse> = new EventEmitter();
 
   public onEdit(): void {
     this.editCourseEvt.emit(this.course);

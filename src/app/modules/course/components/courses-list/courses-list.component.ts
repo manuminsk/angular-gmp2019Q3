@@ -1,5 +1,11 @@
-import { ChangeDetectionStrategy, Component, OnInit, OnChanges, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy } from '@angular/core';
-import { ICourse, Course } from '../../models/course.class';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit
+} from '@angular/core';
+import { Course, ICourse } from '../../models/course.class';
+import { OrderByPipe, SORTING } from '../../utils/order-by.pipe';
+import { FilterCoursesPipe } from '../../utils/filter-courses.pipe';
 
 @Component({
   selector: 'app-courses-list',
@@ -7,16 +13,10 @@ import { ICourse, Course } from '../../models/course.class';
   styleUrls: ['./courses-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CoursesListComponent implements OnInit, OnChanges, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy {
+export class CoursesListComponent implements OnInit {
   public courses: ICourse[] = [];
-
-  constructor() {
-    console.log('Course List Component /0/ Counstructor');
-  }
-
-  public ngOnChanges(): void {
-    console.log('Course List Component /1/ ngOnChanges');
-  }
+  public initialCourses: ICourse[] = [];
+  public noDataMessageText: string = 'No data. Feel free to add new course.';
 
   public ngOnInit(): void {
     console.log('Course List Component /2/ ngOnInit');
@@ -26,35 +26,16 @@ export class CoursesListComponent implements OnInit, OnChanges, DoCheck, AfterCo
         id: i.toString(),
         title: `Video Course ${i + 1}`,
         thumbnail: '',
-        creationDate: '2019-10-28 20:22:02.020',
-        duration: 120,
+        creationDate: `2019-11-${Math.floor(Math.random() * 20)}`,
+        topRated: i % 3 === 0,
+        duration: Math.round(Math.random() * i * 20),
+        // tslint:disable-next-line:max-line-length
         description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
       }));
     }
-  }
 
-  public ngDoCheck(): void {
-    console.log('Course List Component /3/ ngDoCheck');
-  }
-
-  public ngAfterContentInit(): void {
-    console.log('Course List Component /4/ ngAfterContentInit');
-  }
-
-  public ngAfterContentChecked(): void {
-    console.log('Course List Component /5/ AfterContentChecked');
-  }
-
-  public ngAfterViewInit(): void {
-    console.log('Course List Component /6/ AfterViewInit');
-  }
-
-  public ngAfterViewChecked(): void {
-    console.log('Course List Component /7/ AfterViewChecked');
-  }
-
-  public ngOnDestroy(): void {
-    console.log('Course List Component /8/ OnDestroy');
+    new OrderByPipe().transform(this.courses, SORTING.ASC, 'creationDate');
+    this.initialCourses = [].concat(this.courses);
   }
 
   public onAddCourse(event): void {
@@ -73,6 +54,11 @@ export class CoursesListComponent implements OnInit, OnChanges, DoCheck, AfterCo
     console.log('=== LOAD MORE ===', event);
   }
 
-  // https://angular.io/guide/lifecycle-hooks
-  // ngDoCheck, ngAfterContentInit, ngAfterContentChecked, ngAfterViewInit, ngAfterViewChecked, ngOnDestroy
+  public onFindEvt(searchTerm: string): void {
+    this.courses = new FilterCoursesPipe().transform(this.courses, searchTerm);
+  }
+
+  public onResetEvt(): void {
+    this.courses = this.initialCourses;
+  }
 }
