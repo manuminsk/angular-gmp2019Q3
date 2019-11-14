@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Output} from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-courses-list-search',
@@ -7,17 +7,9 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Output} from '@angular
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CoursesListSearchComponent {
-  @Output() findEvt: EventEmitter<string> = new EventEmitter<string>();
-  @Output() resetEvt: EventEmitter<void> = new EventEmitter<void>();
-
   public searchTerm: string = '';
 
   public onSubmit(): void {
-    this.findEvt.emit(this.searchTerm);
-  }
-
-  public onReset(): void {
-    this.searchTerm = '';
-    this.resetEvt.emit();
+    console.log(this.searchTerm);
   }
 }

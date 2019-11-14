@@ -2,10 +2,7 @@
   <div class="container">
     <div class="row mt-4 mb-4">
       <div class="col">
-        <app-courses-list-search
-          (findEvt)="onFindEvt($event)"
-          (resetEvt)="onResetEvt()">
-        </app-courses-list-search>
+        <app-courses-list-search></app-courses-list-search>
       </div>
     </div>
 
@@ -21,7 +18,7 @@
       </div>
     </div>
 
-    <div class="row" *ngIf="courses; else noDataMessage">
+    <div class="row" *ngIf="courses">
       <div class="col-md-6 col-lg-4 col-xl-3 mb-4" *ngFor="let course of courses; let i = index">
         <app-courses-list-item
           [course]="course"
@@ -29,7 +26,7 @@
           (editCourseEvt)="onEditCourse(course)">
         </app-courses-list-item>
       </div>
-
+        
       <div class="col-12 mb-4 text-center">
         <button
           class="load-more-btn"
@@ -42,13 +39,3 @@
     </div>
   </div>
 </div>
-
-<ng-template #noDataMessage>
-  <div class="row">
-    <div class="col-12 mb-4 text-center">
-      <div class="bg-white border p-4">
-        {{ noDataMessageText | uppercase }}
-      </div>
-    </div>
-  </div>
-</ng-template>

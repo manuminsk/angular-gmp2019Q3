@@ -1,32 +1,17 @@
-<mat-card
-  [appCourseBorder]="course.creationDate"
-  [class.course-item-top-rated]="course.topRated">
+<mat-card>
   <mat-card-header>
     <div mat-card-avatar class="course-item-avatar"></div>
-    <mat-card-title class="course-item-title">
-      {{ course.title | uppercase }}<mat-icon *ngIf="course.topRated">stars</mat-icon>
-    </mat-card-title>
-    <mat-card-subtitle class="course-item-subtitle">
-      {{ course.creationDate | date: "dd.MM.yyyy" }} |
-      {{ course.duration | duration }}
-    </mat-card-subtitle>
+    <mat-card-title class="course-item-title">{{course.title}}</mat-card-title>
+    <mat-card-subtitle class="course-item-subtitle">{{course.creationDate | date:"dd.MM.yyyy"}} | {{course.duration}} min</mat-card-subtitle>
   </mat-card-header>
-  <img
-    class="course-item-thumbnail"
-    mat-card-image
-    src="{{ course.thumbnail }}?index={{ course.id }}"
-    alt="{{ course.id }}"/>
+  <img class="course-item-thumbnail" mat-card-image src="{{course.thumbnail}}?index={{course.id}}" alt="{{course.id}}">
   <mat-card-content>
     <p class="course-item-description">
-      {{ course.description }}
+      {{course.description}}
     </p>
   </mat-card-content>
   <mat-card-actions>
-    <button class="course-item-edit-btn" mat-button (click)="onEdit()">
-      Edit
-    </button>
-    <button class="course-item-delete-btn" mat-button (click)="onDelete()">
-      Delete
-    </button>
+    <button class="course-item-edit-btn" mat-button (click)="onEdit()">Edit</button>
+    <button class="course-item-delete-btn" mat-button (click)="onDelete()">Delete</button>
   </mat-card-actions>
 </mat-card>

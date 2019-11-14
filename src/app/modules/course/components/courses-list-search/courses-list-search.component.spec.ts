@@ -38,5 +38,5 @@ describe('CoursesListSearchComponent', () => {
     btn.triggerEventHandler('click', null);
 
     expect(component.onSubmit).toHaveBeenCalled();
-  });
+  });  
 });

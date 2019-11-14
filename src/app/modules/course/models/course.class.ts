@@ -3,7 +3,6 @@ export interface ICourse {
   title: string;
   thumbnail: string;
   creationDate: string;
-  topRated: boolean;
   duration: number;
   description: string;
 }
@@ -13,7 +12,6 @@ export class Course implements ICourse {
   public title: string;
   public thumbnail: string;
   public creationDate: string;
-  public topRated: boolean;
   public duration: number;
   public description: string;
 

@@ -5,7 +5,6 @@ import { CoursesListItemComponent } from './courses-list-item.component';
 import { ICourse } from '../../models/course.class';
 import { DatePipe } from '@angular/common';
 import { By } from '@angular/platform-browser';
-import { DurationPipe } from '../../utils/duration.pipe';
 
 @Component({
   template: `
@@ -28,7 +27,6 @@ class TestHostComponent {
       title: 'Test title',
       thumbnail: '',
       creationDate: '2019-10-30',
-      topRated: false,
       duration: 60,
       description: 'Test description'
     };
@@ -50,7 +48,7 @@ describe('TestHostComponent: CoursesListItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CoursesListItemComponent, TestHostComponent, DurationPipe],
+      declarations: [CoursesListItemComponent, TestHostComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   }));
@@ -93,7 +91,7 @@ describe('CoursesListItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CoursesListItemComponent, DurationPipe],
+      declarations: [CoursesListItemComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   }));
@@ -104,7 +102,6 @@ describe('CoursesListItemComponent', () => {
       title: 'Test title',
       thumbnail: '',
       creationDate: '2019-10-30',
-      topRated: false,
       duration: 60,
       description: 'Test description'
     };
@@ -122,7 +119,7 @@ describe('CoursesListItemComponent', () => {
     const nativeElement: HTMLElement = fixture.nativeElement;
     const title: Element = nativeElement.querySelector('.course-item-title');
 
-    expect(title.textContent.trim()).toBe(component.course.title.toUpperCase());
+    expect(title.textContent).toBe(component.course.title);
   });
 
   it('should render proper sub-title', () => {
@@ -131,11 +128,11 @@ describe('CoursesListItemComponent', () => {
       '.course-item-subtitle'
     );
 
-    expect(subtitle.textContent.trim()).toBe(
+    expect(subtitle.textContent).toBe(
       `${new DatePipe('en').transform(
         component.course.creationDate,
         'dd.MM.yyyy'
-      )} | ${new DurationPipe().transform(component.course.duration)}`
+      )} | ${component.course.duration} min`
     );
   });
 
