@@ -7,10 +7,8 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Output} from '@angular
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CoursesListSearchComponent {
-  @Output()
-  findEvt: EventEmitter<string> = new EventEmitter<string>();
-  @Output()
-  resetEvt: EventEmitter<any> = new EventEmitter<any>();
+  @Output() findEvt: EventEmitter<string> = new EventEmitter<string>();
+  @Output() resetEvt: EventEmitter<void> = new EventEmitter<void>();
 
   public searchTerm: string = '';
 

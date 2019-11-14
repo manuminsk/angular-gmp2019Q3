@@ -11,7 +11,7 @@ export enum SORTING {
 })
 export class OrderByPipe implements PipeTransform {
   // Implement additional conditions to exclude possible errors
-  transform(courses: Course[], sorting: SORTING = SORTING.ASC, field: string = 'creationDate', ...args: any[]): Course[] {
+  public transform(courses: Course[], sorting: SORTING = SORTING.ASC, field: string = 'creationDate'): Course[] {
     if (!courses) {
       return null;
     }

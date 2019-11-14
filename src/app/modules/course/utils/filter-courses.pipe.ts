@@ -6,7 +6,7 @@ import {Course} from '../models/course.class';
 })
 export class FilterCoursesPipe implements PipeTransform {
 
-  transform(courses: Course[], searchTerm: string, ...args: any[]): Course[] {
+  public transform(courses: Course[], searchTerm: string): Course[] {
     if (courses.length && searchTerm.length) {
       return courses.filter((item) => item.title.toLowerCase().includes(searchTerm.toLowerCase()));
     }
