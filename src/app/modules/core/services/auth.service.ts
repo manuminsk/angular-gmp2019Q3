@@ -20,7 +20,9 @@ export class AuthService {
   }
 
   public isAuthenticated(): boolean {
-    return !!localStorage.getItem('token').length;
+    const token = localStorage.getItem('token');
+    
+    return !!token;
   }
 
   public getUser(): string {

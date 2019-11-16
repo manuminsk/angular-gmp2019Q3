@@ -1,1 +1,22 @@
-<p>login-page works!</p>
+<div class="login-page">
+  <div class="container">
+    <div class="row mt-4 mb-4">
+      <div class="col">
+        <h1>Login</h1>
+        <div class="login-form-wrap bg-white border p-4">
+          <form class="login-form" [formGroup]="credentials" (ngSubmit)="onLogin()">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Name" formControlName="name">
+            </mat-form-field>
+          
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Password" formControlName="password">
+            </mat-form-field>
+
+            <button mat-raised-button color="primary">Login</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

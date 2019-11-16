@@ -1,12 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { CoursesListComponent } from './modules/course/components/courses-list/courses-list.component';
+import { LoginPageComponent } from './modules/core/components/login-page/login-page.component';
 
 const routes: Routes = [
   {
+    path: 'login',
+    component: LoginPageComponent
+  },
+  {
     path: 'courses',
-    loadChildren: () => import('./modules/course/course.module').then(m => m.CourseModule)
+    loadChildren: () =>
+      import('./modules/course/course.module').then(m => m.CourseModule)
   },
   {
     path: '',
@@ -17,12 +22,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    RouterModule.forRoot(routes)
-  ],
-  exports: [
-    RouterModule
-  ]
+  imports: [CommonModule, RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../models/user.class';
@@ -8,15 +8,19 @@ import { User } from '../../models/user.class';
   templateUrl: './header.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeaderComponent {
-  public mockUser: User;
+export class HeaderComponent implements OnInit {
+  public isAuthenticated: boolean;
 
   constructor(private authService: AuthService, private router: Router) {}
+
+  public ngOnInit(): void {
+    this.isAuthenticated = this.authService.isAuthenticated();
+  }
 
   public onLogin(): void {
     console.log('=== LOGIN ===');
     
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('login');
   }
 
   public onLogout(): void {
