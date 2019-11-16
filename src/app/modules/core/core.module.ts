@@ -11,8 +11,7 @@ import { LogoComponent } from './components/logo/logo.component';
   declarations: [HeaderComponent, FooterComponent, LogoComponent, BreadcrumbsComponent],
   imports: [
     SharedModule,
-    MatToolbarModule,
-    MatButtonModule
+    MatToolbarModule
   ],
   exports: [
     HeaderComponent,

@@ -1,12 +1,10 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnInit
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { Observable } from 'rxjs';
 
 import { Course } from '../../models/course.class';
 import { CourseService } from '../../services/course.service';
-import { Observable } from 'rxjs';
+import { DialogComponent } from 'src/app/modules/shared/components/dialog/dialog.component';
 
 @Component({
   selector: 'app-courses-list',
@@ -19,7 +17,7 @@ export class CoursesListComponent implements OnInit {
   public searchTerm: string = '';
   public noDataMessageText: string = 'No data. Feel free to add new course.';
 
-  constructor(private courseService: CourseService) {}
+  constructor(private courseService: CourseService, public dialog: MatDialog) {}
 
   public ngOnInit(): void {
     this.courses$ = this.courseService.getCourseList();
@@ -36,7 +34,9 @@ export class CoursesListComponent implements OnInit {
   }
 
   public onDeleteCourse({ id }: Course): void {
-    this.courses$ = this.courseService.removeCourse(id);
+    this.openDialog((result: boolean) => {
+      result && (this.courses$ = this.courseService.removeCourse(id));
+    });
   }
 
   public onLoadMore(event): void {
@@ -49,5 +49,16 @@ export class CoursesListComponent implements OnInit {
 
   public onResetEvt(): void {
     this.searchTerm = '';
+  }
+
+  public openDialog(cb: Function): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '400px',
+      data: { title: 'Confirmation needed', question: 'Do you really want to delete this course?'}
+    });
+
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      cb(result);
+    });
   }
 }
