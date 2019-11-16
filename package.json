@@ -6,8 +6,8 @@
     "start": "ng serve --aot",
     "build": "ng build --prod --base-href=agmp-preview",
     "deploy": "ng deploy",
-    "test": "ng test --code-coverage --watch=false",
-    "test:watch": "ng test",
+    "test": "ng test --code-coverage",
+    "test:ci": "ng test --no-watch --no-progress --browsers=ChromeHeadlessCI",
     "lint": "ng lint --fix",
     "e2e": "ng e2e"
   },

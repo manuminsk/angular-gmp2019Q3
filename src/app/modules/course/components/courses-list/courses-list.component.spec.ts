@@ -3,6 +3,8 @@ import { CUSTOM_ELEMENTS_SCHEMA, DebugElement } from '@angular/core';
 
 import { CoursesListComponent } from './courses-list.component';
 import { By } from '@angular/platform-browser';
+import { OrderByPipe } from '../../utils/order-by.pipe';
+import { FilterCoursesPipe } from '../../utils/filter-courses.pipe';
 
 describe('CoursesListComponent', () => {
   let component: CoursesListComponent;
@@ -10,7 +12,7 @@ describe('CoursesListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CoursesListComponent ],
+      declarations: [ CoursesListComponent, OrderByPipe, FilterCoursesPipe ],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
     })
     .compileComponents();
@@ -31,13 +33,6 @@ describe('CoursesListComponent', () => {
     const coursesNodes: NodeListOf<Element> = nativeElement.querySelectorAll('app-courses-list-search');
 
     expect(coursesNodes.length).toBeTruthy();
-  });
-
-  it('should create proper number of course items', () => {
-    const nativeElement: HTMLElement = fixture.nativeElement;
-    const coursesNodes: NodeListOf<Element> = nativeElement.querySelectorAll('app-courses-list-item');
-
-    expect(coursesNodes.length).toBe(component.courses.length);
   });
 
   it('should call loadMore method', () => {
