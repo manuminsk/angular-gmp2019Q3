@@ -1,11 +1,11 @@
 import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
-import { IDialog } from '../../models/dialog.interface';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+
+import { IDialog } from '../../models/dialog.interface';
 
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
-  styleUrls: ['./dialog.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DialogComponent {

@@ -10,9 +10,9 @@ import { DurationPipe } from '../../utils/duration.pipe';
 @Component({
   template: `
     <app-courses-list-item
-      [course]='course'
-      (editCourseEvt)='onEditCourse($event)'
-      (deleteCourseEvt)='onDeleteCourse($event)'
+      [course]="course"
+      (editCourseEvt)="onEditCourse($event)"
+      (deleteCourseEvt)="onDeleteCourse($event)"
     >
     </app-courses-list-item>
   `
@@ -67,7 +67,7 @@ describe('TestHostComponent: CoursesListItemComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should raise \'deleteCourseEvt\'', () => {
+  it("should raise 'deleteCourseEvt'", () => {
     const deleteButton: DebugElement = debugElement.query(
       By.css('.course-item-delete-btn')
     );
@@ -76,7 +76,7 @@ describe('TestHostComponent: CoursesListItemComponent', () => {
     expect(component.deleteCourse).toEqual(component.course);
   });
 
-  it('should raise \'editCourseEvt\'', () => {
+  it("should raise 'editCourseEvt'", () => {
     const editButton: DebugElement = debugElement.query(
       By.css('.course-item-edit-btn')
     );

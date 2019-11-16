@@ -1,11 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA, DebugElement } from '@angular/core';
+import { MatDialogModule } from '@angular/material';
 
 import { CoursesListComponent } from './courses-list.component';
 import { By } from '@angular/platform-browser';
 import { OrderByPipe } from '../../utils/order-by.pipe';
 import { FilterCoursesPipe } from '../../utils/filter-courses.pipe';
-import { MatDialogModule } from '@angular/material';
 
 describe('CoursesListComponent', () => {
   let component: CoursesListComponent;

@@ -1,7 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../models/user.class';
-import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-login-page',

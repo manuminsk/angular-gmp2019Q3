@@ -16,7 +16,6 @@ import { CourseBorderDirective } from './utils/course-border.directive';
 import { DurationPipe } from './utils/duration.pipe';
 import { OrderByPipe } from './utils/order-by.pipe';
 import { FilterCoursesPipe } from './utils/filter-courses.pipe';
-import { DialogComponent } from '../shared/components/dialog/dialog.component';
 
 @NgModule({
   declarations: [
