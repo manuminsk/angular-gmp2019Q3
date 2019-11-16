@@ -11,8 +11,6 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class LoginPageComponent implements OnInit {
   public credentials: FormGroup;
-  public name: string;
-  public password: string;
 
   constructor(private authService: AuthService) {}
 
