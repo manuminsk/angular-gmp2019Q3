@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-breadcrumbs',
@@ -6,4 +7,12 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./breadcrumbs.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BreadcrumbsComponent {}
+export class BreadcrumbsComponent implements OnInit {
+  public isAuthenticed: boolean;
+
+  constructor(private authService: AuthService) {}
+
+  public ngOnInit(): void {
+    this.isAuthenticed = this.authService.isAuthenticated();
+  }
+}
