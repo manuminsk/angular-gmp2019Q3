@@ -1,4 +1,4 @@
-import { Component, Input, Inject, Output, EventEmitter } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { IDialog } from '../../models/dialog.interface';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
@@ -8,8 +8,6 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
   styleUrls: ['./dialog.component.scss']
 })
 export class DialogComponent {
-  @Input() public dialog: IDialog;
-
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: IDialog

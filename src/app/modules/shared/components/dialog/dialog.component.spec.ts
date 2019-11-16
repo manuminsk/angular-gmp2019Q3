@@ -1,6 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DialogComponent } from './dialog.component';
+import {
+  MatDialogModule,
+  MatButtonModule,
+  MAT_DIALOG_DATA,
+  MatDialogRef
+} from '@angular/material';
 
 describe('DialogComponent', () => {
   let component: DialogComponent;
@@ -8,9 +14,22 @@ describe('DialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DialogComponent ]
-    })
-    .compileComponents();
+      declarations: [DialogComponent],
+      imports: [MatDialogModule, MatButtonModule],
+      providers: [
+        {
+          provide: MAT_DIALOG_DATA,
+          useValue: {
+            title: 'Confirmation needed',
+            question: 'Do you really want to delete this course?'
+          }
+        },
+        {
+          provide: MatDialogRef,
+          useValue: {}
+        }
+      ]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
