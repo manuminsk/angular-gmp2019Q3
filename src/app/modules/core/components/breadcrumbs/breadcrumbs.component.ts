@@ -8,11 +8,11 @@ import { AuthService } from '../../services/auth.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BreadcrumbsComponent implements OnInit {
-  public isAuthenticed: boolean;
+  public isAuthenticated: boolean;
 
   constructor(private authService: AuthService) {}
 
   public ngOnInit(): void {
-    this.isAuthenticed = this.authService.isAuthenticated();
+    this.isAuthenticated = this.authService.isAuthenticated();
   }
 }
