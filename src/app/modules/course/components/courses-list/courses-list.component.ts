@@ -3,10 +3,10 @@ import {
   Component,
   OnInit
 } from '@angular/core';
-import { Course, ICourse } from '../../models/course.class';
-import { OrderByPipe, SORTING } from '../../utils/order-by.pipe';
-import { FilterCoursesPipe } from '../../utils/filter-courses.pipe';
+
+import { Course } from '../../models/course.class';
 import { CourseService } from '../../services/course.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-courses-list',
@@ -15,31 +15,28 @@ import { CourseService } from '../../services/course.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CoursesListComponent implements OnInit {
-  public courses: Course[] = [];
-  public initialCourses: ICourse[] = [];
+  public courses$: Observable<Course[]>;
+  public searchTerm: string = '';
   public noDataMessageText: string = 'No data. Feel free to add new course.';
 
   constructor(private courseService: CourseService) {}
 
   public ngOnInit(): void {
-    this.courseService.getCourseList().subscribe((courseList) => {
-      this.courses = courseList;
-
-      new OrderByPipe().transform(this.courses, SORTING.ASC, 'creationDate');
-      this.initialCourses = [].concat(this.courses);
-    });
+    this.courses$ = this.courseService.getCourseList();
   }
 
-  public onAddCourse(event): void {
-    console.log('=== ADD COURSE ===', event);
+  public onAddCourse(event: Course): void {
+    // TODO: add real logic of adding a course
+    this.courses$ = this.courseService.createCourse(event);
   }
 
-  public onEditCourse(event): void {
-    console.log('=== EDIT ===', event.id);
+  public onEditCourse(event: Course): void {
+    // TODO: add real logic of editing a course
+    this.courses$ = this.courseService.updateCourse(event);
   }
 
-  public onDeleteCourse(event): void {
-    console.log('=== DELETE ===', event.id);
+  public onDeleteCourse({ id }: Course): void {
+    this.courses$ = this.courseService.removeCourse(id);
   }
 
   public onLoadMore(event): void {
@@ -47,10 +44,10 @@ export class CoursesListComponent implements OnInit {
   }
 
   public onFindEvt(searchTerm: string): void {
-    this.courses = new FilterCoursesPipe().transform(this.courses, searchTerm);
+    this.searchTerm = searchTerm;
   }
 
   public onResetEvt(): void {
-    this.courses = this.initialCourses;
+    this.searchTerm = '';
   }
 }
