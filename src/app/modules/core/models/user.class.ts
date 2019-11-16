@@ -1,11 +1,14 @@
 export interface IUser {
-  id: string;
-  firstName: string;
-  lastName: string;
+  name: string;
+  password: string;
 }
 
 export class User implements IUser {
-  id: string;
-  firstName: string;
-  lastName: string;
+  public name: string;
+  public password: string;
+
+  constructor({name, password}: IUser) {
+    this.name = name;
+    this.password = password;
+  }
 }
