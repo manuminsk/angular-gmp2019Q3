@@ -1,0 +1,28 @@
+.course-item-avatar {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+.course-item-top-rated {
+  background-color: rgba(102, 102, 102, 0.1);
+
+  &.border-fresh {
+    background-color: rgba(144, 238, 144, 0.2);
+  }
+
+  &.border-future {
+    background-color: rgba(135, 206, 250, 0.2);
+  }
+}
+
+.course-item-title {
+  display: flex;
+}
+
+.border-fresh {
+  border: 1px solid rgba(144, 238, 144, 1);
+}
+
+.border-future {
+  border: 1px solid rgba(135, 206, 250, 1);
+}

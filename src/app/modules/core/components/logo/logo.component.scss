@@ -1,0 +1,18 @@
+$logo-size: 40px;
+
+.logo {
+  display: inline-block;
+  width: $logo-size;
+  height: $logo-size;
+  margin-right: 20px;
+}
+
+.logo-container {
+  display: flex;
+
+  .title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
