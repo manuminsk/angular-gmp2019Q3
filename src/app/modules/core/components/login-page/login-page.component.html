@@ -4,13 +4,13 @@
       <div class="col">
         <h1>Login</h1>
         <div class="login-form-wrap bg-white border p-4">
-          <form class="login-form" [formGroup]="credentials" (ngSubmit)="onLogin()">
+          <form class="login-form" (ngSubmit)="onLogin()">
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="Name" formControlName="name">
+              <input matInput placeholder="Name" name="name" [(ngModel)]="credentials.name">
             </mat-form-field>
           
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="Password" formControlName="password">
+              <input matInput placeholder="Password" name="password" [(ngModel)]="credentials.password">
             </mat-form-field>
 
             <button mat-raised-button color="primary">Login</button>

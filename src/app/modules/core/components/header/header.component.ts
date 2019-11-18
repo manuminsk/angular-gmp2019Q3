@@ -11,7 +11,7 @@ import { AuthService } from '../../services/auth.service';
 export class HeaderComponent implements OnInit {
   public isAuthenticated: boolean;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(readonly authService: AuthService, readonly router: Router) {}
 
   public ngOnInit(): void {
     this.isAuthenticated = this.authService.isAuthenticated();

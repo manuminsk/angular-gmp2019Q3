@@ -11,7 +11,7 @@ import { AuthService } from '../../services/auth.service';
 export class BreadcrumbsComponent implements OnInit {
   public isAuthenticated: boolean;
 
-  constructor(private authService: AuthService) {}
+  constructor(readonly authService: AuthService) {}
 
   public ngOnInit(): void {
     this.isAuthenticated = this.authService.isAuthenticated();

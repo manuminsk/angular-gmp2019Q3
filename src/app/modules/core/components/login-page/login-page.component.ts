@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
 import { AuthService } from '../../services/auth.service';
-import { User } from '../../models/user.class';
+import { User, IUser } from '../../models/user.class';
 
 @Component({
   selector: 'app-login-page',
@@ -11,22 +11,18 @@ import { User } from '../../models/user.class';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginPageComponent implements OnInit {
-  public credentials: FormGroup;
+  public credentials: IUser;
 
-  constructor(private authService: AuthService) {}
+  constructor(readonly authService: AuthService) {}
 
   public ngOnInit(): void {
-    this.credentials = new FormGroup({
-      name: new FormControl('Andrei Shelenhouski'),
-      password: new FormControl('MySuperPassword')
-    });
+    this.credentials = {
+      name: 'Andrei Shelenhouski',
+      password: 'MySuperPassword'
+    };
   }
 
   public onLogin(): void {
-    const credentials: User = new User(this.credentials.value);
-
-    this.authService.login(credentials);
-
-    console.log('=== LOG IN ===', credentials);
+    this.authService.login(this.credentials);
   }
 }
