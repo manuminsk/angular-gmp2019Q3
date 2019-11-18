@@ -10,7 +10,7 @@ import { IDialog } from '../../models/dialog.interface';
 })
 export class DialogComponent {
   constructor(
-    public dialogRef: MatDialogRef<DialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: IDialog
+    readonly dialogRef: MatDialogRef<DialogComponent>,
+    @Inject(MAT_DIALOG_DATA) readonly data: IDialog
   ) {}
 }

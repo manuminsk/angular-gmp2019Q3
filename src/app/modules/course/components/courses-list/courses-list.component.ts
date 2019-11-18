@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  ChangeDetectorRef
+} from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Observable } from 'rxjs';
 
@@ -17,7 +22,11 @@ export class CoursesListComponent implements OnInit {
   public searchTerm: string = '';
   public noDataMessageText: string = 'No data. Feel free to add new course.';
 
-  constructor(private courseService: CourseService, public dialog: MatDialog, private ref: ChangeDetectorRef) {}
+  constructor(
+    readonly courseService: CourseService,
+    readonly dialog: MatDialog,
+    readonly ref: ChangeDetectorRef
+  ) {}
 
   public ngOnInit(): void {
     this.courses$ = this.courseService.getCourseList();
@@ -52,7 +61,10 @@ export class CoursesListComponent implements OnInit {
   public openDialog(id): void {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '400px',
-      data: { title: 'Confirmation needed', question: 'Do you really want to delete this course?'}
+      data: {
+        title: 'Confirmation needed',
+        question: 'Do you really want to delete this course?'
+      }
     });
 
     dialogRef.afterClosed().subscribe((result: boolean) => {
