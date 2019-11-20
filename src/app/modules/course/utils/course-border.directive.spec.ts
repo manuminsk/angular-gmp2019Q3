@@ -1,8 +1,8 @@
 import { ComponentFixture, async, TestBed } from '@angular/core/testing';
 import { DebugElement, Component } from '@angular/core';
+import { DatePipe } from '@angular/common';
 
 import { CourseBorderDirective } from './course-border.directive';
-import { DatePipe } from '@angular/common';
 
 @Component({
   template: `

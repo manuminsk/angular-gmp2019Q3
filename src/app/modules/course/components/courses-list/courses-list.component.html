@@ -21,13 +21,17 @@
       </div>
     </div>
 
-    <div class="row" *ngIf="courses; else noDataMessage">
-      <div class="col-md-6 col-lg-4 col-xl-3 mb-4" *ngFor="let course of courses; let i = index">
+    <div class="row" *ngIf="courses$ | async; else noDataMessage">
+      <div
+        class="col-md-6 col-lg-4 col-xl-3 mb-4"
+        *ngFor="let course of courses$ | async | filterCourses: searchTerm | orderBy; let i = index">
+
         <app-courses-list-item
           [course]="course"
           (deleteCourseEvt)="onDeleteCourse(course)"
           (editCourseEvt)="onEditCourse(course)">
         </app-courses-list-item>
+        
       </div>
 
       <div class="col-12 mb-4 text-center">

@@ -10,7 +10,7 @@ export class CourseBorderDirective implements OnInit {
   private prevDate: number;
   private currentDate: number;
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {}
+  constructor(readonly el: ElementRef, readonly renderer: Renderer2) {}
 
   public ngOnInit(): void {
     this.currentDate = Date.now();

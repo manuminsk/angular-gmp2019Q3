@@ -1,11 +1,15 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  OnInit
+  OnInit,
+  ChangeDetectorRef
 } from '@angular/core';
-import { Course, ICourse } from '../../models/course.class';
-import { OrderByPipe, SORTING } from '../../utils/order-by.pipe';
-import { FilterCoursesPipe } from '../../utils/filter-courses.pipe';
+import { MatDialog } from '@angular/material';
+import { Observable } from 'rxjs';
+
+import { Course } from '../../models/course.class';
+import { CourseService } from '../../services/course.service';
+import { DialogComponent } from 'src/app/modules/shared/components/dialog/dialog.component';
 
 @Component({
   selector: 'app-courses-list',
@@ -14,40 +18,32 @@ import { FilterCoursesPipe } from '../../utils/filter-courses.pipe';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CoursesListComponent implements OnInit {
-  public courses: ICourse[] = [];
-  public initialCourses: ICourse[] = [];
+  public courses$: Observable<Course[]>;
+  public searchTerm: string = '';
   public noDataMessageText: string = 'No data. Feel free to add new course.';
 
+  constructor(
+    readonly courseService: CourseService,
+    readonly dialog: MatDialog,
+    readonly ref: ChangeDetectorRef
+  ) {}
+
   public ngOnInit(): void {
-    console.log('Course List Component /2/ ngOnInit');
-
-    for (let i = 0; i < 10; i++) {
-      this.courses.push(new Course({
-        id: i.toString(),
-        title: `Video Course ${i + 1}`,
-        thumbnail: '',
-        creationDate: `2019-11-${Math.floor(Math.random() * 20)}`,
-        topRated: i % 3 === 0,
-        duration: Math.round(Math.random() * i * 20),
-        // tslint:disable-next-line:max-line-length
-        description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-      }));
-    }
-
-    new OrderByPipe().transform(this.courses, SORTING.ASC, 'creationDate');
-    this.initialCourses = [].concat(this.courses);
+    this.courses$ = this.courseService.getCourseList();
   }
 
-  public onAddCourse(event): void {
-    console.log('=== ADD COURSE ===', event);
+  public onAddCourse(event: Course): void {
+    // TODO: add real logic of adding a course
+    this.courses$ = this.courseService.createCourse(event);
   }
 
-  public onEditCourse(event): void {
-    console.log('=== EDIT ===', event.id);
+  public onEditCourse(event: Course): void {
+    // TODO: add real logic of editing a course
+    this.courses$ = this.courseService.updateCourse(event);
   }
 
-  public onDeleteCourse(event): void {
-    console.log('=== DELETE ===', event.id);
+  public onDeleteCourse({ id }: Course): void {
+    this.openDialog(id);
   }
 
   public onLoadMore(event): void {
@@ -55,10 +51,25 @@ export class CoursesListComponent implements OnInit {
   }
 
   public onFindEvt(searchTerm: string): void {
-    this.courses = new FilterCoursesPipe().transform(this.courses, searchTerm);
+    this.searchTerm = searchTerm;
   }
 
   public onResetEvt(): void {
-    this.courses = this.initialCourses;
+    this.searchTerm = '';
+  }
+
+  public openDialog(id): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '400px',
+      data: {
+        title: 'Confirmation needed',
+        question: 'Do you really want to delete this course?'
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      this.courses$ = this.courseService.removeCourse(id);
+      this.ref.markForCheck();
+    });
   }
 }

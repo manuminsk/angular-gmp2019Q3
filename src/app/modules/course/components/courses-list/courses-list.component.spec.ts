@@ -1,8 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA, DebugElement } from '@angular/core';
+import { MatDialogModule } from '@angular/material';
+import { By } from '@angular/platform-browser';
 
 import { CoursesListComponent } from './courses-list.component';
-import { By } from '@angular/platform-browser';
+import { OrderByPipe } from '../../utils/order-by.pipe';
+import { FilterCoursesPipe } from '../../utils/filter-courses.pipe';
 
 describe('CoursesListComponent', () => {
   let component: CoursesListComponent;
@@ -10,10 +13,10 @@ describe('CoursesListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CoursesListComponent ],
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-    })
-    .compileComponents();
+      declarations: [CoursesListComponent, OrderByPipe, FilterCoursesPipe],
+      imports: [MatDialogModule],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -28,21 +31,18 @@ describe('CoursesListComponent', () => {
 
   it('should render search bar', () => {
     const nativeElement: HTMLElement = fixture.nativeElement;
-    const coursesNodes: NodeListOf<Element> = nativeElement.querySelectorAll('app-courses-list-search');
+    const coursesNodes: NodeListOf<Element> = nativeElement.querySelectorAll(
+      'app-courses-list-search'
+    );
 
     expect(coursesNodes.length).toBeTruthy();
   });
 
-  it('should create proper number of course items', () => {
-    const nativeElement: HTMLElement = fixture.nativeElement;
-    const coursesNodes: NodeListOf<Element> = nativeElement.querySelectorAll('app-courses-list-item');
-
-    expect(coursesNodes.length).toBe(component.courses.length);
-  });
-
   it('should call loadMore method', () => {
     const debugElement: DebugElement = fixture.debugElement;
-    const btn: DebugElement = debugElement.query(By.css('button.load-more-btn'));
+    const btn: DebugElement = debugElement.query(
+      By.css('button.load-more-btn')
+    );
 
     spyOn(component, 'onLoadMore');
     btn.triggerEventHandler('click', null);
@@ -52,7 +52,9 @@ describe('CoursesListComponent', () => {
 
   it('should call addCourse method', () => {
     const debugElement: DebugElement = fixture.debugElement;
-    const btn: DebugElement = debugElement.query(By.css('button.add-course-btn'));
+    const btn: DebugElement = debugElement.query(
+      By.css('button.add-course-btn')
+    );
 
     spyOn(component, 'onAddCourse');
     btn.triggerEventHandler('click', null);

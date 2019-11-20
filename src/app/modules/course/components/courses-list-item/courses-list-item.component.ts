@@ -5,6 +5,7 @@ import {
   Output,
   EventEmitter
 } from '@angular/core';
+
 import { ICourse } from '../../models/course.class';
 
 @Component({
