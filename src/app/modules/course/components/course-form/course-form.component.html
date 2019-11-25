@@ -1,0 +1,52 @@
+<form class="bg-white border p-4" (ngSubmit)="onSubmit();">
+  <div class="form-fields d-flex flex-column mb-4">
+    <mat-form-field>
+      <input matInput placeholder="Title" name="title" [(ngModel)]="course.title" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea matInput placeholder="Description" name="description" [(ngModel)]="course.description"></textarea>
+    </mat-form-field>
+
+    <div class="mb-4">
+      <mat-form-field class="mr-4">
+        <input matInput [matDatepicker]="picker" placeholder="Choose a date" name="creationDate" [(ngModel)]="course.creationDate"/>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="mr-4">
+        <input matInput placeholder="Duration" name="duration" [(ngModel)]="course.duration"/>
+      </mat-form-field>
+      
+      <mat-slide-toggle name="topRated" [(ngModel)]="course.topRated">Top Rated</mat-slide-toggle>
+    </div>
+
+
+    <mat-form-field class="authors-list">
+      <mat-chip-list #chipList aria-label="Author selection">
+        <mat-chip
+          *ngFor="let author of course.authors"
+          [selectable]="selectable"
+          [removable]="removable"
+          (removed)="remove(author)"
+        >
+          {{ author.name }}
+          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+        <input
+          placeholder="Author..."
+          [matChipInputFor]="chipList"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          [matChipInputAddOnBlur]="addOnBlur"
+          (matChipInputTokenEnd)="add($event)"
+        />
+      </mat-chip-list>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <button mat-raised-button color="primary" class="mr-4" type="submit">Save</button>
+    <button mat-raised-button color="accent" (click)="onCancel()" type="button">Calcel</button>
+  </div>
+</form>

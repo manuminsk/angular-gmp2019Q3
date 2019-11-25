@@ -16,6 +16,9 @@ import { CourseBorderDirective } from './utils/course-border.directive';
 import { DurationPipe } from './utils/duration.pipe';
 import { OrderByPipe } from './utils/order-by.pipe';
 import { FilterCoursesPipe } from './utils/filter-courses.pipe';
+import { CourseAddPageComponent } from './components/course-add-page/course-add-page.component';
+import { CourseEditPageComponent } from './components/course-edit-page/course-edit-page.component';
+import { CourseFormComponent } from './components/course-form/course-form.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { FilterCoursesPipe } from './utils/filter-courses.pipe';
     CourseBorderDirective,
     DurationPipe,
     OrderByPipe,
-    FilterCoursesPipe
+    FilterCoursesPipe,
+    CourseAddPageComponent,
+    CourseEditPageComponent,
+    CourseFormComponent
   ],
   imports: [
     SharedModule,

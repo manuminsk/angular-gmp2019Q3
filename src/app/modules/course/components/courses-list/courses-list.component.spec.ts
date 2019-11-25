@@ -6,6 +6,7 @@ import { By } from '@angular/platform-browser';
 import { CoursesListComponent } from './courses-list.component';
 import { OrderByPipe } from '../../utils/order-by.pipe';
 import { FilterCoursesPipe } from '../../utils/filter-courses.pipe';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('CoursesListComponent', () => {
   let component: CoursesListComponent;
@@ -14,7 +15,7 @@ describe('CoursesListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [CoursesListComponent, OrderByPipe, FilterCoursesPipe],
-      imports: [MatDialogModule],
+      imports: [MatDialogModule, RouterTestingModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   }));
