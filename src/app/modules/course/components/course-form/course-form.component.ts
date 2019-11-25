@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { ICourse, Author } from '../../models/course.class';
@@ -11,6 +11,8 @@ import { ICourse, Author } from '../../models/course.class';
 })
 export class CourseFormComponent {
   @Input() course: ICourse;
+  @Output() cancelEvt: EventEmitter<void> = new EventEmitter();
+  @Output() submitEvt: EventEmitter<ICourse> = new EventEmitter();
 
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
@@ -40,11 +42,11 @@ export class CourseFormComponent {
     }
   }
 
-  public onCancel() {
-    console.log('=== Cancel ==='); 
+  public onCancel(): void {
+    this.cancelEvt.emit();
   }
 
-  public onSubmit() {
-    console.log(this.course);
+  public onSubmit(): void {
+    this.submitEvt.emit(this.course);
   }
 }

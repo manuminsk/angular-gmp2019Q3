@@ -68,8 +68,10 @@ export class CoursesListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result: boolean) => {
-      this.courses$ = this.courseService.removeCourse(id);
-      this.ref.markForCheck();
+      if (result) {
+        this.courses$ = this.courseService.removeCourse(id);
+        this.ref.markForCheck();
+      }
     });
   }
 }
