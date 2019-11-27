@@ -1,18 +1,18 @@
-import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { MatChipInputEvent } from '@angular/material/chips';
-import { ICourse, Author } from '../../models/course.class';
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from "@angular/core";
+import { COMMA, ENTER } from "@angular/cdk/keycodes";
+import { MatChipInputEvent } from "@angular/material/chips";
+import { ICourse, Author } from "../../models/course.class";
 
 @Component({
-  selector: 'app-course-form',
-  templateUrl: './course-form.component.html',
-  styleUrls: ['./course-form.component.scss'],
+  selector: "app-course-form",
+  templateUrl: "./course-form.component.html",
+  styleUrls: ["./course-form.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseFormComponent {
-  @Input() course: ICourse;
-  @Output() cancelEvt: EventEmitter<void> = new EventEmitter();
-  @Output() submitEvt: EventEmitter<ICourse> = new EventEmitter();
+  @Input() public course: ICourse;
+  @Output() public cancelEvt: EventEmitter<void> = new EventEmitter();
+  @Output() public submitEvt: EventEmitter<ICourse> = new EventEmitter();
 
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
@@ -25,12 +25,12 @@ export class CourseFormComponent {
     const input = event.input;
     const value = event.value;
 
-    if ((value || '').trim()) {
+    if ((value || "").trim()) {
       this.course.authors.push({ name: value.trim() });
     }
 
     if (input) {
-      input.value = '';
+      input.value = "";
     }
   }
 
