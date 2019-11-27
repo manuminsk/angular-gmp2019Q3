@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { Course } from '../../models/course.class';
 import { CourseService } from '../../services/course.service';
 import { DialogComponent } from 'src/app/modules/shared/components/dialog/dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-courses-list',
@@ -24,6 +25,7 @@ export class CoursesListComponent implements OnInit {
 
   constructor(
     readonly courseService: CourseService,
+    readonly router: Router,
     readonly dialog: MatDialog,
     readonly ref: ChangeDetectorRef
   ) {}
@@ -32,14 +34,12 @@ export class CoursesListComponent implements OnInit {
     this.courses$ = this.courseService.getCourseList();
   }
 
-  public onAddCourse(event: Course): void {
-    // TODO: add real logic of adding a course
-    this.courses$ = this.courseService.createCourse(event);
+  public onAddCourse(): void {
+    this.router.navigateByUrl('/courses/new');
   }
 
   public onEditCourse(event: Course): void {
-    // TODO: add real logic of editing a course
-    this.courses$ = this.courseService.updateCourse(event);
+    this.router.navigateByUrl(`/courses/edit/${event.id}`);
   }
 
   public onDeleteCourse({ id }: Course): void {
@@ -68,8 +68,10 @@ export class CoursesListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result: boolean) => {
-      this.courses$ = this.courseService.removeCourse(id);
-      this.ref.markForCheck();
+      if (result) {
+        this.courses$ = this.courseService.removeCourse(id);
+        this.ref.markForCheck();
+      }
     });
   }
 }

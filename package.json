@@ -3,7 +3,7 @@
   "version": "0.0.4",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --aot",
+    "start": "ng serve",
     "build": "ng build --prod --base-href=agmp-preview",
     "deploy": "ng deploy",
     "test": "ng test --code-coverage",

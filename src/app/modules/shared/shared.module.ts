@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatDialogModule, MatButtonModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatDialogModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatChipsModule, MatRadioModule, MatSlideToggleModule } from '@angular/material';
 
 import { DialogComponent } from './components/dialog/dialog.component';
 
@@ -15,7 +15,11 @@ import { DialogComponent } from './components/dialog/dialog.component';
     MatDialogModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatChipsModule,
+    MatSlideToggleModule
   ],
   exports: [
     CommonModule,
@@ -25,7 +29,11 @@ import { DialogComponent } from './components/dialog/dialog.component';
     MatButtonModule,
     DialogComponent,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatChipsModule,
+    MatSlideToggleModule
   ]
 })
 export class SharedModule { }
