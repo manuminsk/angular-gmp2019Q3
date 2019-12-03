@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
 import { LoginPageComponent } from './modules/core/components/login-page/login-page.component';
+import { NotFoundPageComponent } from './modules/core/components/not-found-page/not-found-page.component';
 
 const routes: Routes = [
   {
@@ -11,13 +12,20 @@ const routes: Routes = [
   },
   {
     path: 'courses',
-    loadChildren: () =>
-      import('./modules/course/course.module').then(m => m.CourseModule)
+    loadChildren: () => import('./modules/course/course.module').then(m => m.CourseModule)
   },
   {
     path: '',
     redirectTo: 'courses',
     pathMatch: 'full'
+  },
+  {
+    path: '404',
+    component: NotFoundPageComponent
+  },
+  {
+    path: '**',
+    redirectTo: '404'
   }
 ];
 

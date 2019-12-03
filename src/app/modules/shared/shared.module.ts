@@ -1,7 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatDialogModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatChipsModule, MatRadioModule, MatSlideToggleModule } from '@angular/material';
+import { RouterModule } from '@angular/router';
+import {
+  MatDialogModule,
+  MatButtonModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatChipsModule,
+  MatSlideToggleModule
+} from '@angular/material';
 
 import { DialogComponent } from './components/dialog/dialog.component';
 
@@ -11,6 +21,7 @@ import { DialogComponent } from './components/dialog/dialog.component';
   imports: [
     CommonModule,
     FormsModule,
+    RouterModule,
     ReactiveFormsModule,
     MatDialogModule,
     MatButtonModule,

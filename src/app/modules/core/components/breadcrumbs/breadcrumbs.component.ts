@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 
 import { AuthService } from '../../services/auth.service';
 
@@ -9,6 +9,8 @@ import { AuthService } from '../../services/auth.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BreadcrumbsComponent implements OnInit {
+  @Input() public courseTitle: string = '';
+
   public isAuthenticated: boolean;
 
   constructor(readonly authService: AuthService) {}

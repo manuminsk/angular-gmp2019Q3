@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { ICourse } from '../../models/course.class';
+import { Course } from '../../models/course.class';
 import { CourseService } from '../../services/course.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
@@ -12,9 +12,13 @@ import { Location } from '@angular/common';
 })
 export class CourseEditPageComponent implements OnInit {
   public title: string = 'Edit course';
-  public course: ICourse;
+  public course: Course;
 
-  constructor(private readonly courseService: CourseService, private readonly activatedRoute: ActivatedRoute, private readonly location: Location) { }
+  constructor(
+    private readonly courseService: CourseService,
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly location: Location
+  ) {}
 
   public ngOnInit(): void {
     this.activatedRoute.params.subscribe(({ id }) => {
@@ -24,8 +28,8 @@ export class CourseEditPageComponent implements OnInit {
     });
   }
 
-  public onSubmit(course: ICourse): void {
-    console.log('SUBMIT');
+  public onSubmit(course: Course): void {
+    this.courseService.updateCourse(course);
   }
 
   public onCancel(): void {
