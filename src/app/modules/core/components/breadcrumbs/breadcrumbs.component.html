@@ -3,8 +3,7 @@
     <div class="row">
       <div class="col">
         <span *ngIf="courseTitle && courseTitle.length"><a routerLink="/courses">Courses</a></span>
-        <span *ngIf="!courseTitle">Courses</span>
-        <span *ngIf="courseTitle && courseTitle.length">/ {{courseTitle}}</span>
+        <span>{{ courseTitle && courseTitle.length ? " / " + courseTitle : "Courses" }}</span>
       </div>
     </div>
   </div>
