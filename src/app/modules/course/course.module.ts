@@ -19,6 +19,7 @@ import { FilterCoursesPipe } from './utils/filter-courses.pipe';
 import { CourseAddPageComponent } from './components/course-add-page/course-add-page.component';
 import { CourseEditPageComponent } from './components/course-edit-page/course-edit-page.component';
 import { CourseFormComponent } from './components/course-form/course-form.component';
+import { CoreModule } from '../core/core.module';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { CourseFormComponent } from './components/course-form/course-form.compon
   ],
   imports: [
     SharedModule,
+    CoreModule,
     CourseRoutingModule,
     MatFormFieldModule,
     MatInputModule,

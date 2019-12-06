@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { v1 } from 'uuid';
 
 import { Course } from '../models/course.class';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,18 +11,21 @@ import { Course } from '../models/course.class';
 export class CourseService {
   private mockCourseList: Course[] = [];
 
-  constructor() {
+  constructor(private readonly router: Router) {
     for (let i = 0; i < 10; i++) {
-      this.mockCourseList.push(new Course({
-        id: i.toString(),
-        title: `Video Course ${i + 1}`,
-        thumbnail: '',
-        creationDate: `2019-11-${Math.floor(Math.random() * 20)}`,
-        topRated: i % 3 === 0,
-        duration: Math.round(Math.random() * i * 20),
-        // tslint:disable-next-line:max-line-length
-        description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-      }));
+      this.mockCourseList.push(
+        new Course({
+          id: v1(),
+          title: `Video Course ${i + 1}`,
+          thumbnail: '',
+          creationDate: `2019-11-${Math.floor(Math.random() * 20)}`,
+          topRated: i % 3 === 0,
+          duration: Math.round(Math.random() * i * 20),
+          description:
+            // tslint:disable-next-line:max-line-length
+            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'
+        })
+      );
     }
   }
 
@@ -32,26 +37,26 @@ export class CourseService {
     return of(this.mockCourseList);
   }
 
-  public createCourse(course: Course): Observable<Course[]> {
-    this.mockCourseList.push(course);
+  public createCourse(course: Course): void {
+    this.mockCourseList.push({...course, id: v1()});
 
-    return of(this.mockCourseList);
+    this.router.navigateByUrl('courses');
   }
 
-  public updateCourse(course: Course): Observable<Course[]> {
+  public updateCourse(course: Course): void {
     const item: Course = this.findCourse(course.id);
     Object.assign(item, course);
 
-    return of(this.mockCourseList);
+    this.router.navigateByUrl('courses');
   }
 
   public removeCourse(id: string): Observable<Course[]> {
-    this.mockCourseList = this.mockCourseList.filter((course) => course.id !== id);
+    this.mockCourseList = this.mockCourseList.filter(course => course.id !== id);
 
     return of(this.mockCourseList);
   }
 
   private findCourse(id: string): Course {
-    return this.mockCourseList.find((course) => course.id === id)
+    return this.mockCourseList.find(course => course.id === id);
   }
 }

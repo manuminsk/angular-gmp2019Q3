@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatFormFieldModule, MatInputModule } from '@angular/material';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -13,7 +14,7 @@ describe('LoginPageComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [LoginPageComponent],
-      imports: [MatFormFieldModule, MatInputModule, FormsModule, BrowserAnimationsModule],
+      imports: [MatFormFieldModule, MatInputModule, FormsModule, BrowserAnimationsModule, RouterTestingModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   }));
