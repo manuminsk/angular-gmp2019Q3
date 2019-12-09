@@ -1,27 +1,34 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { v1 } from 'uuid';
 
+import { Observable } from 'rxjs';
+
+import { environment } from '../../../../environments/environment';
+import { APIConst } from '../../shared/constants/api-const.class';
 import { IUser } from '../models/user.class';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private readonly router: Router) {}
+  constructor(private readonly router: Router, private readonly http: HttpClient) {}
   public login(user: IUser): void {
-    const token: string = v1();
-
-    localStorage.setItem('token', token);
-    localStorage.setItem('user', JSON.stringify(user));
-
-    this.router.navigateByUrl('courses');
+    this.http
+      .post(`${environment.apiPrefix}${APIConst.endpoints.auth.root}${APIConst.endpoints.auth.login}`, {
+        login: user.name,
+        password: user.password
+      })
+      .subscribe((data: { token: string }) => {
+        if (data.token) {
+          localStorage.setItem('token', data.token);
+          this.router.navigateByUrl('courses');
+        }
+      });
   }
 
   public logout(): void {
     localStorage.removeItem('token');
-    localStorage.removeItem('user');
-
     this.router.navigateByUrl('login');
   }
 
@@ -31,7 +38,9 @@ export class AuthService {
     return !!token;
   }
 
-  public getUser(): string {
-    return JSON.parse(localStorage.getItem('user')).name;
+  public getUserInfo(): Observable<IUser> {
+    return this.http.post<IUser>(`${environment.apiPrefix}${APIConst.endpoints.auth.root}${APIConst.endpoints.auth.userinfo}`, {
+      token: localStorage.getItem('token')
+    });
   }
 }
