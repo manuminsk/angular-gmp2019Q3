@@ -28,7 +28,7 @@ export class CoursesListComponent implements OnInit {
 
   public ngOnInit(): void {
     this.courseService
-      .getCourseList()
+      .getCourseList(0, 10)
       .pipe(take(1))
       .subscribe(data => {
         this.courses = data;
@@ -49,18 +49,35 @@ export class CoursesListComponent implements OnInit {
   }
 
   public onLoadMore(): void {
-    this.courseService.getCourseList(this.courses.length, 10).subscribe(data => {
-      this.courses = this.courses.concat(data);
-      this.ref.markForCheck();
-    });
+    this.courseService
+      .getCourseList(this.courses.length, 10, this.searchTerm)
+      .pipe(take(1))
+      .subscribe(data => {
+        this.courses = this.courses.concat(data);
+        this.ref.markForCheck();
+      });
   }
 
   public onFindEvt(searchTerm: string): void {
     this.searchTerm = searchTerm;
+    this.courseService
+      .getCourseList(0, 10, searchTerm)
+      .pipe(take(1))
+      .subscribe(data => {
+        this.courses = data;
+        this.ref.markForCheck();
+      });
   }
 
   public onResetEvt(): void {
     this.searchTerm = '';
+    this.courseService
+      .getCourseList()
+      .pipe(take(1))
+      .subscribe(data => {
+        this.courses = data;
+        this.ref.markForCheck();
+      });
   }
 
   public openDialog(id): void {
@@ -74,8 +91,18 @@ export class CoursesListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result: boolean) => {
       if (result) {
-        // this.courses = this.courseService.removeCourse(id);
-        this.ref.markForCheck();
+        this.courseService
+          .removeCourse(id)
+          .pipe(take(1))
+          .subscribe(() => {
+            this.courseService
+              .getCourseList(0, 10, this.searchTerm)
+              .pipe(take(1))
+              .subscribe(data => {
+                this.courses = data;
+                this.ref.markForCheck();
+              });
+          });
       }
     });
   }
