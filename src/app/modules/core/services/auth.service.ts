@@ -13,6 +13,7 @@ import { IUser } from '../models/user.class';
 })
 export class AuthService {
   constructor(private readonly router: Router, private readonly http: HttpClient) {}
+
   public login(user: IUser): void {
     this.http
       .post(`${environment.apiPrefix}${APIConst.endpoints.auth.root}${APIConst.endpoints.auth.login}`, {
