@@ -6,6 +6,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { LoginPageComponent } from './login-page.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('LoginPageComponent', () => {
   let component: LoginPageComponent;
@@ -14,7 +15,14 @@ describe('LoginPageComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [LoginPageComponent],
-      imports: [MatFormFieldModule, MatInputModule, FormsModule, BrowserAnimationsModule, RouterTestingModule],
+      imports: [
+        MatFormFieldModule,
+        MatInputModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        RouterTestingModule,
+        HttpClientTestingModule
+      ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   }));
