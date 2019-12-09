@@ -18,14 +18,13 @@ export class HeaderComponent implements OnInit {
   }
 
   public onLogin(): void {
-    console.log('=== LOGIN ===');
-    
     this.router.navigateByUrl('login');
   }
 
   public onLogout(): void {
-    console.log('=== LOGOUT ===');
-
     this.authService.logout();
+  }
+  public onClick(): void {
+    this.router.navigate(['/']);
   }
 }

@@ -17,8 +17,8 @@ export class LoginPageComponent implements OnInit {
 
   public ngOnInit(): void {
     this.credentials = {
-      name: 'Andrei Shelenhouski',
-      password: 'MySuperPassword'
+      name: 'flastname',
+      password: 'flastname'
     };
   }
 
