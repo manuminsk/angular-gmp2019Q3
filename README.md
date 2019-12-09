@@ -3,7 +3,9 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.4.
 
 ## Preview
+
 Preview on [gh-pages](https://manuminsk.github.io/agmp-preview).
+Mock data provided by [json server](https://agmp-be.herokuapp.com).
 
 ## Development server
 
