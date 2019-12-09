@@ -1,9 +1,13 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { Observable, of } from 'rxjs';
 import { v1 } from 'uuid';
 
 import { Course } from '../models/course.class';
-import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
+import { APIConst } from '../../shared/constants/api-const.class';
 
 @Injectable({
   providedIn: 'root'
@@ -11,34 +15,18 @@ import { Router } from '@angular/router';
 export class CourseService {
   private mockCourseList: Course[] = [];
 
-  constructor(private readonly router: Router) {
-    for (let i = 0; i < 10; i++) {
-      this.mockCourseList.push(
-        new Course({
-          id: v1(),
-          title: `Video Course ${i + 1}`,
-          thumbnail: '',
-          creationDate: `2019-11-${Math.floor(Math.random() * 20)}`,
-          topRated: i % 3 === 0,
-          duration: Math.round(Math.random() * i * 20),
-          description:
-            // tslint:disable-next-line:max-line-length
-            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'
-        })
-      );
-    }
-  }
+  constructor(private readonly router: Router, private readonly http: HttpClient) {}
 
   public getCourse(id: string): Observable<Course> {
     return of(this.findCourse(id));
   }
 
-  public getCourseList(): Observable<Course[]> {
-    return of(this.mockCourseList);
+  public getCourseList(start: number = 0, count: number = 10): Observable<Course[]> {
+    return this.http.get<Course[]>(`${environment.apiPrefix}${APIConst.endpoints.courses.root}?start=${start}&count=${count}`);
   }
 
   public createCourse(course: Course): void {
-    this.mockCourseList.push({...course, id: v1()});
+    this.mockCourseList.push({ ...course, id: v1() });
 
     this.router.navigateByUrl('courses');
   }

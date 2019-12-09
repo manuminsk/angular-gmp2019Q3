@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
 
-import { environment } from '../../../../environments/environment';
+import { environment } from 'src/environments/environment';
 import { APIConst } from '../../shared/constants/api-const.class';
 import { IUser } from '../models/user.class';
 

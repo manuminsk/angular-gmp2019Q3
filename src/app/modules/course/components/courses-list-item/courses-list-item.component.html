@@ -1,21 +1,27 @@
 <mat-card
-  [appCourseBorder]="course.creationDate"
-  [class.course-item-top-rated]="course.topRated">
+  class="course-list-item"
+  [appCourseBorder]="course.date"
+  [class.course-item-top-rated]="course.isTopRated"
+>
   <mat-card-header>
     <div mat-card-avatar class="course-item-avatar"></div>
     <mat-card-title class="course-item-title">
-      {{ course.title | uppercase }}<mat-icon *ngIf="course.topRated">stars</mat-icon>
+      {{ course.name | uppercase
+      }}<mat-icon *ngIf="course.isTopRated">stars</mat-icon>
     </mat-card-title>
     <mat-card-subtitle class="course-item-subtitle">
-      {{ course.creationDate | date: "dd.MM.yyyy" }} |
-      {{ course.duration | duration }}
+      {{ course.date | date: "dd.MM.yyyy" }} |
+      {{ course.length | duration }}
     </mat-card-subtitle>
   </mat-card-header>
   <img
     class="course-item-thumbnail"
     mat-card-image
-    src="{{ course.thumbnail }}?index={{ course.id }}"
-    alt="{{ course.id }}"/>
+    src="{{
+      course.thumbnail || 'https://placeimg.com/350/200/any?index=' + course.id
+    }}"
+    alt="{{ course.id }}"
+  />
   <mat-card-content>
     <p class="course-item-description">
       {{ course.description }}

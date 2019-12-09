@@ -1,11 +1,7 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnInit,
-  ChangeDetectorRef
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Observable } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 import { Course } from '../../models/course.class';
 import { CourseService } from '../../services/course.service';
@@ -19,7 +15,7 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CoursesListComponent implements OnInit {
-  public courses$: Observable<Course[]>;
+  public courses: Course[] = [];
   public searchTerm: string = '';
   public noDataMessageText: string = 'No data. Feel free to add new course.';
 
@@ -31,7 +27,13 @@ export class CoursesListComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.courses$ = this.courseService.getCourseList();
+    this.courseService
+      .getCourseList()
+      .pipe(take(1))
+      .subscribe(data => {
+        this.courses = data;
+        this.ref.markForCheck();
+      });
   }
 
   public onAddCourse(): void {
@@ -46,8 +48,11 @@ export class CoursesListComponent implements OnInit {
     this.openDialog(id);
   }
 
-  public onLoadMore(event): void {
-    console.log('=== LOAD MORE ===', event);
+  public onLoadMore(): void {
+    this.courseService.getCourseList(this.courses.length, 10).subscribe(data => {
+      this.courses = this.courses.concat(data);
+      this.ref.markForCheck();
+    });
   }
 
   public onFindEvt(searchTerm: string): void {
@@ -69,7 +74,7 @@ export class CoursesListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result: boolean) => {
       if (result) {
-        this.courses$ = this.courseService.removeCourse(id);
+        // this.courses = this.courseService.removeCourse(id);
         this.ref.markForCheck();
       }
     });
