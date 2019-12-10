@@ -6,16 +6,8 @@
     class="course-search-btn"
     mat-raised-button
     color="primary"
-    [disabled]="!searchTerm.length"
-    (click)="onSubmit()">
+    (click)="onSubmit()"
+  >
     Search
-  </button>
-  <button
-    *ngIf="searchTerm.length"
-    class="course-search-btn ml-4"
-    (click)="onReset()"
-    mat-raised-button
-    color="warn">
-    Reset
   </button>
 </div>

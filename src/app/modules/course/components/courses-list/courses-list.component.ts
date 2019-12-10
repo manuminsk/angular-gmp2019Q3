@@ -69,17 +69,6 @@ export class CoursesListComponent implements OnInit {
       });
   }
 
-  public onResetEvt(): void {
-    this.searchTerm = '';
-    this.courseService
-      .getCourseList()
-      .pipe(take(1))
-      .subscribe((data: Course[]) => {
-        this.courses = data;
-        this.cd.markForCheck();
-      });
-  }
-
   public openDialog(id): void {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '400px',
