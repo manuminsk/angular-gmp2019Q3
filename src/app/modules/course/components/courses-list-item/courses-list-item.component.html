@@ -5,28 +5,31 @@
 >
   <mat-card-header>
     <div mat-card-avatar class="course-item-avatar"></div>
+
     <mat-card-title class="course-item-title">
-      {{ course.name | uppercase
-      }}<mat-icon *ngIf="course.isTopRated">stars</mat-icon>
+      {{ course.name | uppercase }}
+      <mat-icon *ngIf="course.isTopRated">stars</mat-icon>
     </mat-card-title>
+
     <mat-card-subtitle class="course-item-subtitle">
       {{ course.date | date: "dd.MM.yyyy" }} |
       {{ course.length | duration }}
     </mat-card-subtitle>
   </mat-card-header>
+
   <img
     class="course-item-thumbnail"
     mat-card-image
-    src="{{
-      course.thumbnail || 'https://placeimg.com/350/200/any?index=' + course.id
-    }}"
+    [src]="course.thumbnail || mockImgSrc + course.id"
     alt="{{ course.id }}"
   />
+
   <mat-card-content>
     <p class="course-item-description">
       {{ course.description }}
     </p>
   </mat-card-content>
+
   <mat-card-actions>
     <button class="course-item-edit-btn" mat-button (click)="onEdit()">
       Edit

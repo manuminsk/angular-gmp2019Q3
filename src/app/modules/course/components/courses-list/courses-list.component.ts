@@ -23,16 +23,16 @@ export class CoursesListComponent implements OnInit {
     readonly courseService: CourseService,
     readonly router: Router,
     readonly dialog: MatDialog,
-    readonly ref: ChangeDetectorRef
+    readonly cd: ChangeDetectorRef
   ) {}
 
   public ngOnInit(): void {
     this.courseService
       .getCourseList(0, 10)
       .pipe(take(1))
-      .subscribe(data => {
+      .subscribe((data: Course[]) => {
         this.courses = data;
-        this.ref.markForCheck();
+        this.cd.markForCheck();
       });
   }
 
@@ -52,9 +52,9 @@ export class CoursesListComponent implements OnInit {
     this.courseService
       .getCourseList(this.courses.length, 10, this.searchTerm)
       .pipe(take(1))
-      .subscribe(data => {
-        this.courses = this.courses.concat(data);
-        this.ref.markForCheck();
+      .subscribe((data: Course[]) => {
+        this.courses = [...this.courses, ...data];
+        this.cd.markForCheck();
       });
   }
 
@@ -63,9 +63,9 @@ export class CoursesListComponent implements OnInit {
     this.courseService
       .getCourseList(0, 10, searchTerm)
       .pipe(take(1))
-      .subscribe(data => {
+      .subscribe((data: Course[]) => {
         this.courses = data;
-        this.ref.markForCheck();
+        this.cd.markForCheck();
       });
   }
 
@@ -74,9 +74,9 @@ export class CoursesListComponent implements OnInit {
     this.courseService
       .getCourseList()
       .pipe(take(1))
-      .subscribe(data => {
+      .subscribe((data: Course[]) => {
         this.courses = data;
-        this.ref.markForCheck();
+        this.cd.markForCheck();
       });
   }
 
@@ -98,9 +98,9 @@ export class CoursesListComponent implements OnInit {
             this.courseService
               .getCourseList(0, 10, this.searchTerm)
               .pipe(take(1))
-              .subscribe(data => {
+              .subscribe((data: Course[]) => {
                 this.courses = data;
-                this.ref.markForCheck();
+                this.cd.markForCheck();
               });
           });
       }

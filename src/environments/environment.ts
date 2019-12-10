@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiPrefix: '/api'
+  apiPrefix: 'https://agmp-be.herokuapp.com'
 };
 
 /*

@@ -19,16 +19,15 @@ export class CourseEditPageComponent implements OnInit {
     private readonly activatedRoute: ActivatedRoute,
     private readonly courseService: CourseService,
     private readonly location: Location,
-    private readonly ref: ChangeDetectorRef,
+    private readonly cd: ChangeDetectorRef,
     private readonly router: Router
   ) {}
 
   public ngOnInit(): void {
-    const ref = this.ref;
     this.activatedRoute.params.subscribe(({ id }) => {
       this.courseService.getCourse(id).subscribe(course => {
         this.course = course;
-        ref.markForCheck();
+        this.cd.markForCheck();
       });
     });
   }

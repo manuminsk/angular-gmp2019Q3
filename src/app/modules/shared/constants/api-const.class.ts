@@ -1,5 +1,7 @@
+import { IEndpoint } from '../models/endpoint.inteface';
+
 export class APIConst {
-  public static readonly endpoints = {
+  private static endpoints: { [key: string]: IEndpoint } = {
     auth: {
       root: '/auth',
       login: '/login',
@@ -12,4 +14,8 @@ export class APIConst {
       root: '/authors'
     }
   };
+
+  public static getEndpoint(property: string): IEndpoint {
+    return this.endpoints[property];
+  }
 }
