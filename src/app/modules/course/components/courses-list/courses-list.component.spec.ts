@@ -22,6 +22,7 @@ describe('CoursesListComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CoursesListComponent);
     component = fixture.componentInstance;
+    component.courses = [null, null];
     fixture.detectChanges();
   });
 
