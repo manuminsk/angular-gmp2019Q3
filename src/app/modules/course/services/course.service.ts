@@ -17,7 +17,7 @@ export class CourseService {
 
   constructor(private readonly http: HttpClient) {
     this.endpoint = APIConst.getEndpoint('courses');
-    this.host = `${environment.apiPrefix}${this.endpoint}`;
+    this.host = `${environment.apiUrl}${this.endpoint}`;
   }
 
   public getCourse(id: string): Observable<Course> {

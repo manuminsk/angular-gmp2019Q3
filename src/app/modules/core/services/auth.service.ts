@@ -18,7 +18,7 @@ export class AuthService {
 
   constructor(private readonly router: Router, private readonly http: HttpClient) {
     this.endpoint = APIConst.getEndpoint('auth');
-    this.host = `${environment.apiPrefix}${this.endpoint.root}`;
+    this.host = `${environment.apiUrl}${this.endpoint.root}`;
   }
 
   public login(user: IUser): void {

@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiPrefix: 'https://agmp-be.herokuapp.com'
+  apiUrl: 'https://agmp-be.herokuapp.com'
 };
