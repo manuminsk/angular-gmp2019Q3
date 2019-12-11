@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  Output,
-  EventEmitter
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { ICourse } from '../../models/course.class';
 
@@ -19,6 +13,8 @@ export class CoursesListItemComponent {
 
   @Output() public deleteCourseEvt: EventEmitter<ICourse> = new EventEmitter();
   @Output() public editCourseEvt: EventEmitter<ICourse> = new EventEmitter();
+
+  public mockImgSrc: string = 'https://placeimg.com/350/200/any?index=';
 
   public onEdit(): void {
     this.editCourseEvt.emit(this.course);

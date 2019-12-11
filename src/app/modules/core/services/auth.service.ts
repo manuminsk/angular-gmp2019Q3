@@ -1,27 +1,42 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { v1 } from 'uuid';
 
+import { Observable } from 'rxjs';
+
+import { environment } from 'src/environments/environment';
+import { APIConst } from '../../shared/constants/api-const.class';
 import { IUser } from '../models/user.class';
+import { IEndpoint } from '../../shared/models/endpoint.inteface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private readonly router: Router) {}
+  private endpoint: IEndpoint;
+  private host: string;
+
+  constructor(private readonly router: Router, private readonly http: HttpClient) {
+    this.endpoint = APIConst.getEndpoint('auth');
+    this.host = `${environment.apiUrl}${this.endpoint.root}`;
+  }
+
   public login(user: IUser): void {
-    const token: string = v1();
-
-    localStorage.setItem('token', token);
-    localStorage.setItem('user', JSON.stringify(user));
-
-    this.router.navigateByUrl('courses');
+    this.http
+      .post(`${this.host}${this.endpoint.login}`, {
+        login: user.name,
+        password: user.password
+      })
+      .subscribe((data: { token: string }) => {
+        if (data.token) {
+          localStorage.setItem('token', data.token);
+          this.router.navigateByUrl('courses');
+        }
+      });
   }
 
   public logout(): void {
     localStorage.removeItem('token');
-    localStorage.removeItem('user');
-
     this.router.navigateByUrl('login');
   }
 
@@ -31,7 +46,9 @@ export class AuthService {
     return !!token;
   }
 
-  public getUser(): string {
-    return JSON.parse(localStorage.getItem('user')).name;
+  public getUserInfo(): Observable<IUser> {
+    return this.http.post<IUser>(`${this.host}${this.endpoint.userinfo}`, {
+      token: localStorage.getItem('token')
+    });
   }
 }

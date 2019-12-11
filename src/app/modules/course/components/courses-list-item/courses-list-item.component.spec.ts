@@ -9,11 +9,7 @@ import { DurationPipe } from '../../utils/duration.pipe';
 
 @Component({
   template: `
-    <app-courses-list-item
-      [course]="course"
-      (editCourseEvt)="onEditCourse($event)"
-      (deleteCourseEvt)="onDeleteCourse($event)"
-    >
+    <app-courses-list-item [course]="course" (editCourseEvt)="onEditCourse($event)" (deleteCourseEvt)="onDeleteCourse($event)">
     </app-courses-list-item>
   `
 })
@@ -25,11 +21,11 @@ class TestHostComponent {
   constructor() {
     this.course = {
       id: 'Test_id',
-      title: 'Test title',
+      name: 'Test title',
       thumbnail: '',
-      creationDate: '2019-10-30',
-      topRated: false,
-      duration: 60,
+      date: '2019-10-30',
+      isTopRated: false,
+      length: 60,
       description: 'Test description'
     };
   }
@@ -68,18 +64,14 @@ describe('TestHostComponent: CoursesListItemComponent', () => {
   });
 
   it("should raise 'deleteCourseEvt'", () => {
-    const deleteButton: DebugElement = debugElement.query(
-      By.css('.course-item-delete-btn')
-    );
+    const deleteButton: DebugElement = debugElement.query(By.css('.course-item-delete-btn'));
     deleteButton.triggerEventHandler('click', null);
 
     expect(component.deleteCourse).toEqual(component.course);
   });
 
   it("should raise 'editCourseEvt'", () => {
-    const editButton: DebugElement = debugElement.query(
-      By.css('.course-item-edit-btn')
-    );
+    const editButton: DebugElement = debugElement.query(By.css('.course-item-edit-btn'));
     editButton.triggerEventHandler('click', null);
 
     expect(component.editCourse).toEqual(component.course);
@@ -101,11 +93,11 @@ describe('CoursesListItemComponent', () => {
   beforeEach(() => {
     course = {
       id: 'Test_id',
-      title: 'Test title',
+      name: 'Test title',
       thumbnail: '',
-      creationDate: '2019-10-30',
-      topRated: false,
-      duration: 60,
+      date: '2019-10-30',
+      isTopRated: false,
+      length: 60,
       description: 'Test description'
     };
     fixture = TestBed.createComponent(CoursesListItemComponent);
@@ -122,39 +114,30 @@ describe('CoursesListItemComponent', () => {
     const nativeElement: HTMLElement = fixture.nativeElement;
     const title: Element = nativeElement.querySelector('.course-item-title');
 
-    expect(title.textContent.trim()).toBe(component.course.title.toUpperCase());
+    expect(title.textContent.trim()).toBe(component.course.name.toUpperCase());
   });
 
   it('should render proper sub-title', () => {
     const nativeElement: HTMLElement = fixture.nativeElement;
-    const subtitle: Element = nativeElement.querySelector(
-      '.course-item-subtitle'
-    );
+    const subtitle: Element = nativeElement.querySelector('.course-item-subtitle');
 
     expect(subtitle.textContent.trim()).toBe(
-      `${new DatePipe('en').transform(
-        component.course.creationDate,
-        'dd.MM.yyyy'
-      )} | ${new DurationPipe().transform(component.course.duration)}`
+      `${new DatePipe('en').transform(component.course.date, 'dd.MM.yyyy')} | ${new DurationPipe().transform(
+        component.course.length
+      )}`
     );
   });
 
   it('should render proper preview image', () => {
     const nativeElement: HTMLElement = fixture.nativeElement;
-    const image: Element = nativeElement.querySelector(
-      '.course-item-thumbnail'
-    );
+    const image: Element = nativeElement.querySelector('.course-item-thumbnail');
 
-    expect(image.getAttribute('src')).toBe(
-      `${component.course.thumbnail}?index=${component.course.id}`
-    );
+    expect(image.getAttribute('src')).toBeTruthy();
   });
 
   it('should render proper description', () => {
     const nativeElement: HTMLElement = fixture.nativeElement;
-    const description: Element = nativeElement.querySelector(
-      '.course-item-description'
-    );
+    const description: Element = nativeElement.querySelector('.course-item-description');
 
     expect(description.textContent.trim()).toBe(component.course.description);
   });
@@ -168,9 +151,7 @@ describe('CoursesListItemComponent', () => {
 
   it('should call onEdit method', () => {
     const debugElement: DebugElement = fixture.debugElement;
-    const btn: DebugElement = debugElement.query(
-      By.css('.course-item-edit-btn')
-    );
+    const btn: DebugElement = debugElement.query(By.css('.course-item-edit-btn'));
 
     spyOn(component, 'onEdit');
     btn.triggerEventHandler('click', null);
@@ -187,9 +168,7 @@ describe('CoursesListItemComponent', () => {
 
   it('should call onDeletet method', () => {
     const debugElement: DebugElement = fixture.debugElement;
-    const btn: DebugElement = debugElement.query(
-      By.css('.course-item-delete-btn')
-    );
+    const btn: DebugElement = debugElement.query(By.css('.course-item-delete-btn'));
 
     spyOn(component, 'onDelete');
     btn.triggerEventHandler('click', null);

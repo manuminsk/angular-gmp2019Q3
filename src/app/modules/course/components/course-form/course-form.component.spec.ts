@@ -19,12 +19,12 @@ class TestHostComponent {
   constructor() {
     this.course = new Course({
       id: 'Test_id',
-      title: 'Test title',
+      name: 'Test title',
       thumbnail: '',
-      creationDate: '2019-10-30',
+      date: '2019-10-30',
       authors: [],
-      topRated: false,
-      duration: 60,
+      isTopRated: false,
+      length: 60,
       description: 'Test description'
     });
   }

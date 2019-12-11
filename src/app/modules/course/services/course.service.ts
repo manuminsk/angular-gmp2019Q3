@@ -1,62 +1,42 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { v1 } from 'uuid';
+
+import { Observable } from 'rxjs';
 
 import { Course } from '../models/course.class';
-import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
+import { APIConst } from '../../shared/constants/api-const.class';
+import { IEndpoint } from '../../shared/models/endpoint.inteface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CourseService {
-  private mockCourseList: Course[] = [];
+  private endpoint: IEndpoint;
+  private host: string;
 
-  constructor(private readonly router: Router) {
-    for (let i = 0; i < 10; i++) {
-      this.mockCourseList.push(
-        new Course({
-          id: v1(),
-          title: `Video Course ${i + 1}`,
-          thumbnail: '',
-          creationDate: `2019-11-${Math.floor(Math.random() * 20)}`,
-          topRated: i % 3 === 0,
-          duration: Math.round(Math.random() * i * 20),
-          description:
-            // tslint:disable-next-line:max-line-length
-            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'
-        })
-      );
-    }
+  constructor(private readonly http: HttpClient) {
+    this.endpoint = APIConst.getEndpoint('courses');
+    this.host = `${environment.apiUrl}${this.endpoint.root}`;
   }
 
   public getCourse(id: string): Observable<Course> {
-    return of(this.findCourse(id));
+    return this.http.get<Course>(`${this.host}/${id}`);
   }
 
-  public getCourseList(): Observable<Course[]> {
-    return of(this.mockCourseList);
+  public getCourseList(start: number = 0, count: number = 10, searchTerm: string = ''): Observable<Course[]> {
+    return this.http.get<Course[]>(`${this.host}?start=${start}&count=${count}&textFragment=${searchTerm}&sort=date`);
   }
 
-  public createCourse(course: Course): void {
-    this.mockCourseList.push({...course, id: v1()});
-
-    this.router.navigateByUrl('courses');
+  public createCourse(course: Course): Observable<Course> {
+    return this.http.post<Course>(`${this.host}`, course);
   }
 
-  public updateCourse(course: Course): void {
-    const item: Course = this.findCourse(course.id);
-    Object.assign(item, course);
-
-    this.router.navigateByUrl('courses');
+  public updateCourse(course: Course): Observable<Course> {
+    return this.http.patch<Course>(`${this.host}/${course.id}`, course);
   }
 
-  public removeCourse(id: string): Observable<Course[]> {
-    this.mockCourseList = this.mockCourseList.filter(course => course.id !== id);
-
-    return of(this.mockCourseList);
-  }
-
-  private findCourse(id: string): Course {
-    return this.mockCourseList.find(course => course.id === id);
+  public removeCourse(id: string): Observable<unknown> {
+    return this.http.delete(`${this.host}/${id}`);
   }
 }

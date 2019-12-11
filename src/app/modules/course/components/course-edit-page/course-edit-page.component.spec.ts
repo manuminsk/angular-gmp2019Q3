@@ -4,6 +4,7 @@ import { CourseEditPageComponent } from './course-edit-page.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Location } from '@angular/common';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('CourseEditPageComponent', () => {
   let component: CourseEditPageComponent;
@@ -12,11 +13,10 @@ describe('CourseEditPageComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [CourseEditPageComponent],
-      imports: [RouterTestingModule],
+      imports: [RouterTestingModule, HttpClientTestingModule],
       providers: [Location],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,27 +1,49 @@
-<form class="bg-white border p-4" (ngSubmit)="onSubmit();">
+<form class="bg-white border p-4" (ngSubmit)="onSubmit()">
   <div class="form-fields d-flex flex-column mb-4">
     <mat-form-field>
-      <input matInput placeholder="Title" name="title" [(ngModel)]="course.title" />
+      <input
+        matInput
+        placeholder="Title"
+        name="name"
+        [(ngModel)]="course.name"
+      />
     </mat-form-field>
 
     <mat-form-field>
-      <textarea matInput placeholder="Description" name="description" [(ngModel)]="course.description"></textarea>
+      <textarea
+        matInput
+        placeholder="Description"
+        name="description"
+        [(ngModel)]="course.description"
+      ></textarea>
     </mat-form-field>
 
     <div class="mb-4">
       <mat-form-field class="mr-4">
-        <input matInput [matDatepicker]="picker" placeholder="Choose a date" name="creationDate" [(ngModel)]="course.creationDate"/>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          placeholder="Choose a date"
+          name="creationDate"
+          [(ngModel)]="course.date"
+        />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field class="mr-4">
-        <input matInput placeholder="Duration" name="duration" [(ngModel)]="course.duration"/>
+        <input
+          matInput
+          placeholder="Duration"
+          name="duration"
+          [(ngModel)]="course.length"
+        />
       </mat-form-field>
-      
-      <mat-slide-toggle name="topRated" [(ngModel)]="course.topRated">Top Rated</mat-slide-toggle>
-    </div>
 
+      <mat-slide-toggle name="isTopRated" [(ngModel)]="course.isTopRated">
+        Top Rated
+      </mat-slide-toggle>
+    </div>
 
     <mat-form-field class="authors-list">
       <mat-chip-list #chipList aria-label="Author selection">
@@ -46,7 +68,11 @@
   </div>
 
   <div>
-    <button mat-raised-button color="primary" class="mr-4" type="submit">Save</button>
-    <button mat-raised-button color="accent" (click)="onCancel()" type="button">Calcel</button>
+    <button mat-raised-button color="primary" class="mr-4" type="submit">
+      Save
+    </button>
+    <button mat-raised-button color="warn" (click)="onCancel()" type="button">
+      Cancel
+    </button>
   </div>
 </form>

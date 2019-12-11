@@ -1,11 +1,7 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnInit,
-  ChangeDetectorRef
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Observable } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 import { Course } from '../../models/course.class';
 import { CourseService } from '../../services/course.service';
@@ -19,7 +15,7 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CoursesListComponent implements OnInit {
-  public courses$: Observable<Course[]>;
+  public courses: Course[] = [];
   public searchTerm: string = '';
   public noDataMessageText: string = 'No data. Feel free to add new course.';
 
@@ -27,11 +23,17 @@ export class CoursesListComponent implements OnInit {
     readonly courseService: CourseService,
     readonly router: Router,
     readonly dialog: MatDialog,
-    readonly ref: ChangeDetectorRef
+    readonly cd: ChangeDetectorRef
   ) {}
 
   public ngOnInit(): void {
-    this.courses$ = this.courseService.getCourseList();
+    this.courseService
+      .getCourseList(0, 10)
+      .pipe(take(1))
+      .subscribe((data: Course[]) => {
+        this.courses = data;
+        this.cd.markForCheck();
+      });
   }
 
   public onAddCourse(): void {
@@ -46,16 +48,25 @@ export class CoursesListComponent implements OnInit {
     this.openDialog(id);
   }
 
-  public onLoadMore(event): void {
-    console.log('=== LOAD MORE ===', event);
+  public onLoadMore(): void {
+    this.courseService
+      .getCourseList(this.courses.length, 10, this.searchTerm)
+      .pipe(take(1))
+      .subscribe((data: Course[]) => {
+        this.courses = [...this.courses, ...data];
+        this.cd.markForCheck();
+      });
   }
 
   public onFindEvt(searchTerm: string): void {
     this.searchTerm = searchTerm;
-  }
-
-  public onResetEvt(): void {
-    this.searchTerm = '';
+    this.courseService
+      .getCourseList(0, 10, searchTerm)
+      .pipe(take(1))
+      .subscribe((data: Course[]) => {
+        this.courses = data;
+        this.cd.markForCheck();
+      });
   }
 
   public openDialog(id): void {
@@ -69,8 +80,18 @@ export class CoursesListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result: boolean) => {
       if (result) {
-        this.courses$ = this.courseService.removeCourse(id);
-        this.ref.markForCheck();
+        this.courseService
+          .removeCourse(id)
+          .pipe(take(1))
+          .subscribe(() => {
+            this.courseService
+              .getCourseList(0, 10, this.searchTerm)
+              .pipe(take(1))
+              .subscribe((data: Course[]) => {
+                this.courses = data;
+                this.cd.markForCheck();
+              });
+          });
       }
     });
   }
