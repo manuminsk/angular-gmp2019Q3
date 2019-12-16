@@ -19,7 +19,6 @@ import { SharedModule } from '../shared/shared.module';
     LoginPageComponent,
     NotFoundPageComponent
   ],
-  entryComponents: [MatSpinner],
   imports: [SharedModule, MatToolbarModule, RouterModule],
   exports: [HeaderComponent, BreadcrumbsComponent, FooterComponent, LoginPageComponent, NotFoundPageComponent]
 })

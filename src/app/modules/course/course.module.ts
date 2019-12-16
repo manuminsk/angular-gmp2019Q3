@@ -31,7 +31,6 @@ import { CoreModule } from '../core/core.module';
     CourseEditPageComponent,
     CourseFormComponent
   ],
-  entryComponents: [MatSpinner],
   imports: [
     SharedModule,
     CoreModule,
