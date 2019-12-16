@@ -11,11 +11,10 @@ describe('CoursesListSearchComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CoursesListSearchComponent ],
-      imports: [ FormsModule ],
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-    })
-    .compileComponents();
+      declarations: [CoursesListSearchComponent],
+      imports: [FormsModule],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -30,13 +29,11 @@ describe('CoursesListSearchComponent', () => {
 
   it('should submit search form', () => {
     const debugElement: DebugElement = fixture.debugElement;
-    const btn: DebugElement = debugElement.query(
-      By.css('.course-search-btn')
-    );
+    const input: DebugElement = debugElement.query(By.css('input'));
 
-    spyOn(component, 'onSubmit');
-    btn.triggerEventHandler('click', null);
+    spyOn(component, 'onChangeInput');
+    input.triggerEventHandler('keyup', null);
 
-    expect(component.onSubmit).toHaveBeenCalled();
+    expect(component.onChangeInput).toHaveBeenCalled();
   });
 });
