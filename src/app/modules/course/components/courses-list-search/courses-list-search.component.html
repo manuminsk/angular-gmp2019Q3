@@ -1,13 +1,9 @@
 <div class="bg-white border pt-4 pl-4 pr-4">
   <mat-form-field class="mr-4">
-    <input matInput placeholder="Text to search" [(ngModel)]="searchTerm" />
+    <input
+      matInput
+      placeholder="Text to search"
+      (keyup)="onChangeInput($event)"
+    />
   </mat-form-field>
-  <button
-    class="course-search-btn"
-    mat-raised-button
-    color="primary"
-    (click)="onSubmit()"
-  >
-    Search
-  </button>
 </div>
