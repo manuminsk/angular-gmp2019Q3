@@ -1,5 +1,12 @@
 import { NgModule } from '@angular/core';
-import { MatFormFieldModule, MatInputModule, MatButtonModule, MatCardModule, MatIconModule } from '@angular/material';
+import {
+  MatFormFieldModule,
+  MatInputModule,
+  MatButtonModule,
+  MatCardModule,
+  MatIconModule,
+  MatSpinner
+} from '@angular/material';
 
 import { SharedModule } from '../shared/shared.module';
 import { CourseRoutingModule } from './course-routing.module';
@@ -24,6 +31,7 @@ import { CoreModule } from '../core/core.module';
     CourseEditPageComponent,
     CourseFormComponent
   ],
+  entryComponents: [MatSpinner],
   imports: [
     SharedModule,
     CoreModule,

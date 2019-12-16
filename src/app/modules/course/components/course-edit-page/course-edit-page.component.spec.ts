@@ -6,6 +6,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Location } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
+import { MatSpinner } from '@angular/material';
 
 describe('CourseEditPageComponent', () => {
   let component: CourseEditPageComponent;
@@ -13,11 +15,13 @@ describe('CourseEditPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CourseEditPageComponent],
+      declarations: [CourseEditPageComponent, MatSpinner],
       imports: [RouterTestingModule, HttpClientTestingModule, OverlayModule],
       providers: [Location],
       schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
-    }).compileComponents();
+    })
+      .overrideModule(BrowserDynamicTestingModule, { set: { entryComponents: [MatSpinner] } })
+      .compileComponents();
   }));
 
   beforeEach(() => {
