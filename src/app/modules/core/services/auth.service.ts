@@ -27,28 +27,27 @@ export class AuthService {
     this.isUserLoggedIn = new BehaviorSubject(this.isAuthenticated());
   }
 
-  public login(user: IUser): void {
+  public login(user: IUser): Observable<{ token: string }> {
     this.ui.spin$.next(true);
 
-    this.http
-      .post(`${this.host}${this.endpoint.login}`, {
+    return this.http
+      .post<{ token: string }>(`${this.host}${this.endpoint.login}`, {
         login: user.name,
         password: user.password
       })
-      .pipe(tap(() => this.ui.spin$.next()))
-      .subscribe((data: { token: string }) => {
-        if (data.token) {
-          localStorage.setItem('token', data.token);
-          this.isUserLoggedIn.next(true);
-          this.router.navigateByUrl('courses');
-        }
-      });
+      .pipe(tap(() => this.ui.spin$.next()));
+  }
+
+  public saveToken(token: string): void {
+    if (token) {
+      localStorage.setItem('token', token);
+      this.isUserLoggedIn.next(true);
+    }
   }
 
   public logout(): void {
     localStorage.removeItem('token');
     this.isUserLoggedIn.next(false);
-    this.router.navigateByUrl('login');
   }
 
   public isAuthenticated(): boolean {

@@ -1,8 +1,9 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { Store } from '@ngrx/store';
 
-import { AuthService } from '../../services/auth.service';
-import { User, IUser } from '../../models/user.class';
+import * as fromUser from 'src/app/store/reducers/user.reducer';
+import { login } from 'src/app/store/actions/user.actions';
+import { IUser } from '../../models/user.class';
 
 @Component({
   selector: 'app-login-page',
@@ -13,7 +14,7 @@ import { User, IUser } from '../../models/user.class';
 export class LoginPageComponent implements OnInit {
   public credentials: IUser;
 
-  constructor(readonly authService: AuthService) {}
+  constructor(private readonly store: Store<fromUser.State>) {}
 
   public ngOnInit(): void {
     this.credentials = {
@@ -23,6 +24,6 @@ export class LoginPageComponent implements OnInit {
   }
 
   public onLogin(): void {
-    this.authService.login(this.credentials);
+    this.store.dispatch(login({ credentials: this.credentials}));
   }
 }
