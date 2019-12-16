@@ -1,12 +1,13 @@
 import { ChangeDetectionStrategy, Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material';
+import { Router } from '@angular/router';
+
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { take, distinctUntilChanged, debounceTime, filter } from 'rxjs/operators';
 
 import { Course } from '../../models/course.class';
 import { CourseService } from '../../services/course.service';
 import { DialogComponent } from 'src/app/modules/shared/components/dialog/dialog.component';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-courses-list',
@@ -29,14 +30,6 @@ export class CoursesListComponent implements OnInit, OnDestroy {
   ) {}
 
   public ngOnInit(): void {
-    this.courseService
-      .getCourseList(0, 10)
-      .pipe(take(1))
-      .subscribe((data: Course[]) => {
-        this.courses = data;
-        this.cd.markForCheck();
-      });
-
     this.subscriptions.add(
       this.searchTerms$
         .pipe(
