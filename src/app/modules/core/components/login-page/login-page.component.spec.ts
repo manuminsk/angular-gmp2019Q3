@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { LoginPageComponent } from './login-page.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 describe('LoginPageComponent', () => {
   let component: LoginPageComponent;
@@ -21,7 +22,8 @@ describe('LoginPageComponent', () => {
         FormsModule,
         BrowserAnimationsModule,
         RouterTestingModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        OverlayModule
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();

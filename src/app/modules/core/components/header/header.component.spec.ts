@@ -4,6 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { HeaderComponent } from './header.component';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -12,7 +13,7 @@ describe('HeaderComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [HeaderComponent],
-      imports: [RouterTestingModule, HttpClientTestingModule],
+      imports: [RouterTestingModule, HttpClientTestingModule, OverlayModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
 
