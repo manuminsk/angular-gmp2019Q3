@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../../services/auth.service';
@@ -8,14 +8,8 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './header.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeaderComponent implements OnInit {
-  public isAuthenticated: boolean;
-
+export class HeaderComponent {
   constructor(readonly authService: AuthService, readonly router: Router) {}
-
-  public ngOnInit(): void {
-    this.isAuthenticated = this.authService.isAuthenticated();
-  }
 
   public onLogin(): void {
     this.router.navigateByUrl('login');
@@ -24,6 +18,7 @@ export class HeaderComponent implements OnInit {
   public onLogout(): void {
     this.authService.logout();
   }
+
   public redirectToMainRoute(): void {
     this.router.navigate(['/']);
   }

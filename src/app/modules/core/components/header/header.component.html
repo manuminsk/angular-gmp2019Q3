@@ -9,10 +9,18 @@
         </div>
 
         <div class="col-auto">
-          <button *ngIf="!isAuthenticated" mat-button (click)="onLogin()">
+          <button
+            *ngIf="!(authService.isUserLoggedIn | async)"
+            mat-button
+            (click)="onLogin()"
+          >
             login
           </button>
-          <button *ngIf="isAuthenticated" mat-button (click)="onLogout()">
+          <button
+            *ngIf="authService.isUserLoggedIn | async"
+            mat-button
+            (click)="onLogout()"
+          >
             Log off
           </button>
         </div>
