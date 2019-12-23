@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { UiService } from './modules/core/services/ui.service';
 import { Store } from '@ngrx/store';
 import * as RootReducer from './store/index';
 import * as UserActions from './store/actions/user.actions';
