@@ -6,6 +6,7 @@ import { Location } from '@angular/common';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('CourseAddPageComponent', () => {
   let component: CourseAddPageComponent;
@@ -15,7 +16,7 @@ describe('CourseAddPageComponent', () => {
     TestBed.configureTestingModule({
       declarations: [CourseAddPageComponent],
       imports: [RouterTestingModule, HttpClientTestingModule, OverlayModule],
-      providers: [Location],
+      providers: [Location, provideMockStore({})],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   }));

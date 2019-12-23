@@ -6,15 +6,23 @@ import { By } from '@angular/platform-browser';
 import { CoursesListComponent } from './courses-list.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('CoursesListComponent', () => {
   let component: CoursesListComponent;
   let fixture: ComponentFixture<CoursesListComponent>;
 
+  const initialState = {
+    courses: {
+      list: []
+    }
+  };
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [CoursesListComponent],
       imports: [MatDialogModule, RouterTestingModule, HttpClientTestingModule],
+      providers: [provideMockStore({ initialState })],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   }));

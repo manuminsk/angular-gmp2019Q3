@@ -1,4 +1,8 @@
 import { TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { RouterTestingModule } from '@angular/router/testing';
+
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
 
@@ -10,10 +14,8 @@ describe('CourseEffects', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
-        CourseEffects,
-        provideMockActions(() => actions$)
-      ]
+      imports: [HttpClientTestingModule, OverlayModule, RouterTestingModule],
+      providers: [CourseEffects, provideMockActions(() => actions$)]
     });
 
     effects = TestBed.get<CourseEffects>(CourseEffects);

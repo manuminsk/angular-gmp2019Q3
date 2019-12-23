@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 
 import { UserEffects } from './user.effects';
 import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 describe('UserEffects', () => {
   let actions$: Observable<any>;
@@ -11,7 +13,7 @@ describe('UserEffects', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
+      imports: [RouterTestingModule, HttpClientTestingModule, OverlayModule],
       providers: [UserEffects, provideMockActions(() => actions$)]
     });
 
