@@ -18,6 +18,7 @@ export const initialState: State = {
 const userReducer = createReducer(
   initialState,
   on(userActions.loginSuccess, (state, { token }) => ({ ...state, token })),
+  on(userActions.restoreSession, (state, { token }) => ({ ...state, token })),
   on(userActions.logout, state => initialState)
 );
 

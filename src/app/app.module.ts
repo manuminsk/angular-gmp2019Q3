@@ -16,6 +16,7 @@ import { AuthInterceptor } from './modules/core/services/auth.interceptor';
 import { reducers, metaReducers } from './store';
 import { environment } from '../environments/environment';
 import { APP_EFFECTS } from './store/effects/app.effects';
+import { LoaderComponent } from './modules/core/components/loader/loader.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -35,7 +36,7 @@ import { APP_EFFECTS } from './store/effects/app.effects';
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot(APP_EFFECTS)
   ],
-  entryComponents: [MatSpinner],
+  entryComponents: [MatSpinner, LoaderComponent],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

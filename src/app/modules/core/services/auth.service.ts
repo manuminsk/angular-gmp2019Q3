@@ -15,7 +15,7 @@ import { UiService } from './ui.service';
   providedIn: 'root'
 })
 export class AuthService {
-  public isUserLoggedIn: BehaviorSubject<boolean>;
+  public isUserLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject(this.isAuthenticated());
 
   private endpoint: IEndpoint;
   private host: string;
@@ -23,8 +23,6 @@ export class AuthService {
   constructor(private readonly router: Router, private readonly http: HttpClient, private readonly ui: UiService) {
     this.endpoint = APIConst.getEndpoint('auth');
     this.host = `${environment.apiUrl}${this.endpoint.root}`;
-
-    this.isUserLoggedIn = new BehaviorSubject(this.isAuthenticated());
   }
 
   public login(user: IUser): Observable<{ token: string }> {
@@ -54,6 +52,10 @@ export class AuthService {
     const token = localStorage.getItem('token');
 
     return !!token;
+  }
+
+  public getToken(): string {
+    return localStorage.getItem('token');
   }
 
   public getUserInfo(): Observable<IUser> {

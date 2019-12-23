@@ -9,6 +9,7 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { LogoComponent } from './components/logo/logo.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { SharedModule } from '../shared/shared.module';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { SharedModule } from '../shared/shared.module';
     LogoComponent,
     BreadcrumbsComponent,
     LoginPageComponent,
-    NotFoundPageComponent
+    NotFoundPageComponent,
+    LoaderComponent
   ],
   imports: [SharedModule, MatToolbarModule, RouterModule],
   exports: [HeaderComponent, BreadcrumbsComponent, FooterComponent, LoginPageComponent, NotFoundPageComponent]
