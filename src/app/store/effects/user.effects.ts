@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { AuthService } from 'src/app/modules/core/services/auth.service';
-
-import * as UserActions from '../actions/user.actions';
-import { catchError, map, tap, mergeMap, exhaustMap } from 'rxjs/operators';
-import { EMPTY, of } from 'rxjs';
 import { Router } from '@angular/router';
-import { dispatch } from 'rxjs/internal/observable/pairs';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { catchError, map, tap, exhaustMap } from 'rxjs/operators';
+import { of } from 'rxjs';
+
+import { AuthService } from '@core/services/auth.service';
+import * as UserActions from '@store/actions/user.actions';
 
 @Injectable()
 export class UserEffects {

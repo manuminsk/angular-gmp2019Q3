@@ -9,14 +9,14 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './app.component';
-import { CoreModule } from './modules/core/core.module';
 import { AppRoutingModule } from './app-routing.module';
 
-import { AuthInterceptor } from './modules/core/services/auth.interceptor';
-import { reducers, metaReducers } from './store';
-import { environment } from '../environments/environment';
-import { APP_EFFECTS } from './store/effects/app.effects';
-import { LoaderComponent } from './modules/core/components/loader/loader.component';
+import { environment } from '@root/environments/environment';
+import { CoreModule } from '@core/core.module';
+import { AuthInterceptor } from '@core/services/auth.interceptor';
+import { LoaderComponent } from '@core/components/loader/loader.component';
+import { reducers, metaReducers } from '@store/index';
+import { APP_EFFECTS } from '@store/effects/app.effects';
 
 @NgModule({
   declarations: [AppComponent],

@@ -2,9 +2,9 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Location } from '@angular/common';
 import { Store } from '@ngrx/store';
 
-import { Course } from '../../models/course.class';
-import * as RootReducer from '../../../../store/index';
-import * as CourseActions from '../../../../store/actions/course.actions';
+import { Course } from '@course/models/course.class';
+import * as RootReducer from '@store/index';
+import * as CourseActions from '@store/actions/course.actions';
 
 @Component({
   selector: 'app-course-add-page',

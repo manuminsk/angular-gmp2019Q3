@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
-import { ICourseQuery } from 'src/app/modules/course/models/course-query.interface';
-import { Course } from 'src/app/modules/course/models/course.class';
+
+import { ICourseQuery } from '@course/models/course-query.interface';
+import { Course } from '@course/models/course.class';
 
 export const loadCourses = createAction('[Course] Load Courses', props<{ query: ICourseQuery }>());
 export const loadCoursesSuccess = createAction('[Course] Load Courses Success', props<{ data: Course[] }>());

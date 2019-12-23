@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import * as RootReducer from './store/index';
-import * as UserActions from './store/actions/user.actions';
-import { AuthService } from './modules/core/services/auth.service';
+
+import * as RootReducer from '@store/index';
+import * as UserActions from '@store/actions/user.actions';
+import { AuthService } from '@core/services/auth.service';
 
 @Component({
   selector: 'app-root',

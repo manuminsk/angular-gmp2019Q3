@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, Output, EventEmitter } from '@angular/core';
 
-import { ICourse } from '../../models/course.class';
+import { ICourse } from '@course/models/course.class';
 
 @Component({
   selector: 'app-courses-list-item',

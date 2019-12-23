@@ -1,11 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
-
 import { Store } from '@ngrx/store';
 
-import * as fromUser from 'src/app/store/reducers/user.reducer';
-import { logout } from 'src/app/store/actions/user.actions';
-import { AuthService } from '../../services/auth.service';
+import * as fromUser from '@store/reducers/user.reducer';
+import { logout } from '@store/actions/user.actions';
+import { AuthService } from '@core/services/auth.service';
 
 @Component({
   selector: 'app-header',

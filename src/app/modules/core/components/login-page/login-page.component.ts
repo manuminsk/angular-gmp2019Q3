@@ -1,9 +1,9 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import * as fromUser from 'src/app/store/reducers/user.reducer';
-import { login } from 'src/app/store/actions/user.actions';
-import { IUser } from '../../models/user.class';
+import * as fromUser from '@store/reducers/user.reducer';
+import { login } from '@store/actions/user.actions';
+import { IUser } from '@core/models/user.class';
 
 @Component({
   selector: 'app-login-page',
@@ -24,6 +24,6 @@ export class LoginPageComponent implements OnInit {
   }
 
   public onLogin(): void {
-    this.store.dispatch(login({ credentials: this.credentials}));
+    this.store.dispatch(login({ credentials: this.credentials }));
   }
 }

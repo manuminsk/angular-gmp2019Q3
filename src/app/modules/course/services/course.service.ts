@@ -4,12 +4,12 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { Course } from '../models/course.class';
-import { environment } from 'src/environments/environment';
-import { APIConst } from '../../shared/constants/api-const.class';
-import { IEndpoint } from '../../shared/models/endpoint.interface';
-import { UiService } from '../../core/services/ui.service';
-import { ICourseQuery } from '../models/course-query.interface';
+import { Course } from '@course/models/course.class';
+import { environment } from '@root/environments/environment';
+import { APIConst } from '@shared/constants/api-const.class';
+import { IEndpoint } from '@shared/models/endpoint.interface';
+import { UiService } from '@core/services/ui.service';
+import { ICourseQuery } from '@course/models/course-query.interface';
 
 @Injectable({
   providedIn: 'root'

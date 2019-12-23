@@ -1,8 +1,8 @@
-import { ActionReducer, ActionReducerMap, createFeatureSelector, createSelector, MetaReducer } from '@ngrx/store';
+import { ActionReducerMap, MetaReducer } from '@ngrx/store';
 
-import { environment } from '../../environments/environment';
-import * as fromUser from './reducers/user.reducer';
-import * as fromCourse from './reducers/course.reducer';
+import { environment } from '@root/environments/environment';
+import * as fromUser from '@store/reducers/user.reducer';
+import * as fromCourse from '@store/reducers/course.reducer';
 
 export interface State {
   auth: fromUser.State;

@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
-import { LoginPageComponent } from './modules/core/components/login-page/login-page.component';
-import { NotFoundPageComponent } from './modules/core/components/not-found-page/not-found-page.component';
-import { AuthGuard } from './modules/core/guards/auth.guard';
+import { LoginPageComponent } from '@core/components/login-page/login-page.component';
+import { NotFoundPageComponent } from '@core/components/not-found-page/not-found-page.component';
+import { AuthGuard } from '@core/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -13,7 +13,7 @@ const routes: Routes = [
   },
   {
     path: 'courses',
-    loadChildren: () => import('./modules/course/course.module').then(m => m.CourseModule),
+    loadChildren: () => import('@course/course.module').then(m => m.CourseModule),
     canActivate: [AuthGuard]
   },
   {

@@ -5,11 +5,11 @@ import { Router } from '@angular/router';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { environment } from 'src/environments/environment';
-import { APIConst } from '../../shared/constants/api-const.class';
-import { IUser } from '../models/user.class';
-import { IEndpoint } from '../../shared/models/endpoint.interface';
-import { UiService } from './ui.service';
+import { environment } from '@root/environments/environment';
+import { APIConst } from '@shared/constants/api-const.class';
+import { IUser } from '@core/models/user.class';
+import { IEndpoint } from '@shared/models/endpoint.interface';
+import { UiService } from '@core/services/ui.service';
 
 @Injectable({
   providedIn: 'root'

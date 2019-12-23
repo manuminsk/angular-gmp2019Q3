@@ -2,6 +2,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
+    "rootDir": ".",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -17,7 +18,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@course/*": ["src/app/modules/course/*"],
+      "@shared/*": ["src/app/modules/shared/*"],
+      "@core/*": ["src/app/modules/core/*"],
+      "@store/*": ["src/app/store/*"],
+      "@root/*": ["src/*"],
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

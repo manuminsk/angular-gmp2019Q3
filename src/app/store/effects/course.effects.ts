@@ -1,14 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-
 import { exhaustMap, map, catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
-import { CourseService } from 'src/app/modules/course/services/course.service';
-
-import * as CourseActions from '../actions/course.actions';
+import { CourseService } from '@course/services/course.service';
+import * as CourseActions from '@store/actions/course.actions';
 
 @Injectable()
 export class CourseEffects {

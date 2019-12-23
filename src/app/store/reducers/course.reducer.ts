@@ -1,7 +1,7 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
-import { Course } from '../../modules/course/models/course.class';
-import * as CourseActions from '../actions/course.actions';
+import { Course } from '@course/models/course.class';
+import * as CourseActions from '@store/actions/course.actions';
 
 export const courseFeatureKey = 'course';
 

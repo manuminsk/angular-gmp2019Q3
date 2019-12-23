@@ -2,17 +2,16 @@ import { ChangeDetectionStrategy, Component, OnInit, ChangeDetectorRef, OnDestro
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 
+import { Store } from '@ngrx/store';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { distinctUntilChanged, debounceTime, filter } from 'rxjs/operators';
 
-import { Store } from '@ngrx/store';
-
-import { Course } from '../../models/course.class';
-import { CourseService } from '../../services/course.service';
+import { Course } from '@course/models/course.class';
+import { CourseService } from '@course/services/course.service';
 import { DialogComponent } from 'src/app/modules/shared/components/dialog/dialog.component';
-import * as RootReducer from '../../../../store/index';
-import * as CourseReducer from '../../../../store/reducers/course.reducer';
-import * as CourseActions from '../../../../store/actions/course.actions';
+import * as RootReducer from '@store/index';
+import * as CourseReducer from '@store/reducers/course.reducer';
+import * as CourseActions from '@store/actions/course.actions';
 
 @Component({
   selector: 'app-courses-list',

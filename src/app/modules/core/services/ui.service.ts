@@ -5,7 +5,7 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { Subject } from 'rxjs';
 import { map, scan } from 'rxjs/operators';
 
-import { LoaderComponent } from '../components/loader/loader.component';
+import { LoaderComponent } from '@core/components/loader/loader.component';
 
 @Injectable({
   providedIn: 'root'
