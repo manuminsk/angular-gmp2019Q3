@@ -10,9 +10,7 @@ export class CoursesListSearchComponent {
   @Output() findEvt: EventEmitter<string> = new EventEmitter<string>();
   @Output() resetEvt: EventEmitter<void> = new EventEmitter<void>();
 
-  public searchTerm: string = '';
-
-  public onSubmit(): void {
-    this.findEvt.emit(this.searchTerm);
+  public onChangeInput(event): void {
+    this.findEvt.emit(event.target.value);
   }
 }

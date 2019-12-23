@@ -1,4 +1,5 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { UiService } from './modules/core/services/ui.service';
 
 @Component({
   selector: 'app-root',

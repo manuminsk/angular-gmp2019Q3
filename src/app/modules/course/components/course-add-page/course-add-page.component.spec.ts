@@ -5,6 +5,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { Location } from '@angular/common';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 describe('CourseAddPageComponent', () => {
   let component: CourseAddPageComponent;
@@ -13,7 +14,7 @@ describe('CourseAddPageComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [CourseAddPageComponent],
-      imports: [RouterTestingModule, HttpClientTestingModule],
+      imports: [RouterTestingModule, HttpClientTestingModule, OverlayModule],
       providers: [Location],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
