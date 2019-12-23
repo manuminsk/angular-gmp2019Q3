@@ -1,10 +1,10 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Location } from '@angular/common';
+import { Store } from '@ngrx/store';
 
 import { Course } from '../../models/course.class';
-import { CourseService } from '../../services/course.service';
-import { Router } from '@angular/router';
-import { take } from 'rxjs/operators';
+import * as RootReducer from '../../../../store/index';
+import * as CourseActions from '../../../../store/actions/course.actions';
 
 @Component({
   selector: 'app-course-add-page',
@@ -16,23 +16,14 @@ export class CourseAddPageComponent implements OnInit {
   public title: string = 'Add new course';
   public course: Course;
 
-  constructor(
-    private readonly courseService: CourseService,
-    private readonly location: Location,
-    private readonly router: Router
-  ) {}
+  constructor(private readonly location: Location, private readonly store: Store<RootReducer.State>) {}
 
   public ngOnInit(): void {
     this.course = new Course(null);
   }
 
   public onSubmit(course: Course): void {
-    this.courseService
-      .createCourse(course)
-      .pipe(take(1))
-      .subscribe(() => {
-        this.router.navigate(['/courses']);
-      });
+    this.store.dispatch(CourseActions.createCourse({ course }));
   }
 
   public onCancel(): void {

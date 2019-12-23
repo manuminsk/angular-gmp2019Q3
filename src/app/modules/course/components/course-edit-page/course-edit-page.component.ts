@@ -4,6 +4,10 @@ import { CourseService } from '../../services/course.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { take } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+
+import * as RootReducer from '../../../../store/index';
+import * as CourseActions from '../../../../store/actions/course.actions';
 
 @Component({
   selector: 'app-course-edit-page',
@@ -20,7 +24,7 @@ export class CourseEditPageComponent implements OnInit {
     private readonly courseService: CourseService,
     private readonly location: Location,
     private readonly cd: ChangeDetectorRef,
-    private readonly router: Router
+    private readonly store: Store<RootReducer.State>
   ) {}
 
   public ngOnInit(): void {
@@ -33,12 +37,7 @@ export class CourseEditPageComponent implements OnInit {
   }
 
   public onSubmit(course: Course): void {
-    this.courseService
-      .updateCourse(course)
-      .pipe(take(1))
-      .subscribe(() => {
-        this.router.navigate(['/courses']);
-      });
+    this.store.dispatch(CourseActions.updateCourse({ course }));
   }
 
   public onCancel(): void {

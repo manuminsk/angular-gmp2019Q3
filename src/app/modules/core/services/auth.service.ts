@@ -8,7 +8,7 @@ import { tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { APIConst } from '../../shared/constants/api-const.class';
 import { IUser } from '../models/user.class';
-import { IEndpoint } from '../../shared/models/endpoint.inteface';
+import { IEndpoint } from '../../shared/models/endpoint.interface';
 import { UiService } from './ui.service';
 
 @Injectable({
