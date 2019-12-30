@@ -2,7 +2,7 @@ import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from 
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 
-import { Author, Course} from '../../models/course.class';
+import { Author, Course } from '@course/models/course.class';
 
 @Component({
   selector: 'app-course-form',

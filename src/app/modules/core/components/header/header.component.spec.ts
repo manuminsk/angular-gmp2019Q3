@@ -5,6 +5,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { HeaderComponent } from './header.component';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -14,6 +15,7 @@ describe('HeaderComponent', () => {
     TestBed.configureTestingModule({
       declarations: [HeaderComponent],
       imports: [RouterTestingModule, HttpClientTestingModule, OverlayModule],
+      providers: [provideMockStore({})],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
 

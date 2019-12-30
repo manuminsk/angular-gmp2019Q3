@@ -15,7 +15,7 @@ import {
   MatProgressSpinnerModule
 } from '@angular/material';
 
-import { DialogComponent } from './components/dialog/dialog.component';
+import { DialogComponent } from '@shared/components/dialog/dialog.component';
 
 @NgModule({
   declarations: [DialogComponent],

@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
-
-import { Course } from '../models/course.class';
-import { environment } from 'src/environments/environment';
-import { APIConst } from '../../shared/constants/api-const.class';
-import { IEndpoint } from '../../shared/models/endpoint.inteface';
-import { UiService } from '../../core/services/ui.service';
 import { tap } from 'rxjs/operators';
+
+import { Course } from '@course/models/course.class';
+import { environment } from '@root/environments/environment';
+import { APIConst } from '@shared/constants/api-const.class';
+import { IEndpoint } from '@shared/models/endpoint.interface';
+import { UiService } from '@core/services/ui.service';
+import { ICourseQuery } from '@course/models/course-query.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,7 @@ export class CourseService {
     return this.http.get<Course>(`${this.host}/${id}`).pipe(tap(() => this.ui.spin$.next()));
   }
 
-  public getCourseList(start: number = 0, count: number = 10, searchTerm: string = ''): Observable<Course[]> {
+  public getCourseList({ start = 0, count = 10, searchTerm = '' }: ICourseQuery): Observable<Course[]> {
     this.ui.spin$.next(true);
     return this.http
       .get<Course[]>(`${this.host}?start=${start}&count=${count}&textFragment=${searchTerm}&sort=date`)

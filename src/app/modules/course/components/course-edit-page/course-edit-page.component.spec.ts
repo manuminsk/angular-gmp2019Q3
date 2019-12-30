@@ -7,7 +7,8 @@ import { Location } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
-import { MatSpinner } from '@angular/material';
+import { provideMockStore } from '@ngrx/store/testing';
+import { LoaderComponent } from 'src/app/modules/core/components/loader/loader.component';
 
 describe('CourseEditPageComponent', () => {
   let component: CourseEditPageComponent;
@@ -15,12 +16,12 @@ describe('CourseEditPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CourseEditPageComponent, MatSpinner],
+      declarations: [CourseEditPageComponent, LoaderComponent],
       imports: [RouterTestingModule, HttpClientTestingModule, OverlayModule],
-      providers: [Location],
+      providers: [Location, provideMockStore({})],
       schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
     })
-      .overrideModule(BrowserDynamicTestingModule, { set: { entryComponents: [MatSpinner] } })
+      .overrideModule(BrowserDynamicTestingModule, { set: { entryComponents: [LoaderComponent] } })
       .compileComponents();
   }));
 

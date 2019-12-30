@@ -2,12 +2,16 @@ import { ChangeDetectionStrategy, Component, OnInit, ChangeDetectorRef, OnDestro
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 
+import { Store } from '@ngrx/store';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { take, distinctUntilChanged, debounceTime, filter } from 'rxjs/operators';
+import { distinctUntilChanged, debounceTime, filter } from 'rxjs/operators';
 
-import { Course } from '../../models/course.class';
-import { CourseService } from '../../services/course.service';
+import { Course } from '@course/models/course.class';
+import { CourseService } from '@course/services/course.service';
 import { DialogComponent } from 'src/app/modules/shared/components/dialog/dialog.component';
+import * as RootReducer from '@store/index';
+import * as CourseReducer from '@store/reducers/course.reducer';
+import * as CourseActions from '@store/actions/course.actions';
 
 @Component({
   selector: 'app-courses-list',
@@ -26,8 +30,18 @@ export class CoursesListComponent implements OnInit, OnDestroy {
     readonly courseService: CourseService,
     readonly router: Router,
     readonly dialog: MatDialog,
-    readonly cd: ChangeDetectorRef
-  ) {}
+    readonly cd: ChangeDetectorRef,
+    readonly store: Store<RootReducer.State>
+  ) {
+    this.subscriptions.add(
+      this.store
+        .select((state: RootReducer.State) => state.courses)
+        .subscribe((data: CourseReducer.State) => {
+          this.courses = data.list;
+          this.cd.markForCheck();
+        })
+    );
+  }
 
   public ngOnInit(): void {
     this.subscriptions.add(
@@ -38,13 +52,15 @@ export class CoursesListComponent implements OnInit, OnDestroy {
           filter(searchTerm => searchTerm.length === 0 || searchTerm.length > 3)
         )
         .subscribe((searchTerm: string) => {
-          this.courseService
-            .getCourseList(0, 10, searchTerm)
-            .pipe(take(1))
-            .subscribe((data: Course[]) => {
-              this.courses = data;
-              this.cd.markForCheck();
-            });
+          this.store.dispatch(
+            CourseActions.loadCourses({
+              query: {
+                start: 0,
+                count: 10,
+                searchTerm
+              }
+            })
+          );
         })
     );
   }
@@ -66,13 +82,15 @@ export class CoursesListComponent implements OnInit, OnDestroy {
   }
 
   public onLoadMore(): void {
-    this.courseService
-      .getCourseList(this.courses.length, 10, this.searchTerm)
-      .pipe(take(1))
-      .subscribe((data: Course[]) => {
-        this.courses = [...this.courses, ...data];
-        this.cd.markForCheck();
-      });
+    this.store.dispatch(
+      CourseActions.loadMoreCourses({
+        query: {
+          start: this.courses.length,
+          count: 10,
+          searchTerm: this.searchTerm
+        }
+      })
+    );
   }
 
   public onFindEvt(searchTerm: string): void {
@@ -91,18 +109,16 @@ export class CoursesListComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe((result: boolean) => {
       if (result) {
-        this.courseService
-          .removeCourse(id)
-          .pipe(take(1))
-          .subscribe(() => {
-            this.courseService
-              .getCourseList(0, 10, this.searchTerm)
-              .pipe(take(1))
-              .subscribe((data: Course[]) => {
-                this.courses = data;
-                this.cd.markForCheck();
-              });
-          });
+        this.store.dispatch(
+          CourseActions.removeCourse({
+            id,
+            query: {
+              start: 0,
+              count: this.courses.length,
+              searchTerm: this.searchTerm
+            }
+          })
+        );
       }
     });
   }

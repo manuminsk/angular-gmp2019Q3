@@ -1,4 +1,4 @@
-import { IEndpoint } from '../models/endpoint.inteface';
+import { IEndpoint } from '@shared/models/endpoint.interface';
 
 export class APIConst {
   private static endpoints: { [key: string]: IEndpoint } = {

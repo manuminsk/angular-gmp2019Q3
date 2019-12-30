@@ -8,6 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginPageComponent } from './login-page.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { StoreModule } from '@ngrx/store';
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('LoginPageComponent', () => {
   let component: LoginPageComponent;
@@ -25,6 +27,7 @@ describe('LoginPageComponent', () => {
         HttpClientTestingModule,
         OverlayModule
       ],
+      providers: [provideMockStore({})],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   }));

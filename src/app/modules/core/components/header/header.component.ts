@@ -1,7 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 
-import { AuthService } from '../../services/auth.service';
+import * as fromUser from '@store/reducers/user.reducer';
+import { logout } from '@store/actions/user.actions';
+import { AuthService } from '@core/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -9,14 +12,18 @@ import { AuthService } from '../../services/auth.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent {
-  constructor(readonly authService: AuthService, readonly router: Router) {}
+  constructor(
+    public readonly authService: AuthService,
+    private readonly store: Store<fromUser.State>,
+    private readonly router: Router
+  ) {}
 
   public onLogin(): void {
     this.router.navigateByUrl('login');
   }
 
   public onLogout(): void {
-    this.authService.logout();
+    this.store.dispatch(logout());
   }
 
   public redirectToMainRoute(): void {
