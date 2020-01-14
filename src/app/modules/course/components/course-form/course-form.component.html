@@ -67,7 +67,13 @@
   </div>
 
   <div>
-    <button mat-raised-button color="primary" class="mr-4" type="submit">
+    <button
+      mat-raised-button
+      color="primary"
+      class="mr-4"
+      type="submit"
+      [disabled]="!courseForm.valid"
+    >
       Save
     </button>
     <button mat-raised-button color="warn" (click)="onCancel()" type="button">
