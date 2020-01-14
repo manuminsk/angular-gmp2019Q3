@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CourseFormComponent } from './course-form.component';
 import { CUSTOM_ELEMENTS_SCHEMA, Component } from '@angular/core';
 import { ICourse, Course } from '../../models/course.class';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule, MatChipsModule, MatNativeDateModule, MatSlideToggleModule } from '@angular/material';
 
 @Component({
@@ -37,7 +37,7 @@ describe('TestHostComponent: CourseFormComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [CourseFormComponent, TestHostComponent],
-      imports: [FormsModule, MatDatepickerModule, MatChipsModule, MatNativeDateModule, MatSlideToggleModule],
+      imports: [ReactiveFormsModule, MatDatepickerModule, MatChipsModule, MatNativeDateModule, MatSlideToggleModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   }));
