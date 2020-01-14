@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatFormFieldModule, MatInputModule } from '@angular/material';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,7 +21,7 @@ describe('LoginPageComponent', () => {
       imports: [
         MatFormFieldModule,
         MatInputModule,
-        FormsModule,
+        ReactiveFormsModule,
         BrowserAnimationsModule,
         RouterTestingModule,
         HttpClientTestingModule,
