@@ -3,7 +3,8 @@
     <input
       matInput
       placeholder="Text to search"
-      (keyup)="onChangeInput($event)"
+      [formControl]="searchTextInput"
+      (keyup)="onChangeInput()"
     />
   </mat-form-field>
 </div>
