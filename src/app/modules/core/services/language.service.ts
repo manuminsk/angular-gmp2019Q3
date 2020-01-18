@@ -3,6 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { LocalStorageService } from './local-storage.service';
 
+// TODO: move to common constants
 const DEFAULT_LANGUAGE: string = 'en-US';
 const LOCAL_STORAGE_LANGUAGE_KEY: string = 'lang';
 const SUPPORTED_LOCALES: string[] = ['ru-RU', 'en-US'];

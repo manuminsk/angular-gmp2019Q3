@@ -1,12 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import {
-  MatDialogModule,
-  MatButtonModule,
-  MAT_DIALOG_DATA,
-  MatDialogRef
-} from '@angular/material';
+import { MatDialogModule, MatButtonModule, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 import { DialogComponent } from './dialog.component';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { JsonTranslationLoader } from '@core/models/json-translation-loader.model';
 
 describe('DialogComponent', () => {
   let component: DialogComponent;
@@ -15,7 +12,13 @@ describe('DialogComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [DialogComponent],
-      imports: [MatDialogModule, MatButtonModule],
+      imports: [
+        MatDialogModule,
+        MatButtonModule,
+        TranslateModule.forRoot({
+          loader: { provide: TranslateLoader, useClass: JsonTranslationLoader }
+        })
+      ],
       providers: [
         {
           provide: MAT_DIALOG_DATA,

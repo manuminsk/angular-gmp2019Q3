@@ -9,6 +9,8 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { provideMockStore } from '@ngrx/store/testing';
 import { LoaderComponent } from 'src/app/modules/core/components/loader/loader.component';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { JsonTranslationLoader } from '@core/models/json-translation-loader.model';
 
 describe('CourseEditPageComponent', () => {
   let component: CourseEditPageComponent;
@@ -17,7 +19,14 @@ describe('CourseEditPageComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [CourseEditPageComponent, LoaderComponent],
-      imports: [RouterTestingModule, HttpClientTestingModule, OverlayModule],
+      imports: [
+        RouterTestingModule,
+        HttpClientTestingModule,
+        OverlayModule,
+        TranslateModule.forRoot({
+          loader: { provide: TranslateLoader, useClass: JsonTranslationLoader }
+        })
+      ],
       providers: [Location, provideMockStore({})],
       schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
     })

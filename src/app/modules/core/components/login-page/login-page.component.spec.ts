@@ -8,8 +8,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginPageComponent } from './login-page.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { OverlayModule } from '@angular/cdk/overlay';
-import { StoreModule } from '@ngrx/store';
 import { provideMockStore } from '@ngrx/store/testing';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { JsonTranslationLoader } from '@core/models/json-translation-loader.model';
 
 describe('LoginPageComponent', () => {
   let component: LoginPageComponent;
@@ -25,7 +26,10 @@ describe('LoginPageComponent', () => {
         BrowserAnimationsModule,
         RouterTestingModule,
         HttpClientTestingModule,
-        OverlayModule
+        OverlayModule,
+        TranslateModule.forRoot({
+          loader: { provide: TranslateLoader, useClass: JsonTranslationLoader }
+        })
       ],
       providers: [provideMockStore({})],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
