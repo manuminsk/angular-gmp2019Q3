@@ -193,6 +193,45 @@
                             </translation>
                         </translations>
                     </concept_node>
+                    <folder_node>
+                        <name>lang</name>
+                        <children>
+                            <concept_node>
+                                <name>en-US</name>
+                                <definition_loaded>false</definition_loaded>
+                                <description></description>
+                                <comment></comment>
+                                <default_text></default_text>
+                                <translations>
+                                    <translation>
+                                        <language>en-US</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>ru-RU</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                </translations>
+                            </concept_node>
+                            <concept_node>
+                                <name>ru-RU</name>
+                                <definition_loaded>false</definition_loaded>
+                                <description></description>
+                                <comment></comment>
+                                <default_text></default_text>
+                                <translations>
+                                    <translation>
+                                        <language>en-US</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>ru-RU</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                </translations>
+                            </concept_node>
+                        </children>
+                    </folder_node>
                     <concept_node>
                         <name>log-off</name>
                         <definition_loaded>false</definition_loaded>

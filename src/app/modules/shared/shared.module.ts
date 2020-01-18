@@ -12,7 +12,8 @@ import {
   MatNativeDateModule,
   MatChipsModule,
   MatSlideToggleModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatMenuModule
 } from '@angular/material';
 
 import { DialogComponent } from '@shared/components/dialog/dialog.component';
@@ -33,6 +34,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatDatepickerModule,
     MatNativeDateModule,
     MatChipsModule,
+    MatMenuModule,
     MatSlideToggleModule,
     MatProgressSpinnerModule,
     OverlayModule,
@@ -50,6 +52,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatDatepickerModule,
     MatNativeDateModule,
     MatChipsModule,
+    MatMenuModule,
     MatSlideToggleModule,
     MatProgressSpinnerModule,
     OverlayModule,

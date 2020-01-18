@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import * as RootReducer from '@store/index';
 import * as UserActions from '@store/actions/user.actions';
 import { AuthService } from '@core/services/auth.service';
-import { TranslateService } from '@ngx-translate/core';
+import { LanguageService } from '@core/services/language.service';
 
 @Component({
   selector: 'app-root',
@@ -18,14 +18,13 @@ export class AppComponent implements OnInit {
   constructor(
     private readonly store: Store<RootReducer.State>,
     private readonly authService: AuthService,
-    private readonly translate: TranslateService
-  ) {
-    translate.setDefaultLang('en-US');
-    translate.use('en-US');
-  }
+    private readonly langService: LanguageService
+  ) {}
 
   public ngOnInit(): void {
     const token: string = this.authService.getToken();
+
+    this.langService.init();
 
     if (!!token) {
       this.store.dispatch(UserActions.restoreSession({ token }));

@@ -12,6 +12,10 @@
     },
     "copyright": "Video Courses, {{year}}. All Rights Reserved.",
     "courses": "Courses",
+    "lang": {
+      "en-US": "English",
+      "ru-RU": "Russian"
+    },
     "log-off": "Log off",
     "login": "Login",
     "name": "Name",

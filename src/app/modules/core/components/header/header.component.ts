@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import * as fromUser from '@store/reducers/user.reducer';
 import { logout } from '@store/actions/user.actions';
 import { AuthService } from '@core/services/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +16,8 @@ export class HeaderComponent {
   constructor(
     public readonly authService: AuthService,
     private readonly store: Store<fromUser.State>,
-    private readonly router: Router
+    private readonly router: Router,
+    public readonly translate: TranslateService
   ) {}
 
   public onLogin(): void {
