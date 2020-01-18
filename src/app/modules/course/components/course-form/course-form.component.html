@@ -49,7 +49,9 @@
       </mat-slide-toggle>
     </div>
 
-    <mat-form-field class="authors-list">
+    <app-author formControlName="authors"></app-author>
+
+    <!-- <mat-form-field class="authors-list">
       <mat-chip-list #chipList aria-label="Author selection">
         <mat-chip
           *ngFor="let author of course.authors"
@@ -68,7 +70,7 @@
           (matChipInputTokenEnd)="add($event)"
         />
       </mat-chip-list>
-    </mat-form-field>
+    </mat-form-field> -->
   </div>
 
   <div>
