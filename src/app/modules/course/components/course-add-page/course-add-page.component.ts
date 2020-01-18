@@ -13,7 +13,7 @@ import * as CourseActions from '@store/actions/course.actions';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseAddPageComponent implements OnInit {
-  public title: string = 'Add new course';
+  public title: string = 'courses.heading-add-course';
   public course: Course;
 
   constructor(private readonly location: Location, private readonly store: Store<RootReducer.State>) {}

@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row mt-4 mb-4">
       <div class="col">
-        <h1>Login</h1>
+        <h1>{{ "core.login" | translate }}</h1>
         <div class="login-form-wrap bg-white border p-4">
           <form
             class="login-form"
@@ -12,7 +12,7 @@
             <mat-form-field class="example-full-width">
               <input
                 matInput
-                placeholder="Name"
+                [placeholder]="'core.name' | translate"
                 name="name"
                 formControlName="name"
               />
@@ -21,13 +21,15 @@
             <mat-form-field class="example-full-width">
               <input
                 matInput
-                placeholder="Password"
+                [placeholder]="'core.password' | translate"
                 name="password"
                 formControlName="password"
               />
             </mat-form-field>
 
-            <button mat-raised-button color="primary">Login</button>
+            <button mat-raised-button color="primary">
+              {{ "core.login" | translate }}
+            </button>
           </form>
         </div>
       </div>

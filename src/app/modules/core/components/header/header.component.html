@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col">
           <app-logo (click)="redirectToMainRoute()">
-            <span>Video Courses</span>
+            <span>{{ "core.brand" | translate }}</span>
           </app-logo>
         </div>
 
@@ -14,14 +14,14 @@
             mat-button
             (click)="onLogin()"
           >
-            login
+            {{ "core.login" | translate }}
           </button>
           <button
             *ngIf="authService.isUserLoggedIn | async"
             mat-button
             (click)="onLogout()"
           >
-            Log off
+            {{ "core.log-off" | translate }}
           </button>
         </div>
       </div>

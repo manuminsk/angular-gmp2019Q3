@@ -1,0 +1,40 @@
+{
+  "core": {
+    "brand": "Видео курсы",
+    "buttons": {
+      "btn-cancel": "Отменить",
+      "btn-delete": "Удалить",
+      "btn-edit": "Редактировать",
+      "btn-load-more": "Загрузить еще",
+      "btn-no-thanks": "Нет, спасибо",
+      "btn-ok": "Да",
+      "btn-save": "Сохранить"
+    },
+    "copyright": "Видео курсы, {{year}}. Все права защищены.",
+    "courses": "Курсы",
+    "log-off": "Выйти",
+    "login": "Войти",
+    "name": "Имя",
+    "page-not-found": "Страница не найдена",
+    "password": "Пароль"
+  },
+  "courses": {
+    "btn-add-new-course": "Добавить курс",
+    "confirmation": {
+      "heading": "Необходимо подтверждение",
+      "question": "Вы уверены, что хотите удалить этот курс?"
+    },
+    "form-fields": {
+      "authors": "Авторы",
+      "date": "Выберите дату",
+      "description": "Описание",
+      "duration": "Длительность",
+      "title": "Название",
+      "top-rated": "Популярный"
+    },
+    "heading-add-course": "Добавить новый курс",
+    "heading-edit-course": "Редактировать курс",
+    "msg-no-data": "Ни одного курса не найдено. Вы можете добавить новый курс.",
+    "search-text": "Текст поиска"
+  }
+}

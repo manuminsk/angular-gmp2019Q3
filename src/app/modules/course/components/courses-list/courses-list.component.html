@@ -18,7 +18,7 @@
           color="primary"
           (click)="onAddCourse()"
         >
-          Add course
+          {{ "courses.btn-add-new-course" | translate }}
         </button>
       </div>
     </div>
@@ -43,7 +43,7 @@
           color="primary"
           (click)="onLoadMore()"
         >
-          Load more
+          {{ "core.buttons.btn-load-more" | translate }}
         </button>
       </div>
     </div>
@@ -54,7 +54,7 @@
   <div class="row">
     <div class="col-12 mb-4 text-center">
       <div class="bg-white border p-4">
-        {{ noDataMessageText | uppercase }}
+        {{ noDataMessageText | translate | uppercase }}
       </div>
     </div>
   </div>

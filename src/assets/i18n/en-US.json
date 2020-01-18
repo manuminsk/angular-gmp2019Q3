@@ -1,0 +1,40 @@
+{
+  "core": {
+    "brand": "Video Courses",
+    "buttons": {
+      "btn-cancel": "Cancel",
+      "btn-delete": "Delete",
+      "btn-edit": "Edit",
+      "btn-load-more": "Load more",
+      "btn-no-thanks": "No Thanks",
+      "btn-ok": "Ok",
+      "btn-save": "Save"
+    },
+    "copyright": "Video Courses, {{year}}. All Rights Reserved.",
+    "courses": "Courses",
+    "log-off": "Log off",
+    "login": "Login",
+    "name": "Name",
+    "page-not-found": "Page not found",
+    "password": "Password"
+  },
+  "courses": {
+    "btn-add-new-course": "Add course",
+    "confirmation": {
+      "heading": "Confirmation needed",
+      "question": "Do you really want to delete this course?"
+    },
+    "form-fields": {
+      "authors": "Authors",
+      "date": "Choose a date",
+      "description": "Description",
+      "duration": "Duration",
+      "title": "Title",
+      "top-rated": "Top Rated"
+    },
+    "heading-add-course": "Add new course",
+    "heading-edit-course": "Edit course",
+    "msg-no-data": "No data. Feel free to add new course.",
+    "search-text": "Text to search"
+  }
+}

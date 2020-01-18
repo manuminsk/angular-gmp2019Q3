@@ -16,6 +16,7 @@ import {
 } from '@angular/material';
 
 import { DialogComponent } from '@shared/components/dialog/dialog.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [DialogComponent],
@@ -34,7 +35,8 @@ import { DialogComponent } from '@shared/components/dialog/dialog.component';
     MatChipsModule,
     MatSlideToggleModule,
     MatProgressSpinnerModule,
-    OverlayModule
+    OverlayModule,
+    TranslateModule
   ],
   exports: [
     CommonModule,
@@ -50,7 +52,8 @@ import { DialogComponent } from '@shared/components/dialog/dialog.component';
     MatChipsModule,
     MatSlideToggleModule,
     MatProgressSpinnerModule,
-    OverlayModule
+    OverlayModule,
+    TranslateModule
   ]
 })
 export class SharedModule {}
