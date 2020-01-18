@@ -20,9 +20,9 @@ import { LoaderComponent } from '@core/components/loader/loader.component';
 import { reducers, metaReducers } from '@store/index';
 import { APP_EFFECTS } from '@store/effects/app.effects';
 
-// AoT requires an exported function for factories
-export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
+// required for AOT compilation
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
 @NgModule({
