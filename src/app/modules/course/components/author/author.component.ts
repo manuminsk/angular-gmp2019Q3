@@ -1,5 +1,5 @@
 import { Component, OnInit, forwardRef } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor, NG_VALIDATORS, Validator, FormControl } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 
@@ -14,10 +14,15 @@ import { Author } from '@course/models/course.class';
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => AuthorComponent),
       multi: true
+    },
+    {
+      provide: NG_VALIDATORS,
+      useExisting: forwardRef(() => AuthorComponent),
+      multi: true
     }
   ]
 })
-export class AuthorComponent implements ControlValueAccessor {
+export class AuthorComponent implements ControlValueAccessor, Validator {
   public authors: Author[];
 
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
@@ -33,6 +38,21 @@ export class AuthorComponent implements ControlValueAccessor {
 
   public get value(): Author[] {
     return this.authors;
+  }
+
+  public validate({ value }: FormControl) {
+    const isNotValid = !(this.authors && this.authors.length);
+    console.log(
+      'VALIDATION',
+      isNotValid && {
+        invalid: true
+      }
+    );
+    return (
+      isNotValid && {
+        invalid: true
+      }
+    );
   }
 
   public registerOnChange(fn: (authors: Author[]) => void): void {

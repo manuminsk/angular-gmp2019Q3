@@ -104,7 +104,16 @@
       </mat-slide-toggle>
     </div>
 
-    <app-author formControlName="authors"></app-author>
+    <app-author formControlName="authors"> </app-author>
+    <mat-error
+      *ngIf="authors.hasError('invalid') && !authors.pristine"
+      class="author-error-msg"
+    >
+      <span
+        [innerHTML]="'core.errors.msg-required' | translate"
+        class="msg-error"
+      ></span>
+    </mat-error>
   </div>
 
   <div>

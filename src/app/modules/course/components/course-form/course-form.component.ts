@@ -8,6 +8,7 @@ import { validateDigits } from '@shared/directives/number-validator.directive';
 @Component({
   selector: 'app-course-form',
   templateUrl: './course-form.component.html',
+  styleUrls: ['course-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseFormComponent implements OnInit {
@@ -26,7 +27,7 @@ export class CourseFormComponent implements OnInit {
       isTopRated: new FormControl(this.course.isTopRated),
       length: new FormControl(this.course.length, [Validators.required, validateDigits()]),
       description: new FormControl(this.course.description, [Validators.required, Validators.maxLength(500)]),
-      authors: new FormControl(this.course.authors, Validators.required)
+      authors: new FormControl(this.course.authors)
     });
   }
 
