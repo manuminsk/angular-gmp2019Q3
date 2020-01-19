@@ -10,7 +10,7 @@
         <span>
           {{
             courseTitle && courseTitle.length
-              ? " / " + courseTitle
+              ? " / " + (courseTitle | translate)
               : ("core.courses" | translate)
           }}
         </span>

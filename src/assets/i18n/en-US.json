@@ -12,6 +12,11 @@
     },
     "copyright": "Video Courses, {{year}}. All Rights Reserved.",
     "courses": "Courses",
+    "errors": {
+      "msg-max-length": "Max length <strong>{{length}}</strong>. Actual length <strong>{{actualLength}}</strong>.",
+      "msg-only-digits": "Duration can only consist of <strong>numbers</strong>",
+      "msg-required": "The field is <strong>required</strong>"
+    },
     "lang": {
       "en-US": "English",
       "ru-RU": "Russian"

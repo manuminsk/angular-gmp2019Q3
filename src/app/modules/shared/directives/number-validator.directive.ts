@@ -8,7 +8,7 @@ export function validateDigits(): ValidatorFn {
     matcher.test(control.value)
       ? null
       : {
-          validateEmail: {
+          validateDigits: {
             valid: false
           }
         };

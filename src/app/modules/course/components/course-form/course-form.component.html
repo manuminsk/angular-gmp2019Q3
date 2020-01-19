@@ -11,6 +11,25 @@
         name="name"
         formControlName="name"
       />
+      <mat-error *ngIf="name.hasError('required')">
+        <span [innerHTML]="'core.errors.msg-required' | translate"></span>
+      </mat-error>
+      <mat-error
+        *ngIf="
+          name.errors && name.errors.maxlength && !name.hasError('required')
+        "
+      >
+        <span
+          [innerHTML]="
+            'core.errors.msg-max-length'
+              | translate
+                : {
+                    length: name.errors.maxlength.requiredLength,
+                    actualLength: name.errors.maxlength.actualLength
+                  }
+          "
+        ></span>
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
@@ -20,6 +39,27 @@
         name="description"
         formControlName="description"
       ></textarea>
+      <mat-error *ngIf="description.hasError('required')">
+        <span [innerHTML]="'core.errors.msg-required' | translate"></span>
+      </mat-error>
+      <mat-error
+        *ngIf="
+          description.errors &&
+          description.errors.maxlength &&
+          !description.hasError('required')
+        "
+      >
+        <span
+          [innerHTML]="
+            'core.errors.msg-max-length'
+              | translate
+                : {
+                    length: description.errors.maxlength.requiredLength,
+                    actualLength: description.errors.maxlength.actualLength
+                  }
+          "
+        ></span>
+      </mat-error>
     </mat-form-field>
 
     <div class="mb-4">
@@ -31,6 +71,9 @@
           name="creationDate"
           formControlName="date"
         />
+        <mat-error *ngIf="date.hasError('required')">
+          <span [innerHTML]="'core.errors.msg-required' | translate"></span>
+        </mat-error>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
@@ -42,6 +85,18 @@
           name="duration"
           formControlName="length"
         />
+        <mat-error
+          *ngIf="
+            length.errors &&
+            length.errors.validateDigits &&
+            !length.hasError('required')
+          "
+        >
+          <span [innerHTML]="'core.errors.msg-only-digits' | translate"></span>
+        </mat-error>
+        <mat-error *ngIf="length.hasError('required')">
+          <span [innerHTML]="'core.errors.msg-required' | translate"></span>
+        </mat-error>
       </mat-form-field>
 
       <mat-slide-toggle name="isTopRated" formControlName="isTopRated">
@@ -50,27 +105,6 @@
     </div>
 
     <app-author formControlName="authors"></app-author>
-
-    <!-- <mat-form-field class="authors-list">
-      <mat-chip-list #chipList aria-label="Author selection">
-        <mat-chip
-          *ngFor="let author of course.authors"
-          [selectable]="selectable"
-          [removable]="removable"
-          (removed)="remove(author)"
-        >
-          {{ author.name }}
-          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-        </mat-chip>
-        <input
-          [placeholder]="'courses.form-fields.authors' | translate"
-          [matChipInputFor]="chipList"
-          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-          [matChipInputAddOnBlur]="addOnBlur"
-          (matChipInputTokenEnd)="add($event)"
-        />
-      </mat-chip-list>
-    </mat-form-field> -->
   </div>
 
   <div>

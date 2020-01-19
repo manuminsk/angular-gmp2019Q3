@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 
 import { Course } from '@course/models/course.class';
 import { validateDigits } from '@shared/directives/number-validator.directive';
@@ -28,6 +28,26 @@ export class CourseFormComponent implements OnInit {
       description: new FormControl(this.course.description, [Validators.required, Validators.maxLength(500)]),
       authors: new FormControl(this.course.authors, Validators.required)
     });
+  }
+
+  public get length(): AbstractControl {
+    return this.courseForm.get('length');
+  }
+
+  public get name(): AbstractControl {
+    return this.courseForm.get('name');
+  }
+
+  public get date(): AbstractControl {
+    return this.courseForm.get('date');
+  }
+
+  public get description(): AbstractControl {
+    return this.courseForm.get('description');
+  }
+
+  public get authors(): AbstractControl {
+    return this.courseForm.get('authors');
   }
 
   public onCancel(): void {

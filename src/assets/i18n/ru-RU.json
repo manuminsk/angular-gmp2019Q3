@@ -12,6 +12,11 @@
     },
     "copyright": "Видео курсы, {{year}}. Все права защищены.",
     "courses": "Курсы",
+    "errors": {
+      "msg-max-length": "Максимальная длина <strong>{{length}}</strong>. Текущая длина <strong>{{actualLength}}</strong>.",
+      "msg-only-digits": "Может содержать только <strong>числа</strong>",
+      "msg-required": "Поле <strong>обязательно</strong> для заполнения"
+    },
     "lang": {
       "en-US": "Английский",
       "ru-RU": "Русский"
