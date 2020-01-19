@@ -24,10 +24,8 @@ export class CourseFormComponent implements OnInit {
       thumbnail: new FormControl(this.course.thumbnail),
       date: new FormControl(new DatePipe('en-US').transform(this.course.date, 'yyyy-MM-dd'), Validators.required),
       isTopRated: new FormControl(this.course.isTopRated),
-      // TODO: fix validation
       length: new FormControl(this.course.length, [Validators.required, validateDigits()]),
       description: new FormControl(this.course.description, [Validators.required, Validators.maxLength(500)]),
-      // TODO: fix validation
       authors: new FormControl(this.course.authors, Validators.required)
     });
   }
