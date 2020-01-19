@@ -18,9 +18,10 @@ import {
 
 import { DialogComponent } from '@shared/components/dialog/dialog.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { NumberValidatorDirective } from './directives/number-validator.directive';
 
 @NgModule({
-  declarations: [DialogComponent],
+  declarations: [DialogComponent, NumberValidatorDirective],
   entryComponents: [DialogComponent],
   imports: [
     CommonModule,
@@ -56,7 +57,8 @@ import { TranslateModule } from '@ngx-translate/core';
     MatSlideToggleModule,
     MatProgressSpinnerModule,
     OverlayModule,
-    TranslateModule
+    TranslateModule,
+    NumberValidatorDirective
   ]
 })
 export class SharedModule {}

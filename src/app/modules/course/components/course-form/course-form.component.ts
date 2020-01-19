@@ -3,6 +3,7 @@ import { DatePipe } from '@angular/common';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { Course } from '@course/models/course.class';
+import { validateDigits } from '@shared/directives/number-validator.directive';
 
 @Component({
   selector: 'app-course-form',
@@ -24,7 +25,7 @@ export class CourseFormComponent implements OnInit {
       date: new FormControl(new DatePipe('en-US').transform(this.course.date, 'yyyy-MM-dd'), Validators.required),
       isTopRated: new FormControl(this.course.isTopRated),
       // TODO: fix validation
-      length: new FormControl(this.course.length, Validators.required),
+      length: new FormControl(this.course.length, [Validators.required, validateDigits()]),
       description: new FormControl(this.course.description, [Validators.required, Validators.maxLength(500)]),
       // TODO: fix validation
       authors: new FormControl(this.course.authors, Validators.required)
