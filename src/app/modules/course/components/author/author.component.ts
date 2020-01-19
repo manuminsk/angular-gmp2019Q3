@@ -42,12 +42,7 @@ export class AuthorComponent implements ControlValueAccessor, Validator {
 
   public validate({ value }: FormControl) {
     const isNotValid = !(this.authors && this.authors.length);
-    console.log(
-      'VALIDATION',
-      isNotValid && {
-        invalid: true
-      }
-    );
+
     return (
       isNotValid && {
         invalid: true
