@@ -53,7 +53,7 @@ export class LanguageService {
     return !!SUPPORTED_LOCALES.find(supportedLang => supportedLang === langCode);
   }
 
-  private saveLangInStorage(lang): void {
+  private saveLangInStorage(lang: string): void {
     this.localStorageService.setData(LOCAL_STORAGE_LANGUAGE_KEY, lang);
   }
 }
