@@ -5,6 +5,10 @@ import { ENTER, COMMA } from '@angular/cdk/keycodes';
 
 import { Author } from '@course/models/course.class';
 
+export interface IValidationState {
+  invalid: boolean;
+}
+
 @Component({
   selector: 'app-author',
   templateUrl: './author.component.html',
@@ -40,7 +44,7 @@ export class AuthorComponent implements ControlValueAccessor, Validator {
     return this.authors;
   }
 
-  public validate({ value }: FormControl) {
+  public validate({ value }: FormControl): IValidationState {
     const isNotValid = !(this.authors && this.authors.length);
 
     return (

@@ -21,7 +21,7 @@ export class LanguageService {
     return this.localStorageService.getData(LOCAL_STORAGE_LANGUAGE_KEY);
   }
 
-  public init() {
+  public init(): this {
     this.translateService.addLangs(SUPPORTED_LOCALES);
     this.setDefaultLang(DEFAULT_LANGUAGE);
 
@@ -41,19 +41,19 @@ export class LanguageService {
     return this;
   }
 
-  public destroy() {
+  public destroy(): void {
     this.langChangeSubscription.unsubscribe();
   }
 
-  public setDefaultLang(language: string = DEFAULT_LANGUAGE) {
+  public setDefaultLang(language: string = DEFAULT_LANGUAGE): void {
     this.translateService.setDefaultLang(language);
   }
 
-  private checkForLangIsSupported(langCode: string) {
+  private checkForLangIsSupported(langCode: string): boolean {
     return !!SUPPORTED_LOCALES.find(supportedLang => supportedLang === langCode);
   }
 
-  private saveLangInStorage(lang) {
+  private saveLangInStorage(lang): void {
     this.localStorageService.setData(LOCAL_STORAGE_LANGUAGE_KEY, lang);
   }
 }
