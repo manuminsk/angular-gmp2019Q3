@@ -1,33 +1,33 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { MatChipsModule } from '@angular/material';
 
-import { BreadcrumbsComponent } from './breadcrumbs.component';
-import { OverlayModule } from '@angular/cdk/overlay';
+import { AuthorComponent } from './author.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { JsonTranslationLoader } from '@core/models/json-translation-loader.model';
 
-describe('BreadcrumbsComponent', () => {
-  let component: BreadcrumbsComponent;
-  let fixture: ComponentFixture<BreadcrumbsComponent>;
+describe('AuthorComponent', () => {
+  let component: AuthorComponent;
+  let fixture: ComponentFixture<AuthorComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [BreadcrumbsComponent],
+      declarations: [AuthorComponent],
       imports: [
-        RouterTestingModule,
-        HttpClientTestingModule,
-        OverlayModule,
+        MatChipsModule,
         TranslateModule.forRoot({
           loader: { provide: TranslateLoader, useClass: JsonTranslationLoader }
         })
-      ]
+      ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
+  }));
 
-    fixture = TestBed.createComponent(BreadcrumbsComponent);
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AuthorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  }));
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();

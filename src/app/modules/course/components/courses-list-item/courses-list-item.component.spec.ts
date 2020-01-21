@@ -6,6 +6,8 @@ import { ICourse } from '../../models/course.class';
 import { DatePipe } from '@angular/common';
 import { By } from '@angular/platform-browser';
 import { DurationPipe } from '../../utils/duration.pipe';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { JsonTranslationLoader } from '@core/models/json-translation-loader.model';
 
 @Component({
   template: `
@@ -46,6 +48,11 @@ describe('TestHostComponent: CoursesListItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        TranslateModule.forRoot({
+          loader: { provide: TranslateLoader, useClass: JsonTranslationLoader }
+        })
+      ],
       declarations: [CoursesListItemComponent, TestHostComponent, DurationPipe],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
@@ -85,6 +92,11 @@ describe('CoursesListItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        TranslateModule.forRoot({
+          loader: { provide: TranslateLoader, useClass: JsonTranslationLoader }
+        })
+      ],
       declarations: [CoursesListItemComponent, DurationPipe],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();

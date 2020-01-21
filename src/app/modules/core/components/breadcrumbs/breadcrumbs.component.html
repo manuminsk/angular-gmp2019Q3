@@ -2,8 +2,18 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <span *ngIf="courseTitle && courseTitle.length"><a routerLink="/courses">Courses</a></span>
-        <span>{{ courseTitle && courseTitle.length ? " / " + courseTitle : "Courses" }}</span>
+        <span *ngIf="courseTitle && courseTitle.length">
+          <a routerLink="/courses">
+            {{ "core.courses" | translate }}
+          </a>
+        </span>
+        <span>
+          {{
+            courseTitle && courseTitle.length
+              ? " / " + (courseTitle | translate)
+              : ("core.courses" | translate)
+          }}
+        </span>
       </div>
     </div>
   </div>

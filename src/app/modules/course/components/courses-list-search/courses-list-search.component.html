@@ -1,9 +1,10 @@
 <div class="bg-white border pt-4 pl-4 pr-4">
-  <mat-form-field class="mr-4">
+  <mat-form-field class="mr-4 d-flex flex-column">
     <input
       matInput
-      placeholder="Text to search"
-      (keyup)="onChangeInput($event)"
+      [placeholder]="'courses.search-text' | translate"
+      [formControl]="searchTextInput"
+      (keyup)="onChangeInput()"
     />
   </mat-form-field>
 </div>

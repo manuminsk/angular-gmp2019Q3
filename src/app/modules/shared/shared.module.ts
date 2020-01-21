@@ -12,13 +12,16 @@ import {
   MatNativeDateModule,
   MatChipsModule,
   MatSlideToggleModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatMenuModule
 } from '@angular/material';
 
 import { DialogComponent } from '@shared/components/dialog/dialog.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { NumberValidatorDirective } from './directives/number-validator.directive';
 
 @NgModule({
-  declarations: [DialogComponent],
+  declarations: [DialogComponent, NumberValidatorDirective],
   entryComponents: [DialogComponent],
   imports: [
     CommonModule,
@@ -32,9 +35,11 @@ import { DialogComponent } from '@shared/components/dialog/dialog.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatChipsModule,
+    MatMenuModule,
     MatSlideToggleModule,
     MatProgressSpinnerModule,
-    OverlayModule
+    OverlayModule,
+    TranslateModule
   ],
   exports: [
     CommonModule,
@@ -48,9 +53,12 @@ import { DialogComponent } from '@shared/components/dialog/dialog.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatChipsModule,
+    MatMenuModule,
     MatSlideToggleModule,
     MatProgressSpinnerModule,
-    OverlayModule
+    OverlayModule,
+    TranslateModule,
+    NumberValidatorDirective
   ]
 })
 export class SharedModule {}

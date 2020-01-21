@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NotFoundPageComponent } from './not-found-page.component';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { JsonTranslationLoader } from '@core/models/json-translation-loader.model';
 
 describe('NotFoundPageComponent', () => {
   let component: NotFoundPageComponent;
@@ -8,9 +10,13 @@ describe('NotFoundPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NotFoundPageComponent ]
-    })
-    .compileComponents();
+      declarations: [NotFoundPageComponent],
+      imports: [
+        TranslateModule.forRoot({
+          loader: { provide: TranslateLoader, useClass: JsonTranslationLoader }
+        })
+      ]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -20,6 +20,7 @@ import { DurationPipe } from '@course/utils/duration.pipe';
 import { CourseAddPageComponent } from '@course/components/course-add-page/course-add-page.component';
 import { CourseEditPageComponent } from '@course/components/course-edit-page/course-edit-page.component';
 import { CourseFormComponent } from '@course/components/course-form/course-form.component';
+import { AuthorComponent } from './components/author/author.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { CourseFormComponent } from '@course/components/course-form/course-form.
     DurationPipe,
     CourseAddPageComponent,
     CourseEditPageComponent,
-    CourseFormComponent
+    CourseFormComponent,
+    AuthorComponent
   ],
   imports: [
     SharedModule,

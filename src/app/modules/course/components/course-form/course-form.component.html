@@ -1,21 +1,65 @@
-<form class="bg-white border p-4" (ngSubmit)="onSubmit()">
+<form
+  class="bg-white border p-4"
+  [formGroup]="courseForm"
+  (ngSubmit)="onSubmit()"
+>
   <div class="form-fields d-flex flex-column mb-4">
     <mat-form-field>
       <input
         matInput
-        placeholder="Title"
+        [placeholder]="'courses.form-fields.title' | translate"
         name="name"
-        [(ngModel)]="course.name"
+        formControlName="name"
       />
+      <mat-error *ngIf="name.hasError('required')">
+        <span [innerHTML]="'core.errors.msg-required' | translate"></span>
+      </mat-error>
+      <mat-error
+        *ngIf="
+          name.errors && name.errors.maxlength && !name.hasError('required')
+        "
+      >
+        <span
+          [innerHTML]="
+            'core.errors.msg-max-length'
+              | translate
+                : {
+                    length: name.errors.maxlength.requiredLength,
+                    actualLength: name.errors.maxlength.actualLength
+                  }
+          "
+        ></span>
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <textarea
         matInput
-        placeholder="Description"
+        [placeholder]="'courses.form-fields.description' | translate"
         name="description"
-        [(ngModel)]="course.description"
+        formControlName="description"
       ></textarea>
+      <mat-error *ngIf="description.hasError('required')">
+        <span [innerHTML]="'core.errors.msg-required' | translate"></span>
+      </mat-error>
+      <mat-error
+        *ngIf="
+          description.errors &&
+          description.errors.maxlength &&
+          !description.hasError('required')
+        "
+      >
+        <span
+          [innerHTML]="
+            'core.errors.msg-max-length'
+              | translate
+                : {
+                    length: description.errors.maxlength.requiredLength,
+                    actualLength: description.errors.maxlength.actualLength
+                  }
+          "
+        ></span>
+      </mat-error>
     </mat-form-field>
 
     <div class="mb-4">
@@ -23,10 +67,13 @@
         <input
           matInput
           [matDatepicker]="picker"
-          placeholder="Choose a date"
+          [placeholder]="'courses.form-fields.date' | translate"
           name="creationDate"
-          [(ngModel)]="course.date"
+          formControlName="date"
         />
+        <mat-error *ngIf="date.hasError('required')">
+          <span [innerHTML]="'core.errors.msg-required' | translate"></span>
+        </mat-error>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
@@ -34,45 +81,53 @@
       <mat-form-field class="mr-4">
         <input
           matInput
-          placeholder="Duration"
+          [placeholder]="'courses.form-fields.duration' | translate"
           name="duration"
-          [(ngModel)]="course.length"
+          formControlName="length"
         />
+        <mat-error
+          *ngIf="
+            length.errors &&
+            length.errors.validateDigits &&
+            !length.hasError('required')
+          "
+        >
+          <span [innerHTML]="'core.errors.msg-only-digits' | translate"></span>
+        </mat-error>
+        <mat-error *ngIf="length.hasError('required')">
+          <span [innerHTML]="'core.errors.msg-required' | translate"></span>
+        </mat-error>
       </mat-form-field>
 
-      <mat-slide-toggle name="isTopRated" [(ngModel)]="course.isTopRated">
-        Top Rated
+      <mat-slide-toggle name="isTopRated" formControlName="isTopRated">
+        {{ "courses.form-fields.top-rated" | translate }}
       </mat-slide-toggle>
     </div>
 
-    <mat-form-field class="authors-list">
-      <mat-chip-list #chipList aria-label="Author selection">
-        <mat-chip
-          *ngFor="let author of course.authors"
-          [selectable]="selectable"
-          [removable]="removable"
-          (removed)="remove(author)"
-        >
-          {{ author.name }}
-          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-        </mat-chip>
-        <input
-          placeholder="Author..."
-          [matChipInputFor]="chipList"
-          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-          [matChipInputAddOnBlur]="addOnBlur"
-          (matChipInputTokenEnd)="add($event)"
-        />
-      </mat-chip-list>
-    </mat-form-field>
+    <app-author formControlName="authors"> </app-author>
+    <mat-error
+      *ngIf="authors.hasError('invalid') && !authors.pristine"
+      class="author-error-msg"
+    >
+      <span
+        [innerHTML]="'core.errors.msg-required' | translate"
+        class="msg-error"
+      ></span>
+    </mat-error>
   </div>
 
   <div>
-    <button mat-raised-button color="primary" class="mr-4" type="submit">
-      Save
+    <button
+      mat-raised-button
+      color="primary"
+      class="mr-4"
+      type="submit"
+      [disabled]="!courseForm.valid"
+    >
+      {{ "core.buttons.btn-save" | translate }}
     </button>
     <button mat-raised-button color="warn" (click)="onCancel()" type="button">
-      Cancel
+      {{ "core.buttons.btn-cancel" | translate }}
     </button>
   </div>
 </form>

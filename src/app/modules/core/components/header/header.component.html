@@ -4,24 +4,37 @@
       <div class="row">
         <div class="col">
           <app-logo (click)="redirectToMainRoute()">
-            <span>Video Courses</span>
+            <span>{{ "core.brand" | translate }}</span>
           </app-logo>
         </div>
 
         <div class="col-auto">
+          <button mat-button [matMenuTriggerFor]="language">
+            {{ translate.currentLang | slice: 0:2 | uppercase }}
+          </button>
+          <mat-menu #language="matMenu">
+            <button
+              mat-menu-item
+              *ngFor="let lang of translate.getLangs()"
+              (click)="translate.use(lang)"
+            >
+              {{ "core.lang." + lang | translate | uppercase }}
+            </button>
+          </mat-menu>
+
           <button
             *ngIf="!(authService.isUserLoggedIn | async)"
             mat-button
             (click)="onLogin()"
           >
-            login
+            {{ "core.login" | translate }}
           </button>
           <button
             *ngIf="authService.isUserLoggedIn | async"
             mat-button
             (click)="onLogout()"
           >
-            Log off
+            {{ "core.log-off" | translate }}
           </button>
         </div>
       </div>

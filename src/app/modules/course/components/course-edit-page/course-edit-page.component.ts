@@ -15,7 +15,7 @@ import * as CourseActions from '@store/actions/course.actions';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseEditPageComponent implements OnInit {
-  public title: string = 'Edit course';
+  public title: string = 'courses.heading-edit-course';
   public course: Course;
 
   constructor(

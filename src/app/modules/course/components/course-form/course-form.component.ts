@@ -1,46 +1,54 @@
-import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { MatChipInputEvent } from '@angular/material/chips';
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 
-import { Author, Course } from '@course/models/course.class';
+import { Course } from '@course/models/course.class';
+import { validateDigits } from '@shared/directives/number-validator.directive';
 
 @Component({
   selector: 'app-course-form',
   templateUrl: './course-form.component.html',
-  styleUrls: ['./course-form.component.scss'],
+  styleUrls: ['course-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CourseFormComponent {
+export class CourseFormComponent implements OnInit {
   @Input() public course: Course;
   @Output() public cancelEvt: EventEmitter<void> = new EventEmitter();
   @Output() public submitEvt: EventEmitter<Course> = new EventEmitter();
 
-  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+  public courseForm: FormGroup;
 
-  public visible: boolean = true;
-  public selectable: boolean = true;
-  public removable: boolean = true;
-  public addOnBlur: boolean = true;
-
-  public add(event: MatChipInputEvent): void {
-    const input = event.input;
-    const value = event.value;
-
-    if ((value || '').trim()) {
-      this.course.authors.push({ name: value.trim() });
-    }
-
-    if (input) {
-      input.value = '';
-    }
+  public ngOnInit(): void {
+    this.courseForm = new FormGroup({
+      id: new FormControl(this.course.id),
+      name: new FormControl(this.course.name, [Validators.required, Validators.maxLength(50)]),
+      thumbnail: new FormControl(this.course.thumbnail),
+      date: new FormControl(new DatePipe('en-US').transform(this.course.date, 'yyyy-MM-dd'), Validators.required),
+      isTopRated: new FormControl(this.course.isTopRated),
+      length: new FormControl(this.course.length, [Validators.required, validateDigits()]),
+      description: new FormControl(this.course.description, [Validators.required, Validators.maxLength(500)]),
+      authors: new FormControl(this.course.authors)
+    });
   }
 
-  public remove(author: Author): void {
-    const index = this.course.authors.indexOf(author);
+  public get length(): AbstractControl {
+    return this.courseForm.get('length');
+  }
 
-    if (index >= 0) {
-      this.course.authors.splice(index, 1);
-    }
+  public get name(): AbstractControl {
+    return this.courseForm.get('name');
+  }
+
+  public get date(): AbstractControl {
+    return this.courseForm.get('date');
+  }
+
+  public get description(): AbstractControl {
+    return this.courseForm.get('description');
+  }
+
+  public get authors(): AbstractControl {
+    return this.courseForm.get('authors');
   }
 
   public onCancel(): void {
@@ -48,6 +56,6 @@ export class CourseFormComponent {
   }
 
   public onSubmit(): void {
-    this.submitEvt.emit(this.course);
+    this.submitEvt.emit(this.courseForm.value);
   }
 }

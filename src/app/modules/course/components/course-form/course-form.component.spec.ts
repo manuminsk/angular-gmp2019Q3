@@ -3,8 +3,11 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CourseFormComponent } from './course-form.component';
 import { CUSTOM_ELEMENTS_SCHEMA, Component } from '@angular/core';
 import { ICourse, Course } from '../../models/course.class';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule, MatChipsModule, MatNativeDateModule, MatSlideToggleModule } from '@angular/material';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { JsonTranslationLoader } from '@core/models/json-translation-loader.model';
+import { AuthorComponent } from '../author/author.component';
 
 @Component({
   template: `
@@ -36,8 +39,17 @@ describe('TestHostComponent: CourseFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CourseFormComponent, TestHostComponent],
-      imports: [FormsModule, MatDatepickerModule, MatChipsModule, MatNativeDateModule, MatSlideToggleModule],
+      declarations: [CourseFormComponent, TestHostComponent, AuthorComponent],
+      imports: [
+        ReactiveFormsModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatChipsModule,
+        MatSlideToggleModule,
+        TranslateModule.forRoot({
+          loader: { provide: TranslateLoader, useClass: JsonTranslationLoader }
+        })
+      ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   }));

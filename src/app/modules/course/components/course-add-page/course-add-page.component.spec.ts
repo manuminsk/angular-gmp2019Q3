@@ -7,6 +7,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { provideMockStore } from '@ngrx/store/testing';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { JsonTranslationLoader } from '@core/models/json-translation-loader.model';
 
 describe('CourseAddPageComponent', () => {
   let component: CourseAddPageComponent;
@@ -15,7 +17,14 @@ describe('CourseAddPageComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [CourseAddPageComponent],
-      imports: [RouterTestingModule, HttpClientTestingModule, OverlayModule],
+      imports: [
+        RouterTestingModule,
+        HttpClientTestingModule,
+        OverlayModule,
+        TranslateModule.forRoot({
+          loader: { provide: TranslateLoader, useClass: JsonTranslationLoader }
+        })
+      ],
       providers: [Location, provideMockStore({})],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();

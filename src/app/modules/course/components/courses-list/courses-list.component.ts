@@ -12,6 +12,7 @@ import { DialogComponent } from 'src/app/modules/shared/components/dialog/dialog
 import * as RootReducer from '@store/index';
 import * as CourseReducer from '@store/reducers/course.reducer';
 import * as CourseActions from '@store/actions/course.actions';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-courses-list',
@@ -22,7 +23,7 @@ import * as CourseActions from '@store/actions/course.actions';
 export class CoursesListComponent implements OnInit, OnDestroy {
   public courses: Course[] = [];
   public searchTerm: string = '';
-  public noDataMessageText: string = 'No data. Feel free to add new course.';
+  public noDataMessageText: string = 'courses.msg-no-data';
   private searchTerms$: BehaviorSubject<string> = new BehaviorSubject('');
   private subscriptions: Subscription = new Subscription();
 
@@ -31,7 +32,8 @@ export class CoursesListComponent implements OnInit, OnDestroy {
     readonly router: Router,
     readonly dialog: MatDialog,
     readonly cd: ChangeDetectorRef,
-    readonly store: Store<RootReducer.State>
+    readonly store: Store<RootReducer.State>,
+    readonly translate: TranslateService
   ) {
     this.subscriptions.add(
       this.store
@@ -102,8 +104,8 @@ export class CoursesListComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '400px',
       data: {
-        title: 'Confirmation needed',
-        question: 'Do you really want to delete this course?'
+        title: 'courses.confirmation.heading',
+        question: 'courses.confirmation.question'
       }
     });
 

@@ -6,12 +6,21 @@ import { provideMockStore } from '@ngrx/store/testing';
 
 import { AppComponent } from './app.component';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { JsonTranslationLoader } from '@core/models/json-translation-loader.model';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [AppComponent],
-      imports: [RouterTestingModule, HttpClientTestingModule, OverlayModule],
+      imports: [
+        RouterTestingModule,
+        HttpClientTestingModule,
+        OverlayModule,
+        TranslateModule.forRoot({
+          loader: { provide: TranslateLoader, useClass: JsonTranslationLoader }
+        })
+      ],
       providers: [provideMockStore({})],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
