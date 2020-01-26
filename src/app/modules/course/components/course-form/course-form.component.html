@@ -1,0 +1,133 @@
+<form
+  class="bg-white border p-4"
+  [formGroup]="courseForm"
+  (ngSubmit)="onSubmit()"
+>
+  <div class="form-fields d-flex flex-column mb-4">
+    <mat-form-field>
+      <input
+        matInput
+        [placeholder]="'courses.form-fields.title' | translate"
+        name="name"
+        formControlName="name"
+      />
+      <mat-error *ngIf="name.hasError('required')">
+        <span [innerHTML]="'core.errors.msg-required' | translate"></span>
+      </mat-error>
+      <mat-error
+        *ngIf="
+          name.errors && name.errors.maxlength && !name.hasError('required')
+        "
+      >
+        <span
+          [innerHTML]="
+            'core.errors.msg-max-length'
+              | translate
+                : {
+                    length: name.errors.maxlength.requiredLength,
+                    actualLength: name.errors.maxlength.actualLength
+                  }
+          "
+        ></span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea
+        matInput
+        [placeholder]="'courses.form-fields.description' | translate"
+        name="description"
+        formControlName="description"
+      ></textarea>
+      <mat-error *ngIf="description.hasError('required')">
+        <span [innerHTML]="'core.errors.msg-required' | translate"></span>
+      </mat-error>
+      <mat-error
+        *ngIf="
+          description.errors &&
+          description.errors.maxlength &&
+          !description.hasError('required')
+        "
+      >
+        <span
+          [innerHTML]="
+            'core.errors.msg-max-length'
+              | translate
+                : {
+                    length: description.errors.maxlength.requiredLength,
+                    actualLength: description.errors.maxlength.actualLength
+                  }
+          "
+        ></span>
+      </mat-error>
+    </mat-form-field>
+
+    <div class="mb-4">
+      <mat-form-field class="mr-4">
+        <input
+          matInput
+          [matDatepicker]="picker"
+          [placeholder]="'courses.form-fields.date' | translate"
+          name="creationDate"
+          formControlName="date"
+        />
+        <mat-error *ngIf="date.hasError('required')">
+          <span [innerHTML]="'core.errors.msg-required' | translate"></span>
+        </mat-error>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="mr-4">
+        <input
+          matInput
+          [placeholder]="'courses.form-fields.duration' | translate"
+          name="duration"
+          formControlName="length"
+        />
+        <mat-error
+          *ngIf="
+            length.errors &&
+            length.errors.validateDigits &&
+            !length.hasError('required')
+          "
+        >
+          <span [innerHTML]="'core.errors.msg-only-digits' | translate"></span>
+        </mat-error>
+        <mat-error *ngIf="length.hasError('required')">
+          <span [innerHTML]="'core.errors.msg-required' | translate"></span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-slide-toggle name="isTopRated" formControlName="isTopRated">
+        {{ "courses.form-fields.top-rated" | translate }}
+      </mat-slide-toggle>
+    </div>
+
+    <app-author formControlName="authors"> </app-author>
+    <mat-error
+      *ngIf="authors.hasError('invalid') && !authors.pristine"
+      class="author-error-msg"
+    >
+      <span
+        [innerHTML]="'core.errors.msg-required' | translate"
+        class="msg-error"
+      ></span>
+    </mat-error>
+  </div>
+
+  <div>
+    <button
+      mat-raised-button
+      color="primary"
+      class="mr-4"
+      type="submit"
+      [disabled]="!courseForm.valid"
+    >
+      {{ "core.buttons.btn-save" | translate }}
+    </button>
+    <button mat-raised-button color="warn" (click)="onCancel()" type="button">
+      {{ "core.buttons.btn-cancel" | translate }}
+    </button>
+  </div>
+</form>

@@ -1,9 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA, DebugElement } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 
 import { CoursesListSearchComponent } from './courses-list-search.component';
-import { By } from '@angular/platform-browser';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { JsonTranslationLoader } from '@core/models/json-translation-loader.model';
 
 describe('CoursesListSearchComponent', () => {
   let component: CoursesListSearchComponent;
@@ -11,11 +13,15 @@ describe('CoursesListSearchComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CoursesListSearchComponent ],
-      imports: [ FormsModule ],
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-    })
-    .compileComponents();
+      declarations: [CoursesListSearchComponent],
+      imports: [
+        ReactiveFormsModule,
+        TranslateModule.forRoot({
+          loader: { provide: TranslateLoader, useClass: JsonTranslationLoader }
+        })
+      ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -30,13 +36,11 @@ describe('CoursesListSearchComponent', () => {
 
   it('should submit search form', () => {
     const debugElement: DebugElement = fixture.debugElement;
-    const btn: DebugElement = debugElement.query(
-      By.css('.course-search-btn')
-    );
+    const input: DebugElement = debugElement.query(By.css('input'));
 
-    spyOn(component, 'onSubmit');
-    btn.triggerEventHandler('click', null);
+    spyOn(component, 'onChangeInput');
+    input.triggerEventHandler('keyup', null);
 
-    expect(component.onSubmit).toHaveBeenCalled();
+    expect(component.onChangeInput).toHaveBeenCalled();
   });
 });

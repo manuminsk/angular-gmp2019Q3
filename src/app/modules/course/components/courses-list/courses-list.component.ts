@@ -1,11 +1,18 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnInit
-} from '@angular/core';
-import { Course, ICourse } from '../../models/course.class';
-import { OrderByPipe, SORTING } from '../../utils/order-by.pipe';
-import { FilterCoursesPipe } from '../../utils/filter-courses.pipe';
+import { ChangeDetectionStrategy, Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { Router } from '@angular/router';
+
+import { Store } from '@ngrx/store';
+import { BehaviorSubject, Subscription } from 'rxjs';
+import { distinctUntilChanged, debounceTime, filter } from 'rxjs/operators';
+
+import { Course } from '@course/models/course.class';
+import { CourseService } from '@course/services/course.service';
+import { DialogComponent } from 'src/app/modules/shared/components/dialog/dialog.component';
+import * as RootReducer from '@store/index';
+import * as CourseReducer from '@store/reducers/course.reducer';
+import * as CourseActions from '@store/actions/course.actions';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-courses-list',
@@ -13,52 +20,108 @@ import { FilterCoursesPipe } from '../../utils/filter-courses.pipe';
   styleUrls: ['./courses-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CoursesListComponent implements OnInit {
-  public courses: ICourse[] = [];
-  public initialCourses: ICourse[] = [];
-  public noDataMessageText: string = 'No data. Feel free to add new course.';
+export class CoursesListComponent implements OnInit, OnDestroy {
+  public courses: Course[] = [];
+  public searchTerm: string = '';
+  public noDataMessageText: string = 'courses.msg-no-data';
+  private searchTerms$: BehaviorSubject<string> = new BehaviorSubject('');
+  private subscriptions: Subscription = new Subscription();
+
+  constructor(
+    readonly courseService: CourseService,
+    readonly router: Router,
+    readonly dialog: MatDialog,
+    readonly cd: ChangeDetectorRef,
+    readonly store: Store<RootReducer.State>,
+    readonly translate: TranslateService
+  ) {
+    this.subscriptions.add(
+      this.store
+        .select((state: RootReducer.State) => state.courses)
+        .subscribe((data: CourseReducer.State) => {
+          this.courses = data.list;
+          this.cd.markForCheck();
+        })
+    );
+  }
 
   public ngOnInit(): void {
-    console.log('Course List Component /2/ ngOnInit');
-
-    for (let i = 0; i < 10; i++) {
-      this.courses.push(new Course({
-        id: i.toString(),
-        title: `Video Course ${i + 1}`,
-        thumbnail: '',
-        creationDate: `2019-11-${Math.floor(Math.random() * 20)}`,
-        topRated: i % 3 === 0,
-        duration: Math.round(Math.random() * i * 20),
-        // tslint:disable-next-line:max-line-length
-        description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-      }));
-    }
-
-    new OrderByPipe().transform(this.courses, SORTING.ASC, 'creationDate');
-    this.initialCourses = [].concat(this.courses);
+    this.subscriptions.add(
+      this.searchTerms$
+        .pipe(
+          distinctUntilChanged(),
+          debounceTime(300),
+          filter(searchTerm => searchTerm.length === 0 || searchTerm.length > 3)
+        )
+        .subscribe((searchTerm: string) => {
+          this.store.dispatch(
+            CourseActions.loadCourses({
+              query: {
+                start: 0,
+                count: 10,
+                searchTerm
+              }
+            })
+          );
+        })
+    );
   }
 
-  public onAddCourse(event): void {
-    console.log('=== ADD COURSE ===', event);
+  public ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 
-  public onEditCourse(event): void {
-    console.log('=== EDIT ===', event.id);
+  public onAddCourse(): void {
+    this.router.navigateByUrl('/courses/new');
   }
 
-  public onDeleteCourse(event): void {
-    console.log('=== DELETE ===', event.id);
+  public onEditCourse(event: Course): void {
+    this.router.navigateByUrl(`/courses/edit/${event.id}`);
   }
 
-  public onLoadMore(event): void {
-    console.log('=== LOAD MORE ===', event);
+  public onDeleteCourse({ id }: Course): void {
+    this.openDialog(id);
+  }
+
+  public onLoadMore(): void {
+    this.store.dispatch(
+      CourseActions.loadMoreCourses({
+        query: {
+          start: this.courses.length,
+          count: 10,
+          searchTerm: this.searchTerm
+        }
+      })
+    );
   }
 
   public onFindEvt(searchTerm: string): void {
-    this.courses = new FilterCoursesPipe().transform(this.courses, searchTerm);
+    this.searchTerm = searchTerm;
+    this.searchTerms$.next(searchTerm);
   }
 
-  public onResetEvt(): void {
-    this.courses = this.initialCourses;
+  public openDialog(id): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '400px',
+      data: {
+        title: 'courses.confirmation.heading',
+        question: 'courses.confirmation.question'
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result) {
+        this.store.dispatch(
+          CourseActions.removeCourse({
+            id,
+            query: {
+              start: 0,
+              count: this.courses.length,
+              searchTerm: this.searchTerm
+            }
+          })
+        );
+      }
+    });
   }
 }

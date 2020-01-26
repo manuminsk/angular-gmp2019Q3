@@ -1,24 +1,37 @@
+export interface Author {
+  name: string;
+}
+
 export interface ICourse {
   id: string;
-  title: string;
+  name: string;
   thumbnail: string;
-  creationDate: string;
-  topRated: boolean;
-  duration: number;
+  date: string;
+  isTopRated: boolean;
+  length: number;
   description: string;
+  authors?: Author[];
 }
 
 export class Course implements ICourse {
   public id: string;
-  public title: string;
+  public name: string;
   public thumbnail: string;
-  public creationDate: string;
-  public topRated: boolean;
-  public duration: number;
+  public date: string;
+  public isTopRated: boolean;
+  public length: number;
   public description: string;
+  public authors: Author[];
 
   constructor(course: ICourse) {
-    Object.assign(this, course);
-    this.thumbnail = this.thumbnail || 'https://placeimg.com/350/200/any';
+    this.id = (course && course.id) || null;
+    this.name = (course && course.name) || null;
+    this.thumbnail = (course && course.thumbnail) || null;
+    this.date = (course && course.date) || null;
+    this.isTopRated = (course && course.isTopRated) || null;
+    this.length = (course && course.length) || null;
+    this.description = (course && course.description) || null;
+    this.authors = (course && course.authors) || [];
+    this.thumbnail = (course && course.thumbnail) || null;
   }
 }

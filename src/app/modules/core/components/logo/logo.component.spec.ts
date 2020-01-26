@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LogoComponent } from './logo.component';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 describe('LogoComponent', () => {
   let component: LogoComponent;
@@ -8,9 +9,9 @@ describe('LogoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LogoComponent ]
-    })
-    .compileComponents();
+      declarations: [LogoComponent],
+      imports: [OverlayModule]
+    }).compileComponents();
 
     fixture = TestBed.createComponent(LogoComponent);
     component = fixture.componentInstance;

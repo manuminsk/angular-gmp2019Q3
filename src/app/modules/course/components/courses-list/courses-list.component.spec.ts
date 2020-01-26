@@ -1,24 +1,45 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA, DebugElement } from '@angular/core';
+import { MatDialogModule } from '@angular/material';
+import { By } from '@angular/platform-browser';
 
 import { CoursesListComponent } from './courses-list.component';
-import { By } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideMockStore } from '@ngrx/store/testing';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { JsonTranslationLoader } from '@core/models/json-translation-loader.model';
 
 describe('CoursesListComponent', () => {
   let component: CoursesListComponent;
   let fixture: ComponentFixture<CoursesListComponent>;
 
+  const initialState = {
+    courses: {
+      list: []
+    }
+  };
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CoursesListComponent ],
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-    })
-    .compileComponents();
+      declarations: [CoursesListComponent],
+      imports: [
+        MatDialogModule,
+        RouterTestingModule,
+        HttpClientTestingModule,
+        TranslateModule.forRoot({
+          loader: { provide: TranslateLoader, useClass: JsonTranslationLoader }
+        })
+      ],
+      providers: [provideMockStore({ initialState })],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CoursesListComponent);
     component = fixture.componentInstance;
+    component.courses = [null, null];
     fixture.detectChanges();
   });
 
@@ -31,13 +52,6 @@ describe('CoursesListComponent', () => {
     const coursesNodes: NodeListOf<Element> = nativeElement.querySelectorAll('app-courses-list-search');
 
     expect(coursesNodes.length).toBeTruthy();
-  });
-
-  it('should create proper number of course items', () => {
-    const nativeElement: HTMLElement = fixture.nativeElement;
-    const coursesNodes: NodeListOf<Element> = nativeElement.querySelectorAll('app-courses-list-item');
-
-    expect(coursesNodes.length).toBe(component.courses.length);
   });
 
   it('should call loadMore method', () => {

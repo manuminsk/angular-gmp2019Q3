@@ -1,11 +1,12 @@
+<app-breadcrumbs></app-breadcrumbs>
+
 <div class="courses-list">
   <div class="container">
     <div class="row mt-4 mb-4">
       <div class="col">
         <app-courses-list-search
           (findEvt)="onFindEvt($event)"
-          (resetEvt)="onResetEvt()">
-        </app-courses-list-search>
+        ></app-courses-list-search>
       </div>
     </div>
 
@@ -15,18 +16,23 @@
           class="add-course-btn"
           mat-raised-button
           color="primary"
-          (click)="onAddCourse($event)">
-          Add course
+          (click)="onAddCourse()"
+        >
+          {{ "courses.btn-add-new-course" | translate }}
         </button>
       </div>
     </div>
 
-    <div class="row" *ngIf="courses; else noDataMessage">
-      <div class="col-md-6 col-lg-4 col-xl-3 mb-4" *ngFor="let course of courses; let i = index">
+    <div class="row" *ngIf="courses && courses.length; else noDataMessage">
+      <div
+        class="col-md-6 col-lg-4 col-xl-3 mb-4"
+        *ngFor="let course of courses; let i = index"
+      >
         <app-courses-list-item
           [course]="course"
           (deleteCourseEvt)="onDeleteCourse(course)"
-          (editCourseEvt)="onEditCourse(course)">
+          (editCourseEvt)="onEditCourse(course)"
+        >
         </app-courses-list-item>
       </div>
 
@@ -35,8 +41,9 @@
           class="load-more-btn"
           mat-raised-button
           color="primary"
-          (click)="onLoadMore($event)">
-          Load more
+          (click)="onLoadMore()"
+        >
+          {{ "core.buttons.btn-load-more" | translate }}
         </button>
       </div>
     </div>
@@ -47,7 +54,7 @@
   <div class="row">
     <div class="col-12 mb-4 text-center">
       <div class="bg-white border p-4">
-        {{ noDataMessageText | uppercase }}
+        {{ noDataMessageText | translate | uppercase }}
       </div>
     </div>
   </div>
