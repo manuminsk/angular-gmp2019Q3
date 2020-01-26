@@ -7,6 +7,57 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 Preview on [gh-pages](https://manuminsk.github.io/angular-gmp2019Q3).
 Mock data provided by [json server](https://agmp-be.herokuapp.com).
 
+## Agenda
+
+1. Prerequisites
+   Webpack;
+   AngularCLI;
+   TypeScript.
+2. Components
+   Components;
+   Lifecycle;
+   Template DSL and data-binding, Custom component.
+3. Directives + Pipes
+   Directives;
+   Types of directives;
+   Built-in directives;
+   Custom directive;
+   Pipes;
+   Built-in pipes;
+   Custom pipes;
+   Async pipes.
+4. Modules & Services
+   Services;
+   DI;
+   Modules, Lazy Loading.
+5. Change detection
+   Zone js;
+   Flow;
+   Immutable data structure;
+   Push strategy.
+6. Routing
+   Routing;
+   Lazy and preloading;
+   CanActivate, СanDeactivate.
+7. HTTP
+   Communication with server-side.
+8. Rxjs observables
+   Reactive programming basics;
+   Comparison with promises.
+9. Ngrx/Redux
+   Predictable state container for JavaScript apps.
+10. Forms
+    Forms in Angular;
+    Template driven forms;
+    Model-driven forms;
+    Built-in validation;
+    Custom validation.
+11. Unit testing
+    Components and directives UT;
+    Services and pipes UT.
+12. Internationalization
+    i18n.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
@@ -22,10 +73,6 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-<!-- ## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/). -->
 
 ## Running deploy script
 
