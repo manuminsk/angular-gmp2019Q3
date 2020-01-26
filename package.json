@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod --base-href=agmp-preview",
+    "build": "ng build --prod --base-href=angular-gmp2019Q3",
     "deploy": "ng deploy",
     "test": "ng test --code-coverage",
     "test:ci": "ng test --code-coverage --no-watch --no-progress --browsers=ChromeHeadlessCI",

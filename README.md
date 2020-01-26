@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Preview
 
-Preview on [gh-pages](https://manuminsk.github.io/agmp-preview).
+Preview on [gh-pages](https://manuminsk.github.io/angular-gmp2019Q3).
 Mock data provided by [json server](https://agmp-be.herokuapp.com).
 
 ## Development server
@@ -23,9 +23,9 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+<!-- ## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/). -->
 
 ## Running deploy script
 
