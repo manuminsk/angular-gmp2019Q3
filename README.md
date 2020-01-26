@@ -10,53 +10,53 @@ Mock data provided by [json server](https://agmp-be.herokuapp.com).
 ## Agenda
 
 1. Prerequisites
-   Webpack;
-   AngularCLI;
-   TypeScript.
+   - Webpack;
+   - AngularCLI;
+   - TypeScript.
 2. Components
-   Components;
-   Lifecycle;
-   Template DSL and data-binding, Custom component.
+   - Components;
+   - Lifecycle;
+   - Template DSL and data-binding, Custom component.
 3. Directives + Pipes
-   Directives;
-   Types of directives;
-   Built-in directives;
-   Custom directive;
-   Pipes;
-   Built-in pipes;
-   Custom pipes;
-   Async pipes.
+   - Directives;
+   - Types of directives;
+   - Built-in directives;
+   - Custom directive;
+   - Pipes;
+   - Built-in pipes;
+   - Custom pipes;
+   - Async pipes.
 4. Modules & Services
-   Services;
-   DI;
-   Modules, Lazy Loading.
+   - Services;
+   - DI;
+   - Modules, Lazy Loading.
 5. Change detection
-   Zone js;
-   Flow;
-   Immutable data structure;
-   Push strategy.
+   - Zone js;
+   - Flow;
+   - Immutable data structure;
+   - Push strategy.
 6. Routing
-   Routing;
-   Lazy and preloading;
-   CanActivate, СanDeactivate.
+   - Routing;
+   - Lazy and preloading;
+   - CanActivate, СanDeactivate.
 7. HTTP
-   Communication with server-side.
+   - Communication with server-side.
 8. Rxjs observables
-   Reactive programming basics;
-   Comparison with promises.
+   - Reactive programming basics;
+   - Comparison with promises.
 9. Ngrx/Redux
-   Predictable state container for JavaScript apps.
+   - Predictable state container for JavaScript apps.
 10. Forms
-    Forms in Angular;
-    Template driven forms;
-    Model-driven forms;
-    Built-in validation;
-    Custom validation.
+    - Forms in Angular;
+    - Template driven forms;
+    - Model-driven forms;
+    - Built-in validation;
+    - Custom validation.
 11. Unit testing
-    Components and directives UT;
-    Services and pipes UT.
+    - Components and directives UT;
+    - Services and pipes UT.
 12. Internationalization
-    i18n.
+    - i18n.
 
 ## Development server
 
