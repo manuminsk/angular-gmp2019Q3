@@ -8,7 +8,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { provideMockStore } from '@ngrx/store/testing';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { JsonTranslationLoader } from '@core/models/json-translation-loader.model';
-import { MatMenuModule } from '@angular/material';
+import { MatMenuModule } from '@angular/material/menu';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;

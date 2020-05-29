@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatChipsModule } from '@angular/material';
+import { MatChipsModule } from '@angular/material/chips';
 
 import { AuthorComponent } from './author.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
