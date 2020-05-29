@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/app/store/actions/course.actions.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../index.html">All files</a> / <a href="index.html">src/app/store/actions</a> course.actions.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>14/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>14/14</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { createAction, props } from '@ngrx/store';
+&nbsp;
+import { ICourseQuery } from '@course/models/course-query.interface';
+import { Course } from '@course/models/course.class';
+&nbsp;
+export const loadCourses = createAction('[Course] Load Courses', props&lt;{ query: ICourseQuery }&gt;());
+export const loadCoursesSuccess = createAction('[Course] Load Courses Success', props&lt;{ data: Course[] }&gt;());
+export const loadCoursesFailure = createAction('[Course] Load Courses Failure', props&lt;{ error: any }&gt;());
+&nbsp;
+export const loadMoreCourses = createAction('[Course] Load More Courses', props&lt;{ query: ICourseQuery }&gt;());
+export const loadMoreCoursesSuccess = createAction('[Course] Load More Courses Success', props&lt;{ data: Course[] }&gt;());
+export const loadMoreCoursesFailure = createAction('[Course] Load More Courses Failure', props&lt;{ error: any }&gt;());
+&nbsp;
+export const removeCourse = createAction('[Course] Remove Course', props&lt;{ id: string; query: ICourseQuery }&gt;());
+export const removeCourseFailure = createAction('[Course] Remove Course Failure', props&lt;{ error: any }&gt;());
+&nbsp;
+export const createCourse = createAction('[Course] Create Course', props&lt;{ course: Course }&gt;());
+export const createCourseSuccess = createAction('[Course] Create Course Success', props&lt;{ data: any }&gt;());
+export const createCourseFailure = createAction('[Course] Create Course Failure', props&lt;{ error: any }&gt;());
+&nbsp;
+export const updateCourse = createAction('[Course] Update Course', props&lt;{ course: Course }&gt;());
+export const updateCourseSuccess = createAction('[Course] Update Course Success', props&lt;{ data: any }&gt;());
+export const updateCourseFailure = createAction('[Course] Update Course Failure', props&lt;{ error: any }&gt;());
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Jan 21 2020 12:53:08 GMT+0300 (Moscow Standard Time)
+</div>
+</div>
+<script src="../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../sorter.js"></script>
+</body>
+</html>
